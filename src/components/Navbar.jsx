@@ -430,9 +430,7 @@ export default function Navbar() {
   };
 
   return (
-    
-           <Box position="sticky" top={0} backgroundColor='white'  zIndex={999}>
-
+    <Box position="sticky" top={0} backgroundColor="white" zIndex={999}>
       <Flex justify="center" display={isMobile ? "flex" : "none"}>
         <Link as={ReactRouterLink} to="/">
           <Image
@@ -623,17 +621,213 @@ export default function Navbar() {
 
             <DrawerBody p={0}>
               <Flex direction="column" gap={2}>
-                <LinkBox w="100%">
-                  <LinkOverlay href={"/shop"}>
-                    <Text
-                      color="brand.600"
-                      _hover={{ textDecoration: "none" }}
-                      ms={4}
+                <Accordion width={"100%"} onClose={handleClose}>
+                  <AccordionItem isOpen={Open}>
+                    <AccordionButton
+                      onClick={() => {
+                        handleHover();
+                        setOpenOuterAccordion(!openOuterAccordion);
+                      }}
+                      style={
+                        all
+                          ? {
+                              background: "#436131",
+                              color: "white",
+                              borderRadius: 5,
+                            }
+                          : {
+                              background: "white",
+                              color: "black",
+                              borderRadius: 5,
+                            }
+                      }
                     >
-                      Shop
-                    </Text>
-                  </LinkOverlay>
-                </LinkBox>
+                      <Box
+                        as="span"
+                        flex="1"
+                        fontSize="md"
+                        color="brand.900"
+                        textAlign="left"
+                      >
+                        Shop By Category
+                      </Box>{" "}
+                      <AccordionIcon />
+                    </AccordionButton>
+
+                    <AccordionPanel
+                      pb={4}
+                      display={openOuterAccordion ? "block" : "none"}
+                    >
+                      <Accordion width={"100%"} onClose={handleClose}>
+                        <AccordionItem>
+                          {categories?.map((section, index) => (
+                            <AccordionItem
+                              key={index}
+                              width={"100%"}
+                              textAlign={"start"}
+                              textDecoration="none"
+                              isOpen={!isOpen}
+                            >
+                              <AccordionButton
+                                marginLeft={4}
+                                onClick={() => {
+                                  toggleSection(index, section);
+
+                                  setSearchParams({
+                                    category: section.id,
+                                  });
+                                  if (section?.children?.length > 0) {
+                                    setOpenAccrodion();
+                                  } else {
+                                    navigate(
+                                      `/shop?page=1&category=${section.id}`
+                                    );
+                                    setAccordion(!isOpen);
+                                    onClose();
+                                  }
+                                }}
+                              >
+                                <Box
+                                  as="span"
+                                  flex="1"
+                                  textAlign="left"
+                                  textTransform={"capitalize"}
+                                  width={"100%"}
+                                >
+                                  {section?.name}
+                                </Box>
+                                <AccordionIcon
+                                  display={
+                                    section?.children?.length > 0 ? "" : "none"
+                                  }
+                                />
+                              </AccordionButton>
+                              <AccordionPanel
+                                pb={4}
+                                width={"100%"}
+                                display={
+                                  openSections.includes(index)
+                                    ? "block"
+                                    : "none"
+                                }
+                              >
+                                {openSections?.includes(index) ? (
+                                  <>
+                                    {section?.children.map(
+                                      (subcategory, subIndex) => (
+                                        <>
+                                          <Accordion
+                                            width={"100%"}
+                                            onClose={handleClose}
+                                          >
+                                            <AccordionItem
+                                              key={subIndex}
+                                              isOpen={isOpen}
+                                            >
+                                              <AccordionButton
+                                                width={"100%"}
+                                                textAlign={"start"}
+                                                onClick={() => {
+                                                  subToggleSection(
+                                                    subIndex,
+                                                    subcategory
+                                                  );
+
+                                                  if (
+                                                    subcategory?.children
+                                                      ?.length > 0
+                                                  ) {
+                                                    setOpenAccrodion(
+                                                      !openAccrodion
+                                                    );
+                                                    setOpen(Open);
+                                                  } else {
+                                                    navigate(
+                                                      `/shop?page=1&category=${subcategory.id}`
+                                                    );
+                                                    setAccordion(!isOpen);
+                                                    onClose();
+                                                  }
+                                                }}
+                                              >
+                                                <Box
+                                                  as="span"
+                                                  flex="1"
+                                                  textAlign="left"
+                                                  fontSize={14}
+                                                >
+                                                  {subcategory?.name}
+                                                </Box>
+                                                <AccordionIcon
+                                                  onClick={() =>
+                                                    navigate(
+                                                      `/shop?page=1&category=${subcategory.id}`
+                                                    )
+                                                  }
+                                                  display={
+                                                    subcategory?.children
+                                                      ?.length > 0
+                                                      ? ""
+                                                      : "none"
+                                                  }
+                                                />
+                                              </AccordionButton>
+                                              <AccordionPanel
+                                                pb={4}
+                                                display={
+                                                  openSubSections.includes(
+                                                    subIndex
+                                                  )
+                                                    ? "block"
+                                                    : "none"
+                                                }
+                                              >
+                                                {openSubSections?.includes(
+                                                  subIndex
+                                                ) ? (
+                                                  <>
+                                                    {subcategory?.children.map(
+                                                      (children, i) => (
+                                                        <Text
+                                                          textDecoration="none"
+                                                          py={1}
+                                                          key={i}
+                                                          onClick={() => {
+                                                            navigate(
+                                                              `/shop?page=1&category=${children.id}`
+                                                            );
+                                                            onClose();
+                                                          }}
+                                                          fontSize={13}
+                                                          cursor={"pointer"}
+                                                          marginLeft={3}
+                                                        >
+                                                          {children?.name}
+                                                        </Text>
+                                                      )
+                                                    )}
+                                                  </>
+                                                ) : (
+                                                  <></>
+                                                )}
+                                              </AccordionPanel>
+                                            </AccordionItem>
+                                          </Accordion>
+                                        </>
+                                      )
+                                    )}
+                                  </>
+                                ) : (
+                                  <></>
+                                )}
+                              </AccordionPanel>
+                            </AccordionItem>
+                          ))}
+                        </AccordionItem>
+                      </Accordion>
+                    </AccordionPanel>
+                  </AccordionItem>
+                </Accordion>
                 {Links.map((link) => (
                   // <LinkBox w="100%" key={link.name}>
                   //     <LinkOverlay
@@ -658,211 +852,6 @@ export default function Navbar() {
                 ))}
               </Flex>
 
-              <Accordion width={"100%"} onClose={handleClose}>
-                <AccordionItem isOpen={Open}>
-                  <AccordionButton
-                    onClick={() => {
-                      handleHover();
-                      setOpenOuterAccordion(!openOuterAccordion);
-                    }}
-                    style={
-                      all
-                        ? {
-                            background: "#436131",
-                            color: "white",
-                            borderRadius: 5,
-                          }
-                        : {
-                            background: "white",
-                            color: "black",
-                            borderRadius: 5,
-                          }
-                    }
-                  >
-                    <Box
-                      as="span"
-                      flex="1"
-                      fontSize="md"
-                      color="brand.900"
-                      textAlign="left"
-                    >
-                      Shop By Category
-                    </Box>{" "}
-                    <AccordionIcon />
-                  </AccordionButton>
-
-                  <AccordionPanel
-                    pb={4}
-                    display={openOuterAccordion ? "block" : "none"}
-                  >
-                    <Accordion width={"100%"} onClose={handleClose}>
-                      <AccordionItem>
-                        {categories?.map((section, index) => (
-                          <AccordionItem
-                            key={index}
-                            width={"100%"}
-                            textAlign={"start"}
-                            textDecoration="none"
-                            isOpen={!isOpen}
-                          >
-                            <AccordionButton
-                              marginLeft={4}
-                              onClick={() => {
-                                toggleSection(index, section);
-
-                                setSearchParams({
-                                  category: section.id,
-                                });
-                                if (section?.children?.length > 0) {
-                                  setOpenAccrodion();
-                                } else {
-                                  navigate(
-                                    `/shop?page=1&category=${section.id}`
-                                  );
-                                  setAccordion(!isOpen);
-                                  onClose();
-                                }
-                              }}
-                            >
-                              <Box
-                                as="span"
-                                flex="1"
-                                textAlign="left"
-                                textTransform={"capitalize"}
-                                width={"100%"}
-                              >
-                                {section?.name}
-                              </Box>
-                              <AccordionIcon
-                                display={
-                                  section?.children?.length > 0 ? "" : "none"
-                                }
-                              />
-                            </AccordionButton>
-                            <AccordionPanel
-                              pb={4}
-                              width={"100%"}
-                              display={
-                                openSections.includes(index) ? "block" : "none"
-                              }
-                            >
-                              {openSections?.includes(index) ? (
-                                <>
-                                  {section?.children.map(
-                                    (subcategory, subIndex) => (
-                                      <>
-                                        <Accordion
-                                          width={"100%"}
-                                          onClose={handleClose}
-                                        >
-                                          <AccordionItem
-                                            key={subIndex}
-                                            isOpen={isOpen}
-                                          >
-                                            <AccordionButton
-                                              width={"100%"}
-                                              textAlign={"start"}
-                                              onClick={() => {
-                                                subToggleSection(
-                                                  subIndex,
-                                                  subcategory
-                                                );
-
-                                                if (
-                                                  subcategory?.children
-                                                    ?.length > 0
-                                                ) {
-                                                  setOpenAccrodion(
-                                                    !openAccrodion
-                                                  );
-                                                  setOpen(Open);
-                                                } else {
-                                                  navigate(
-                                                    `/shop?page=1&category=${subcategory.id}`
-                                                  );
-                                                  setAccordion(!isOpen);
-                                                  onClose();
-                                                }
-                                              }}
-                                            >
-                                              <Box
-                                                as="span"
-                                                flex="1"
-                                                textAlign="left"
-                                                fontSize={14}
-                                              >
-                                                {subcategory?.name}
-                                              </Box>
-                                              <AccordionIcon
-                                                onClick={() =>
-                                                  navigate(
-                                                    `/shop?page=1&category=${subcategory.id}`
-                                                  )
-                                                }
-                                                display={
-                                                  subcategory?.children
-                                                    ?.length > 0
-                                                    ? ""
-                                                    : "none"
-                                                }
-                                              />
-                                            </AccordionButton>
-                                            <AccordionPanel
-                                              pb={4}
-                                              display={
-                                                openSubSections.includes(
-                                                  subIndex
-                                                )
-                                                  ? "block"
-                                                  : "none"
-                                              }
-                                            >
-                                              {openSubSections?.includes(
-                                                subIndex
-                                              ) ? (
-                                                <>
-                                                  {subcategory?.children.map(
-                                                    (children, i) => (
-                                                      <Text
-                                                        textDecoration="none"
-                                                        py={1}
-                                                        key={i}
-                                                        onClick={() => {
-                                                          navigate(
-                                                            `/shop?page=1&category=${children.id}`
-                                                          );
-                                                          onClose();
-                                                        }}
-                                                        fontSize={13}
-                                                        cursor={"pointer"}
-                                                        marginLeft={3}
-                                                      >
-                                                        {children?.name}
-                                                      </Text>
-                                                    )
-                                                  )}
-                                                </>
-                                              ) : (
-                                                <></>
-                                              )}
-                                            </AccordionPanel>
-                                          </AccordionItem>
-                                        </Accordion>
-                                      </>
-                                    )
-                                  )}
-                                </>
-                              ) : (
-                                <></>
-                              )}
-                            </AccordionPanel>
-                          </AccordionItem>
-                        ))}
-                      </AccordionItem>
-                    </Accordion>
-                  </AccordionPanel>
-                </AccordionItem>
-              </Accordion>
               {/* </Link> */}
             </DrawerBody>
             <DrawerFooter></DrawerFooter>
@@ -1099,7 +1088,7 @@ export default function Navbar() {
                 as={ReactRouterLink}
                 to={"/"}
                 color="text.300"
-                _hover={{color: "brand.500" }}
+                _hover={{ color: "brand.500" }}
                 // fontWeight={600}
                 onMouseEnter={handleClose}
               >
@@ -1117,85 +1106,82 @@ export default function Navbar() {
                 >
                   Shop
                 </MenuButton>
-                  <MenuList
-                    as={Grid}
-                    width={500}
-                    //height={400}
-                    templateColumns="repeat(9, 1fr)"
-                    onMouseLeave={handleClose1}
-                    zIndex={9999}
-                  >
-                    <GridItem colSpan={3} overflow="auto">
-                      {megaCategories?.map((section, index) => (
-                        <>
-                          <MenuItem
-                            icon={
-                              <img
-                                src={"./himalayan_logo.jpg"}
-                                width={25}
-                                alt=""
-                              />
-                            }
-                            fontSize={"14"}
-                            key={index}
-                            onMouseEnter={() => handleShow1(section.children)}
-                            onClick={() =>
-                              navigate(`/shop?category=${section.id}`)
-                            }
-                            sx={{
-                              "&:hover": {
-                                backgroundColor: "brand.500",
-                                color: "white",
-                              },
-                            }}
-                          >
-                            {" "}
-                            {section?.name}
-                          </MenuItem>
+                <MenuList
+                  as={Grid}
+                  width={500}
+                  //height={400}
+                  templateColumns="repeat(9, 1fr)"
+                  onMouseLeave={handleClose1}
+                  zIndex={9999}
+                >
+                  <GridItem colSpan={3} overflow="auto">
+                    {megaCategories?.map((section, index) => (
+                      <>
+                        <MenuItem
+                          icon={
+                            <img
+                              src={"./himalayan_logo.jpg"}
+                              width={25}
+                              alt=""
+                            />
+                          }
+                          fontSize={"14"}
+                          key={index}
+                          onMouseEnter={() => handleShow1(section.children)}
+                          onClick={() =>
+                            navigate(`/shop?category=${section.id}`)
+                          }
+                          sx={{
+                            "&:hover": {
+                              backgroundColor: "brand.500",
+                              color: "white",
+                            },
+                          }}
+                        >
+                          {" "}
+                          {section?.name}
+                        </MenuItem>
 
-                          <Divider />
-                        </>
-                      ))}
-                    </GridItem>
-                    <GridItem colSpan={3} overflow="auto">
-                      {megaSubCategories?.map((item, subIndex) => (
-                        <MenuItem
-                          fontSize={"14"}
-                          key={subIndex}
-                          onClick={() => navigate(`/shop?category=${item.id}`)}
-                          onMouseEnter={() => handleShow2(item.children)}
-                          sx={{
-                            "&:hover": {
-                              backgroundColor: "brand.500",
-                              color: "white",
-                            },
-                          }}
-                        >
-                          {item?.name}
-                        </MenuItem>
-                      ))}
-                    </GridItem>
-                    <GridItem colSpan={3} overflow="auto">
-                      {nestedCategories?.map((item, nestedIndex) => (
-                        <MenuItem
-                          fontSize={"14"}
-                          key={nestedIndex}
-                          onClick={() => navigate(`/shop?category=${item.id}`)}
-                          sx={{
-                            "&:hover": {
-                              backgroundColor: "brand.500",
-                              color: "white",
-                            },
-                          }}
-                        >
-                          {item?.name}
-                        </MenuItem>
-                      ))}
-                    </GridItem>
-                 
-                  
-                  </MenuList>
-                
+                        <Divider />
+                      </>
+                    ))}
+                  </GridItem>
+                  <GridItem colSpan={3} overflow="auto">
+                    {megaSubCategories?.map((item, subIndex) => (
+                      <MenuItem
+                        fontSize={"14"}
+                        key={subIndex}
+                        onClick={() => navigate(`/shop?category=${item.id}`)}
+                        onMouseEnter={() => handleShow2(item.children)}
+                        sx={{
+                          "&:hover": {
+                            backgroundColor: "brand.500",
+                            color: "white",
+                          },
+                        }}
+                      >
+                        {item?.name}
+                      </MenuItem>
+                    ))}
+                  </GridItem>
+                  <GridItem colSpan={3} overflow="auto">
+                    {nestedCategories?.map((item, nestedIndex) => (
+                      <MenuItem
+                        fontSize={"14"}
+                        key={nestedIndex}
+                        onClick={() => navigate(`/shop?category=${item.id}`)}
+                        sx={{
+                          "&:hover": {
+                            backgroundColor: "brand.500",
+                            color: "white",
+                          },
+                        }}
+                      >
+                        {item?.name}
+                      </MenuItem>
+                    ))}
+                  </GridItem>
+                </MenuList>
               </Menu>
               {Links.map((link) => (
                 <Link
@@ -1295,6 +1281,6 @@ export default function Navbar() {
           </GridItem>
         </Grid>
       </Container>
-   </Box>
+    </Box>
   );
 }

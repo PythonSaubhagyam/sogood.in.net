@@ -17,7 +17,7 @@ import { useNavigate, NavLink as RouterLink } from "react-router-dom";
 import { IoMail } from "react-icons/io5";
 const ListHeader = ({ children }) => {
   return (
-    <Text fontWeight={"500"} fontSize={"lg"} mb={1} color="brand.500">
+    <Text fontWeight={"500"} fontSize={"lg"} mb={1} color="brand.100">
       {children}
     </Text>
   );
@@ -49,7 +49,7 @@ export default function Footer() {
         <Box className="scrolling-text-container">
           <Text
             align={"center"}
-            color="brand.500"
+            color="brand.900"
             pt={4}
             px={4}
             fontSize={{ base: "sm", lg: "md" }}
@@ -84,13 +84,18 @@ export default function Footer() {
             {/* <Stack align={"flex-start"} color="brand.900"> */}
 
             {/* <SimpleGrid columns={{ base: 1, md: 3 }}> */}
-            <Stack align={"flex-start"} color="text.300">
-              <ListHeader style={{ color: "brand.500" }}>
-                Quick Links
-              </ListHeader>
+            <Stack color="text.300">
+              <Stack
+                ml={{ md: "50%" }}
+                align={{ md: "flex-start", base: "center" }}
+              >
+                <ListHeader style={{ color: "text.500" }}>
+                  Quick Links
+                </ListHeader>
+              </Stack>
               <Link
                 textDecoration="none"
-                _hover={{ color: "brand.500" }}
+                _hover={{ color: "text.500" }}
                 as={RouterLink}
                 to={"/shop"}
               >
@@ -98,7 +103,7 @@ export default function Footer() {
               </Link>
               <Link
                 textDecoration="none"
-                _hover={{ color: "brand.500" }}
+                _hover={{ color: "text.500" }}
                 as={RouterLink}
                 to={"/blogs?page=1"}
               >
@@ -106,7 +111,7 @@ export default function Footer() {
               </Link>
               <Link
                 textDecoration="none"
-                _hover={{ color: "brand.500" }}
+                _hover={{ color: "text.500" }}
                 as={RouterLink}
                 to={"/about-us"}
               >
@@ -114,19 +119,35 @@ export default function Footer() {
               </Link>
               <Link
                 textDecoration="none"
-                _hover={{ color: "brand.500" }}
+                _hover={{ color: "text.500" }}
                 as={RouterLink}
-                to={"/store-locator"}
+                to={"/organic-living"}
               >
-                Store Locate
+                Organic Living
               </Link>
               <Link
                 textDecoration="none"
-                _hover={{ color: "brand.500" }}
+                _hover={{ color: "text.500" }}
                 as={RouterLink}
-                to={"/contact-us"}
+                to={"/resources"}
               >
-                Contact Us
+                Resources
+              </Link>
+              <Link
+                textDecoration="none"
+                _hover={{ color: "text.500" }}
+                as={RouterLink}
+                to={"/appreciation"}
+              >
+                Appreciation
+              </Link>
+              <Link
+                textDecoration="none"
+                _hover={{ color: "text.500" }}
+                as={RouterLink}
+                to={"/testimonials"}
+              >
+                Testimonials
               </Link>
             </Stack>
             <Stack align={"flex-start"} color="text.300">
@@ -159,10 +180,27 @@ export default function Footer() {
                       flexDirection={"column"}
                     >
                       {!isMobile && <ListHeader>&nbsp;</ListHeader>}
-
                       <Link
                         textDecoration="none"
-                        _hover={{ color: "brand.500" }}
+                        _hover={{ color: "text.500" }}
+                        as={RouterLink}
+                        marginTop={2}
+                        to={"/store-locator"}
+                      >
+                        Store Locate
+                      </Link>
+                      <Link
+                        textDecoration="none"
+                        _hover={{ color: "text.500" }}
+                        as={RouterLink}
+                        marginTop={2}
+                        to={"/contact-us"}
+                      >
+                        Contact Us
+                      </Link>
+                      <Link
+                        textDecoration="none"
+                        _hover={{ color: "text.500" }}
                         as={RouterLink}
                         marginTop={2}
                         to={"/faq"}
@@ -171,7 +209,7 @@ export default function Footer() {
                       </Link>
                       <Link
                         textDecoration="none"
-                        _hover={{ color: "brand.500" }}
+                        _hover={{ color: "text.500" }}
                         as={RouterLink}
                         marginTop={2}
                         to={"/terms-and-conditions"}
@@ -180,7 +218,7 @@ export default function Footer() {
                       </Link>
                       <Link
                         textDecoration="none"
-                        _hover={{ color: "brand.500" }}
+                        _hover={{ color: "text.500" }}
                         as={RouterLink}
                         marginTop={2}
                         to={"/shipping-policy"}
@@ -189,7 +227,7 @@ export default function Footer() {
                       </Link>
                       <Link
                         textDecoration="none"
-                        _hover={{ color: "brand.500" }}
+                        _hover={{ color: "text.500" }}
                         as={RouterLink}
                         marginTop={2}
                         to={"/return-and-refund-policy"}
@@ -198,7 +236,7 @@ export default function Footer() {
                       </Link>
                       <Link
                         textDecoration="none"
-                        _hover={{ color: "brand.500" }}
+                        _hover={{ color: "text.500" }}
                         as={RouterLink}
                         marginTop={2}
                         to={"/inspire-and-support"}
@@ -211,7 +249,23 @@ export default function Footer() {
                   <>
                     <Link
                       textDecoration="none"
-                      _hover={{ color: "brand.500" }}
+                      _hover={{ color: "text.500" }}
+                      as={RouterLink}
+                      to={"/store-locator"}
+                    >
+                      Store Locator
+                    </Link>
+                    <Link
+                      textDecoration="none"
+                      _hover={{ color: "text.500" }}
+                      as={RouterLink}
+                      to={"/contact-us"}
+                    >
+                      Contact Us
+                    </Link>
+                    <Link
+                      textDecoration="none"
+                      _hover={{ color: "text.500" }}
                       as={RouterLink}
                       to={"/faq"}
                     >
@@ -219,7 +273,7 @@ export default function Footer() {
                     </Link>
                     <Link
                       textDecoration="none"
-                      _hover={{ color: "brand.500" }}
+                      _hover={{ color: "text.500" }}
                       as={RouterLink}
                       to={"/terms-and-conditions"}
                     >
@@ -227,7 +281,7 @@ export default function Footer() {
                     </Link>
                     <Link
                       textDecoration="none"
-                      _hover={{ color: "brand.500" }}
+                      _hover={{ color: "text.500" }}
                       as={RouterLink}
                       to={"/shipping-policy"}
                     >
@@ -235,7 +289,7 @@ export default function Footer() {
                     </Link>
                     <Link
                       textDecoration="none"
-                      _hover={{ color: "brand.500" }}
+                      _hover={{ color: "text.500" }}
                       as={RouterLink}
                       to={"/return-and-refund-policy"}
                     >
@@ -243,7 +297,7 @@ export default function Footer() {
                     </Link>
                     <Link
                       textDecoration="none"
-                      _hover={{ color: "brand.500" }}
+                      _hover={{ color: "text.500" }}
                       as={RouterLink}
                       to={"/inspire-and-support"}
                     >
@@ -260,7 +314,7 @@ export default function Footer() {
                 <ListHeader gap={"3"}>Partner With Us</ListHeader>
                 <Link
                   textDecoration="none"
-                  _hover={{ color: "brand.500" }}
+                  _hover={{ color: "text.500" }}
                   as={RouterLink}
                   alignItems={"center"}
                   to={"/franchise"}
@@ -268,7 +322,7 @@ export default function Footer() {
                   SOSE - Franchise
                 </Link>
               </Stack> */}
-              {/* <Stack>
+            {/* <Stack>
                 <ListHeader>Connect With Us</ListHeader>
                 <Flex
                   gap="3"
@@ -313,11 +367,13 @@ export default function Footer() {
                 </Flex>
               </Stack> */}
             {/* </Stack> */}
-            <Stack align={"flex-start"} color="text.300" mt={{ md: 3 }}>
-              <ListHeader align={"flex-start"}>Customer Support</ListHeader>
+            <Stack color="text.300" mt={{ md: 3 }}>
+              <Stack align={{ md: "flex-start", base: "center" }}>
+                <ListHeader gap={"3"}>Customer Support</ListHeader>
+              </Stack>
               <Link
                 textDecoration="none"
-                _hover={{ color: "brand.500" }}
+                _hover={{ color: "text.500" }}
                 target="_blank"
                 href={"tel:917405095969"}
                 display={"flex"}
@@ -334,7 +390,7 @@ export default function Footer() {
                 display={"flex"}
                 flexDirection={"row"}
                 textDecoration="none"
-                _hover={{ color: "brand.500" }}
+                _hover={{ color: "text.500" }}
                 target="_blank"
                 // alignItems={"center"}
                 href={"mailto:care@suryanorganic.com"}
@@ -347,11 +403,11 @@ export default function Footer() {
                 care@suryanorganic.com
               </Link>
             </Stack>
-            <Stack mt={{ md: 3 }} align={"center"}>
+            <Stack align={"center"} mt={{ md: 3 }}>
               {/* <ListHeader align={"flex-start"}>Talk To Our Vaidya</ListHeader>
               <Link
                 textDecoration="none"
-                _hover={{ color: "brand.500" }}
+                _hover={{ color: "text.500" }}
                 target="_blank"
                 href={"tel:+916351979706"}
                 display={"flex"}
@@ -363,7 +419,7 @@ export default function Footer() {
               </Link>
               <Link
                 textDecoration="none"
-                _hover={{ color: "brand.500" }}
+                _hover={{ color: "text.500" }}
                 target="_blank"
                 href={"tel:+916351979712"}
                 display={"flex"}
