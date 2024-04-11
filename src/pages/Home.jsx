@@ -389,7 +389,7 @@ export default function Home() {
           variant={"outline"}
           textDecoration={"none"}
           onClick={() => navigate("/about-us")}
-          mx={"45%"}
+          mx={{lg:"45%",md:"43%",base:"33%"}}
           border={"1px"}
           borderColor={"brand.500"}
           p={3}
