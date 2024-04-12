@@ -14,47 +14,9 @@ const Aboutus = () => {
         <BreadCrumbCom second={"About Us"} secondUrl={"/about-us"} />{" "}
       </Container>
       <Container maxW={"container.xl"} mb={4} px={0} centerContent>
-        <Box
-          w={"100%"}
-          bgImage={
-            "https://forntend-bucket.s3.ap-south-1.amazonaws.com/sose/images/aboutUs.jpg"
-          }
-          bgSize="cover"
-          bgPosition="center"
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          mt={"-10px"}
-          py={20}
-          boxShadow={"0px 0px 0px 0px"}
-          height={"550px"}
-          mb={5}
-        // filter="brightness(200%)"
-        // style={{ backdropFilter: "blur(10px)" }}
-        >
-          <Text
-            pb={2}
-          
-            textAlign={"center"}
-            fontSize="6xl"
-            fontWeight="600"
-          >
-            About Us
-          </Text>
-
-          {/* <Text
-            pb={2}
-            color={"brand.100"}
-            textAlign={"center"}
-            textShadow={"1px 1px 2px lightgreen"}
-            fontSize="7xl"
-            fontWeight="black"
-          >
-            About us
-          </Text> */}
-        </Box>
-        <VStack maxW={"6xl"} mt={2}>
-          <Text fontWeight={700} fontSize={24} color={"brand.500"} mb={2.5}>
+         <Image src={require("../assets/About us/about-us.jpg")} />
+        <VStack maxW={"6xl"} mt={2}  px={{base:9,md:9}}>
+          <Text fontWeight={700} fontSize={{md:24,base:20}} color={"brand.500"} mb={2.5}>
             SO GOOD is proud to be - PRODUCT of भारत
           </Text>
           <Box color={"brand.500"} textAlign={"justify"} fontSize={17.5}>

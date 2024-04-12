@@ -99,7 +99,7 @@ const Links = [
   //   location: "/franchise",
   // },
   {
-    name: "Store Locate",
+    name: "Store Locator",
     location: "/store-locator",
   },
 
@@ -842,6 +842,7 @@ export default function Navbar() {
                         textDecoration: "none",
                       }}
                       ms={4}
+                      to={link.location}
                     >
                       {link.name}
                     </Link>

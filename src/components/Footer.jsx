@@ -368,7 +368,7 @@ export default function Footer() {
 
             <Stack align={"flex-start"} gap={"3"} ml={{ lg: 10 }} color="brand.900"> */}
               <ListHeader align={"flex-start"} marginBottom={5}>
-                We Accepts Payments via
+              We accept payments via
               </ListHeader>
               <Image
               ml={{base:"-15px",md:"-15px"}}

@@ -90,18 +90,23 @@ const banner = [
 const imageInfo = [
   {
     src: "./SO GOOD/home/apeda.jpg",
+    size:190
   },
   {
     src: "./SO GOOD/home/msme.jpg",
+    size:190
   },
   {
     src: "./SO GOOD/home/spices board.jpg",
+    size:180
   },
   {
     src: "./SO GOOD/home/fassai 2.png",
+    size:190
   },
   {
     src: "./SO GOOD/home/lPCR_logo.jpg",
+    size:130
   },
 ];
 
@@ -488,7 +493,7 @@ export default function Home() {
       </Grid>
       <ProductListSectionHome
         loading={loading}
-        title={"New Arrival"}
+        title={"New Arrivals"}
         products={newArrival}
       />
       <Container maxW={"container.xl"} px={2} borderRadius={"10px"}>
@@ -575,7 +580,7 @@ export default function Home() {
       />
       <ProductListSectionHome
         loading={loading}
-        title={"Best Seller Of All Time"}
+        title={"All Time Best Sellers"}
         products={bestSeller}
       />
       <Container backgroundColor={"bg.500"} maxW={"container.xl"} py={2}>
@@ -643,15 +648,15 @@ export default function Home() {
             size="lg"
             mx="auto"
             align={"center"}
-            mt={3}
-            pb={"10px"}
+            mt={4}
+           
           >
-            Awards & Certificates
+            
+            AWARDS & CERTIFICATES
           </Heading>
         </Box>
         <Text my={5} textAlign={"center"} color="text.300">
-          We are committed to quality and each of our facility is independently
-          certified by an industry-accredited agency.
+        We are committed to quality and each of our facilities is independently certified by an industry-accredited agency.
         </Text>
         <Flex
           justifyContent="space-evenly"
@@ -691,9 +696,9 @@ export default function Home() {
           mx="auto"
           align={"center"}
           mt={3}
-          pb={"10px"}
+          
         >
-          Licences & Affiliations
+         LICENSES & AFFILIATIONS
         </Heading>
         <Grid
           templateColumns={{
@@ -704,67 +709,18 @@ export default function Home() {
           gap={2}
           my={6}
           px={{ md: "12%" }}
+          alignItems={"center"}
         >
           {imageInfo?.map((data) => (
             <GridItem>
-              <Image src={data.src} />
+              <Image src={data.src} mx={"auto"}  />
             </GridItem>
           ))}
         </Grid>
       </Container>
 
-      <Container maxW={{ base: "100vw", md: "container.xl" }}>
-        {/* <Box
-          w="100%"
-          backgroundImage={
-            "https://forntend-bucket.s3.ap-south-1.amazonaws.com/sose/images/HomePage/line.png"
-          }
-          backgroundSize="100%"
-          backgroundPosition="50% 100%"
-          backgroundRepeat={"no-repeat"}
-        >
-          <Heading
-            color="brand.500"
-            size="lg"
-            mx="auto"
-            align={"center"}
-            mb={"5"}
-            mt={3}
-            pb={"10px"}
-          >
-            BRAND PARTNERS
-          </Heading>
-        </Box>
-        <Grid
-          templateColumns={{
-            base: "repeat(2,1fr)",
-            md: "repeat(3,1fr)",
-            xl: "repeat(6,1fr)",
-          }}
-          spacing={{ base: 10, md: 14 }}
-          py={3}
-          px={{ base: 15, md: 20, lg: 24 }}
-        >
-          {brands?.map((brand, index) => (
-            <GridItem as={RouterLink} to={brand?.href ?? "#"}>
-              <Image
-                as={LazyLoadImage}
-                key={index}
-                src={brand.src}
-                boxSize={{
-                  base: "150px",
-                  md: "150px",
-                  lg: "180px",
-                }}
-                alt={brand.alt}
-                style={{
-                  opacity: 1,
-                  transition: "opacity 0.7s", // Note the corrected syntax here
-                }}
-              />
-            </GridItem>
-          ))}
-        </Grid> */}
+      <Container maxW={{ base: "100vw", md: "container.xl" }} centerContent>
+        <Image mb={4} src={require("../assets/Home/sogood_icon.jpg")} w={{md:"65%"}} />
 
         <Box
           w="100%"
@@ -774,13 +730,13 @@ export default function Home() {
         >
           <Heading
             color="brand.500"
-            size="lg"
+            fontSize={{md:33,base:20}}
             mx="auto"
             align={"center"}
             my={"5"}
-            pb={"10px"}
+            
           >
-            SERVING TO THE COUNTRIES
+            OUR SERVICES ARE AVAILABLE IN
           </Heading>
         </Box>
         <Box display={"flex"} justifyContent={"center"}>
