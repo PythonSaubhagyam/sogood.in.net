@@ -38,7 +38,7 @@ const ReadMorePost = ({ postDetails }) => {
             />
           </GridItem>
           <GridItem>
-            <Heading fontWeight={"600"} color="text.500" size="lg">
+            <Heading fontWeight={"600"} color="brand.700" size="lg">
               {postDetails.title}
             </Heading>
             <Text textAlign={"justify"} fontSize={14} py={6}>
@@ -47,11 +47,11 @@ const ReadMorePost = ({ postDetails }) => {
             <LinkBox
               as={Button}
               variant="outline"
-              color="brand.500"
-              borderColor={"text.500"}
+              color="#C39D89"
+              borderColor={"#C39D89"}
               _hover={{
                 textDecoration: "none",
-                bgColor: "text.500",
+                bgColor: "#C39D89",
                 color: "white",
               }}
             >

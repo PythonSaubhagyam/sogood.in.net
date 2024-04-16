@@ -19,7 +19,7 @@ const Aboutus = () => {
           <Text fontWeight={700} fontSize={{md:24,base:20}} color={"brand.500"} mb={2.5}>
             SO GOOD is proud to be - PRODUCT of भारत
           </Text>
-          <Box color={"brand.500"} textAlign={"justify"} fontSize={17.5}>
+          <Box color={"text.300"} textAlign={"justify"} fontSize={17.5}>
             Bharat is an ancient and advanced culture and civilization that has with stood the tests of time. A civilization that has excelled in every field, be it Krishi (agriculture), Ayurved ('science of life'), Kala (arts), Vigyan (science), Yog as well as the Pursuit of Brahman (Supreme Reality).
             We believe in 'वसुधैवकुटुम्बकम्' ('Vasudhaiv Kutumbakam') means Whole World Is Family, and by this we want to serve a good health, better living and sustainable environment to the whole world.
             <br />

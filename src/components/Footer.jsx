@@ -49,14 +49,13 @@ export default function Footer() {
         <Box className="scrolling-text-container">
           <Text
             align={"center"}
-            color="brand.900"
+            color="brand.700"
             pt={4}
             px={4}
             fontSize={{ base: "sm", lg: "md" }}
             className="scrolling-text"
           >
-            For Deliveries in America, Canada, Europe, UAE, Singapore, etc Email
-            us on
+            For deliveries in the USA, UAE, UK, Singapore, Canada and Australia email us at{" "}
             <Link
               target="_blank"
               href="mailto:export@suryanorganic.com"
@@ -65,7 +64,7 @@ export default function Footer() {
             >
               export@suryanorganic.com
             </Link>{" "}
-            or Whatsapp on{" "}
+            or WhatsApp us at{" "}
             <Link
               target="_blank"
               href="https://wa.me/+916354800089?text=Hello%2C%20this%20is%20a%20test%20message"

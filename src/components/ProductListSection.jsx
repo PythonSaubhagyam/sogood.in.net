@@ -96,7 +96,7 @@ export default function ProductListSection({ title, products, loading, type }) {
           mb={8}
           textAlign={{ base: "center", md: "start" }}
           color={"text.300"}
-          fontWeight={600}
+          fontWeight={500}
         >
           {title}
         </Text>

@@ -42,6 +42,8 @@ import {
   Card,
   Skeleton,
   Button,
+  CardBody,
+  CardFooter
 } from "@chakra-ui/react";
 import client from "../setup/axiosClient";
 import CheckOrSetUDID from "../utils/checkOrSetUDID";
@@ -53,52 +55,87 @@ const banner = [
   {
     id: 11,
     alt_text: "Image2",
-    image: "./SO GOOD/home/cookies.jpg",
+    image: "./SO GOOD/Home Page Banners/01.jpg",
     display_status: true,
-    image_url: "/products/1970",
+    image_url: "/products/2019",
   },
   {
     id: 12,
     alt_text: "Image3",
-    image: "./SO GOOD/home/peanut butter.jpg",
+    image: "./SO GOOD/Home Page Banners/02.jpg",
     display_status: true,
-    image_url: "/products/2129",
+    image_url: "/products/2025",
   },
   {
     id: 13,
     alt_text: "Image3",
-    image: "./SO GOOD/home/sweet.jpg",
+    image: "./SO GOOD/Home Page Banners/03.jpg",
     display_status: true,
-    image_url: "/shop?category=492",
+    image_url: "/products/7594",
   },
   {
     id: 14,
     alt_text: "Image4",
-    image: "./SO GOOD/home/pizza sauce (1).jpg",
+    image: "./SO GOOD/Home Page Banners/04.jpg",
     display_status: true,
-    image_url: "/products/7521",
+    image_url: "/products/2028",
   },
   {
     id: 15,
     alt_text: "Image4",
-    image: "./SO GOOD/home/khakhra.jpg",
+    image: "./SO GOOD/Home Page Banners/05.jpg",
     display_status: true,
-    image_url: "/shop?category=648",
+    image_url: "/products/2031",
+  },
+  {
+    id: 16,
+    alt_text: "Image4",
+    image: "./SO GOOD/Home Page Banners/06.jpg",
+    display_status: true,
+    image_url: "/products/2100",
+  },
+  {
+    id: 17,
+    alt_text: "Image4",
+    image: "./SO GOOD/Home Page Banners/07.jpg",
+    display_status: true,
+    image_url: "/products/1976",
+  },
+  {
+    id: 18,
+    alt_text: "Image4",
+    image: "./SO GOOD/Home Page Banners/08.jpg",
+    display_status: true,
+    image_url: "/products/7587",
+  },
+  {
+    id: 19,
+    alt_text: "Image4",
+    image: "./SO GOOD/Home Page Banners/09.jpg",
+    display_status: true,
+    image_url: "/products/7588",
+  },
+  {
+    id: 20,
+    alt_text: "Image4",
+    image: "./SO GOOD/Home Page Banners/10.jpg",
+    display_status: true,
+    image_url: "/products/7589",
   },
 ];
 
 const imageInfo = [
   {
     src: "./SO GOOD/home/apeda.jpg",
-    size:190
+    size:180
   },
   {
     src: "./SO GOOD/home/msme.jpg",
-    size:190
+    size:200
   },
   {
     src: "./SO GOOD/home/spices board.jpg",
-    size:180
+    size:175
   },
   {
     src: "./SO GOOD/home/fassai 2.png",
@@ -389,19 +426,20 @@ export default function Home() {
         </Text>
 
         <Button
-          fontWeight={400}
-          color={"brand.500"}
+          fontWeight={600}
+          color={"#C39D89"}
           variant={"outline"}
           textDecoration={"none"}
           onClick={() => navigate("/about-us")}
           mx={{lg:"45%",md:"43%",base:"33%"}}
           border={"1px"}
-          borderColor={"brand.500"}
+          borderColor={"#C39D89"}
           p={3}
-          borderRadius={"25px"}
+          borderRadius={"8px"}
+          
           _hover={{
-            bgColor: "brand.500",
-            color: "text.300",
+            bgColor: "#C39D89",
+            color: "#fff",
           }}
         >
           Read more
@@ -414,7 +452,7 @@ export default function Home() {
         fontSize={{ base: "xl", sm: "2xl", xl: "3xl" }}
         fontWeight={700}
         color={"text.300"}
-        bgColor={"bg.100"}
+        bgColor={"bg.500"}
         textAlign={{ base: "center", md: "justify" }}
         px={{ base: 2, md: 8 }}
         py={4}
@@ -433,7 +471,8 @@ export default function Home() {
         direction={{ base: "column", md: "row" }}
         // wrap={"wrap"}
         wrap={{ md: "wrap", lg: "nowrap" }}
-        px={5}
+        pl={6}
+        pr={5}
       >
         {Ethicalsnacks.map((data) => (
           <GridItem
@@ -446,20 +485,29 @@ export default function Home() {
             onClick={() => navigate(`/shop?category=${data.id}`)}
             cursor={"pointer"}
           >
+              <CardBody backgroundColor={"white"} borderRadius="lg">
             <Image
               src={data.image1}
               alt=""
               borderRadius="lg"
-              boxSize="150px"
+              boxSize="170px"
               objectFit={"contain"}
-              mx={"auto"}
-              my={6}
+              my={3}
+              
             />
+            </CardBody>
+            <CardFooter
+        align={"center"}
+        py={3}
+        flexDirection="column"
+        backgroundColor={"bg.100"}
+        borderBottomRadius="lg"
+      >
             <Box
               h="100px"
               display={"flex"}
               flexDirection={"column"}
-              backgroundColor={"bg.500"}
+              backgroundColor={"bg.100"}
               borderBottomRadius="lg"
               alignItems={"center"}
               justifyContent={"center"}
@@ -483,17 +531,18 @@ export default function Home() {
                 backgroundColor={"brand.500"}
                 borderColor={"brand.100"}
                 color="black"
-                _hover={{ backgroundColor: "brand.900" }}
+                _hover={{ backgroundColor: "brand.900",textDecoration:"none" }}
               >
                 View Product
               </Button>
             </Box>
+            </CardFooter>
           </GridItem>
         ))}
       </Grid>
       <ProductListSectionHome
         loading={loading}
-        title={"New Arrivals"}
+        title={"Try Our New Products"}
         products={newArrival}
       />
       <Container maxW={"container.xl"} px={2} borderRadius={"10px"}>
@@ -523,6 +572,7 @@ export default function Home() {
         title={"Muesli, Cereals & Bars"}
         products={Muesli}
       />
+      
       <Container maxW={"container.xl"} px={2} borderRadius={"10px"}>
         <Grid
           templateColumns={{
@@ -540,7 +590,7 @@ export default function Home() {
       </Container>
       <ProductListSection
         loading={loading}
-        title={"Range of Instant Mix"}
+        title={"Instant Mixes"}
         products={homeData.instant_mix}
       />
       <Container maxW={"container.xl"} px={2} borderRadius={"10px"}>
@@ -644,7 +694,7 @@ export default function Home() {
           backgroundRepeat={"no-repeat"}
         >
           <Heading
-            color="brand.500"
+            color="brand.700"
             size="lg"
             mx="auto"
             align={"center"}
@@ -691,7 +741,7 @@ export default function Home() {
 
       <Container maxW={"container.xl"} centerContent>
         <Heading
-          color="brand.500"
+          color="brand.700"
           size="lg"
           mx="auto"
           align={"center"}
@@ -702,7 +752,7 @@ export default function Home() {
         </Heading>
         <Grid
           templateColumns={{
-            base: "repeat(3, 1fr)",
+            base: "repeat(1, 1fr)",
             md: "repeat(3, 1fr)",
             lg: "repeat(5,1fr)",
           }}
@@ -713,14 +763,14 @@ export default function Home() {
         >
           {imageInfo?.map((data) => (
             <GridItem>
-              <Image src={data.src} mx={"auto"}  />
+              <Image src={data.src} mx={"auto"} boxSize={{md:data.size,base:130}}  />
             </GridItem>
           ))}
         </Grid>
       </Container>
 
       <Container maxW={{ base: "100vw", md: "container.xl" }} centerContent>
-        <Image mb={4} src={require("../assets/Home/sogood_icon.jpg")} w={{md:"65%"}} />
+        <Image mb={4} src={require("../assets/Home/sogood_icon.jpg")} w={{md:"60%"}} />
 
         <Box
           w="100%"
@@ -729,7 +779,7 @@ export default function Home() {
           backgroundRepeat={"no-repeat"}
         >
           <Heading
-            color="brand.500"
+            color="brand.700"
             fontSize={{md:33,base:20}}
             mx="auto"
             align={"center"}
@@ -760,7 +810,7 @@ export default function Home() {
           backgroundRepeat={"no-repeat"}
         >
           <Heading
-            color="brand.500"
+            color="brand.700"
             size="lg"
             mx="auto"
             align={"center"}

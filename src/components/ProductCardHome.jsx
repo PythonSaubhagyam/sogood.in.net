@@ -30,7 +30,7 @@ const ProductCardHome = ({ product }) => {
       >
         <CardBody backgroundColor={"white"} borderRadius="lg">
           <Image
-            src={product.product?.home_image ? product.product?.home_image : product.product?.image1}
+            src={product.product?.image1}
             alt={product.product?.name}
             borderRadius="lg"
             boxSize="150px"
@@ -42,7 +42,7 @@ const ProductCardHome = ({ product }) => {
           align={"center"}
           py={3}
           flexDirection="column"
-          backgroundColor={"bg.500"}
+          backgroundColor={"bg.100"}
           borderBottomRadius="lg"
         >
           <Box

@@ -36,7 +36,7 @@ export default function ProductCard({ product }) {
           src={product.home_image ? product.home_image : product.image1}
           alt={product.name}
           borderRadius="lg"
-          boxSize="150px"
+          boxSize="200px"
           objectFit={"contain"}
           mx="auto"
         />
@@ -46,7 +46,7 @@ export default function ProductCard({ product }) {
         align={"center"}
         py={3}
         flexDirection="column"
-        backgroundColor={"bg.500"}
+        backgroundColor={"bg.100"}
         borderBottomRadius="lg"
       >
         <Box
