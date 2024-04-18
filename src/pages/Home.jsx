@@ -127,23 +127,23 @@ const banner = [
 const imageInfo = [
   {
     src: "./SO GOOD/home/apeda.jpg",
-    size: 180,
-  },
-  {
-    src: "./SO GOOD/home/msme.jpg",
-    size: 200,
-  },
-  {
-    src: "./SO GOOD/home/spices board.jpg",
-    size: 175,
-  },
-  {
-    src: "./SO GOOD/home/fassai 2.png",
     size: 190,
   },
   {
+    src: "./SO GOOD/home/msme.jpg",
+    size: 210,
+  },
+  {
+    src: "./SO GOOD/home/spices board.jpg",
+    size: 185,
+  },
+  {
+    src: "./SO GOOD/home/fassai 2.png",
+    size: 200,
+  },
+  {
     src: "./SO GOOD/home/lPCR_logo.jpg",
-    size: 130,
+    size: 140,
   },
 ];
 
@@ -715,9 +715,9 @@ export default function Home() {
             md: "repeat(3, 1fr)",
             lg: "repeat(5,1fr)",
           }}
-          gap={2}
+          gap={10}
           my={6}
-          px={{ md: "12%" }}
+         
           alignItems={"center"}
         >
           {imageInfo?.map((data) => (
