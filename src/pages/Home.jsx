@@ -43,7 +43,7 @@ import {
   Skeleton,
   Button,
   CardBody,
-  CardFooter
+  CardFooter,
 } from "@chakra-ui/react";
 import client from "../setup/axiosClient";
 import CheckOrSetUDID from "../utils/checkOrSetUDID";
@@ -127,129 +127,94 @@ const banner = [
 const imageInfo = [
   {
     src: "./SO GOOD/home/apeda.jpg",
-    size:180
+    size: 180,
   },
   {
     src: "./SO GOOD/home/msme.jpg",
-    size:200
+    size: 200,
   },
   {
     src: "./SO GOOD/home/spices board.jpg",
-    size:175
+    size: 175,
   },
   {
     src: "./SO GOOD/home/fassai 2.png",
-    size:190
+    size: 190,
   },
   {
     src: "./SO GOOD/home/lPCR_logo.jpg",
-    size:130
+    size: 130,
   },
 ];
 
 const Muesli = [
   {
-    image1: "./SO GOOD/home/sg_cat_2_01.jpg",
+    image1: "./SO GOOD/Product-Image/Sugarfree_Muesli.jpg",
     alt: "",
-    name: "Dates Muesli",
+    name: "So Good Sugar Free Dates & Millet Muesli 250gm",
+    id:2050
   },
   {
-    image1: "./SO GOOD/home/sg_cat_2_02.jpg",
+    image1: "./SO GOOD/Product-Image/cinnamonnutribar.jpg",
     alt: "",
-    name: "Dark Cocoa Muesli",
+    name: "So Good Natural Cinnamon Nutri Bar 30gm",
+    id:1967
   },
   {
-    image1: "./SO GOOD/home/sg_cat_2_03.jpg",
+    image1: "./SO GOOD/Product-Image/omegafibernutribar.jpg",
     alt: "",
-    name: "Corn Flakes",
+    name: "So Good Natural Omega Fiber Nutri Bar 40gm",
+    id:1968
   },
   {
-    image1: "./SO GOOD/home/sg_cat_2_04.jpg",
+    image1: "./SO GOOD/Product-Image/dryfruit_front.jpg",
     alt: "",
-    name: "Oats Flakes",
+    name: "So Good Natural Dry Fruit Chikki Bar 32gm",
+    id:1962
   },
   {
-    image1: "./SO GOOD/home/sg_cat_2_05.jpg",
+    image1: "./SO GOOD/Product-Image/cornflakes.jpg",
     alt: "",
-    name: "Masala Oats",
+    name: "So Good Natural Corn Flakes 250gm",
+    id:2045
   },
-  {
-    image1: "./SO GOOD/home/sg_cat_2_06.jpg",
-    alt: "",
-    name: "Nutri Bar",
-  },
+ 
 ];
 
-const InstantMix = [
-  {
-    image1: "./SO GOOD/home/Dalwada.jpg",
-    alt: "",
-    name: "Dalwada",
-    id:2058
-  },
-  {
-    image1: "./SO GOOD/home/Masala Oats Chilla.jpg",
-    alt: "",
-    name: "Masala Oats Chilla",
-  },
-  {
-    image1: "./SO GOOD/home/Methi Gota.jpg",
-    alt: "",
-    name: "Methi Gota",
-  },
-  {
-    image1: "./SO GOOD/home/Nylon Khaman.jpg",
-    alt: "",
-    name: "Nylon Khaman",
-  },
-  {
-    image1: "./SO GOOD/home/Oats Idli.jpg",
-    alt: "",
-  },
-  {
-    image1: "./SO GOOD/home/Ragi Dosa.jpg",
-    alt: "",
-    name: "Ragi Dosa",
-  },
-];
+
 
 const International_Cuisins = [
   {
-    image1: "./SO GOOD/home/sg_incu_01.jpg",
+    image1: "./SO GOOD/Product-Image/Schezwan.jpg",
     alt: "",
-    name: "Strawberry Jam",
-    id: 2002,
+    name: "So Good Natural Schezwan Sauce 225gm",
+    id: 2027,
   },
   {
-    image1: "./SO GOOD/home/sg_incu_02.jpg",
+    image1: "./SO GOOD/Product-Image/fusilli_pasta.png",
     alt: "",
-    name: "Fusilli Pasta",
+    name: "So Good Natural Fusilli Pasta 250gm",
     id: 2020,
   },
   {
-    image1: "./SO GOOD/home/sg_incu_03.jpg",
+    image1: "./SO GOOD/Product-Image/chilly_front.jpg",
     alt: "",
-    name: "Macaroni Pasta",
-    id: 2021,
+    name: "So Good Natural Thai Chilli Sauce 200gm",
+    id: 2031,
   },
   {
-    image1: "./SO GOOD/home/sg_makh_01.jpg",
+    image1: "./SO GOOD/Product-Image/02.jpg",
     alt: "",
-    name: "Salted Makhana",
-    id: 2083,
+    name: "So Good Natural Strawberry Jam 200gm",
+    id: 2002,
   },
   {
-    image1: "./SO GOOD/home/sg_makh_02.jpg",
+    image1: "./SO GOOD/Product-Image/rocksalt_front.jpg",
     alt: "",
-    name: "Masala Makhana",
-    id: 2079,
-  },
-  {
-    image1: "./SO GOOD/home/sg_makh_03.jpg",
-    alt: "",
-    name: "Pepper Makhana",
+    name: "So Good Natural Makhana Rock Salt & Pepper 35gm",
     id: 2082,
   },
+ 
 ];
 
 const Ethicalsnacks = [
@@ -427,18 +392,17 @@ export default function Home() {
 
         <Button
           fontWeight={600}
-          color={"#C39D89"}
+          color={"bg.600"}
           variant={"outline"}
           textDecoration={"none"}
           onClick={() => navigate("/about-us")}
-          mx={{lg:"45%",md:"43%",base:"33%"}}
+          mx={{ lg: "45%", md: "43%", base: "33%" }}
           border={"1px"}
-          borderColor={"#C39D89"}
+          borderColor={"bg.600"}
           p={3}
           borderRadius={"8px"}
-          
           _hover={{
-            bgColor: "#C39D89",
+            bgColor: "bg.600",
             color: "#fff",
           }}
         >
@@ -485,57 +449,59 @@ export default function Home() {
             onClick={() => navigate(`/shop?category=${data.id}`)}
             cursor={"pointer"}
           >
-              <CardBody backgroundColor={"white"} borderRadius="lg">
-            <Image
-              src={data.image1}
-              alt=""
-              borderRadius="lg"
-              boxSize="170px"
-              objectFit={"contain"}
-              my={3}
-              
-            />
+            <CardBody backgroundColor={"white"} borderRadius="lg">
+              <Image
+                src={data.image1}
+                alt=""
+                borderRadius="lg"
+                boxSize="170px"
+                objectFit={"contain"}
+                my={3}
+              />
             </CardBody>
             <CardFooter
-        align={"center"}
-        py={3}
-        flexDirection="column"
-        backgroundColor={"bg.100"}
-        borderBottomRadius="lg"
-      >
-            <Box
-              h="100px"
-              display={"flex"}
-              flexDirection={"column"}
+              align={"center"}
+              py={3}
+              flexDirection="column"
               backgroundColor={"bg.100"}
               borderBottomRadius="lg"
-              alignItems={"center"}
-              justifyContent={"center"}
-              gap={3}
             >
-              <Heading
-                size="md"
-                mb={3}
-                noOfLines={3}
-                fontWeight="500"
-                title={data.name}
+              <Box
+                h="100px"
+                display={"flex"}
+                flexDirection={"column"}
+                backgroundColor={"bg.100"}
+                borderBottomRadius="lg"
+                alignItems={"center"}
+                justifyContent={"center"}
+                gap={3}
               >
-                {data.name}
-              </Heading>
-              <Button
-                as={Link}
-                to={`/shop?category=${data.id}`}
-                fontSize="sm"
-                w={{ base: "100%", lg: "80%" }}
-                mx="auto"
-                backgroundColor={"brand.500"}
-                borderColor={"brand.100"}
-                color="black"
-                _hover={{ backgroundColor: "brand.900",textDecoration:"none" }}
-              >
-                View Product
-              </Button>
-            </Box>
+                <Heading
+                  size="md"
+                  mb={3}
+                  noOfLines={3}
+                  fontWeight="500"
+                  title={data.name}
+                >
+                  {data.name}
+                </Heading>
+                <Button
+                  as={Link}
+                  to={`/shop?category=${data.id}`}
+                  fontSize="sm"
+                  w={{ base: "100%", lg: "80%" }}
+                  mx="auto"
+                  backgroundColor={"brand.500"}
+                  borderColor={"brand.100"}
+                  color="black"
+                  _hover={{
+                    backgroundColor: "brand.900",
+                    textDecoration: "none",
+                  }}
+                >
+                  View Product
+                </Button>
+              </Box>
             </CardFooter>
           </GridItem>
         ))}
@@ -559,7 +525,6 @@ export default function Home() {
             <Image src="./SO GOOD/home/tomato_ketchup.jpg" alt="" />
           </GridItem>
           <GridItem
-            
             onClick={() => navigate("/shop?category=318")}
             cursor={"pointer"}
           >
@@ -572,7 +537,7 @@ export default function Home() {
         title={"Muesli, Cereals & Bars"}
         products={Muesli}
       />
-      
+
       <Container maxW={"container.xl"} px={2} borderRadius={"10px"}>
         <Grid
           templateColumns={{
@@ -580,10 +545,10 @@ export default function Home() {
             md: "repeat(2, 1fr)",
           }}
         >
-          <GridItem >
+          <GridItem>
             <Image src="./SO GOOD/home/khara.jpg" alt="" />
           </GridItem>
-          <GridItem >
+          <GridItem>
             <Image src="./SO GOOD/home/chips.jpg" alt="" />
           </GridItem>
         </Grid>
@@ -600,16 +565,18 @@ export default function Home() {
             md: "repeat(2, 1fr)",
           }}
         >
-          <GridItem >
+          <GridItem>
             <Image
-              src="./SO GOOD/home/read_mix.jpg"
+              w={"100%"}
+              src="./SO GOOD/home/so-good_ready_mix.jpg"
               alt=""
-              onClick={() => navigate("/shop?category=651")}
+              onClick={() => navigate("/shop?category=297")}
               cursor={"pointer"}
             />
           </GridItem>
           <GridItem mx={2}>
             <Image
+              w={"100%"}
               src="./SO GOOD/home/namkeen.jpg"
               alt=""
               onClick={() => navigate("/shop?category=649")}
@@ -687,7 +654,7 @@ export default function Home() {
         </SimpleGrid>
       </Container>
 
-      <Container maxW={{ base: "100vw", md: "container.xl" }}>
+      <Container maxW={{ base: "100vw", md: "container.xl" }} px={0}>
         <Box
           backgroundSize="100%"
           backgroundPosition="50% 100%"
@@ -699,14 +666,13 @@ export default function Home() {
             mx="auto"
             align={"center"}
             mt={4}
-           
           >
-            
             AWARDS & CERTIFICATES
           </Heading>
         </Box>
         <Text my={5} textAlign={"center"} color="text.300">
-        We are committed to quality and each of our facilities is independently certified by an industry-accredited agency.
+          We are committed to quality and each of our facilities is
+          independently certified by an industry-accredited agency.
         </Text>
         <Flex
           justifyContent="space-evenly"
@@ -739,16 +705,9 @@ export default function Home() {
         </Flex>
       </Container>
 
-      <Container maxW={"container.xl"} centerContent>
-        <Heading
-          color="brand.700"
-          size="lg"
-          mx="auto"
-          align={"center"}
-          mt={3}
-          
-        >
-         LICENSES & AFFILIATIONS
+      <Container maxW={"container.xl"} centerContent px={0}>
+        <Heading color="brand.700" size="lg" mx="auto" align={"center"} mt={3}>
+          LICENSES & AFFILIATIONS
         </Heading>
         <Grid
           templateColumns={{
@@ -763,14 +722,22 @@ export default function Home() {
         >
           {imageInfo?.map((data) => (
             <GridItem>
-              <Image src={data.src} mx={"auto"} boxSize={{md:data.size,base:130}}  />
+              <Image
+                src={data.src}
+                mx={"auto"}
+                boxSize={{ md: data.size, base: 130 }}
+              />
             </GridItem>
           ))}
         </Grid>
       </Container>
 
-      <Container maxW={{ base: "100vw", md: "container.xl" }} centerContent>
-        <Image mb={4} src={require("../assets/Home/sogood_icon.jpg")} w={{md:"60%"}} />
+      <Container maxW={{ base: "100vw", md: "container.xl" }} centerContent px={0}>
+        <Image
+          mb={4}
+          src={require("../assets/Home/sogood_icon.jpg")}
+          w={{ md: "65%" }}
+        />
 
         <Box
           w="100%"
@@ -780,11 +747,10 @@ export default function Home() {
         >
           <Heading
             color="brand.700"
-            fontSize={{md:33,base:20}}
+            fontSize={{ md: 33, base: 20 }}
             mx="auto"
             align={"center"}
             my={"5"}
-            
           >
             OUR SERVICES ARE AVAILABLE IN
           </Heading>

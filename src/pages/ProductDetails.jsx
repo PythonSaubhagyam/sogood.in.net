@@ -42,9 +42,9 @@ function ButtonIncrement(props) {
     <Button
       onClick={props.onClickFunc}
       isDibbled={props.isDisabled}
-      color={"white"}
+      color={"brand.700"}
       colorScheme={"brand"}
-      _hover={{ bg: "brand.100" }}
+      _hover={{ bg: "bg.600" }}
       isDisabled={props.disabled}
     >
       +
@@ -57,9 +57,9 @@ function ButtonDecrement(props) {
     <Button
       onClick={props.onClickFunc}
       isDibbled={props.isDisabled}
-      color={"white"}
+      color={"brand.700"}
       colorScheme={"brand"}
-      _hover={{ bg: "brand.100" }}
+      _hover={{ bg: "bg.600" }}
     >
       -
     </Button>
@@ -392,12 +392,13 @@ export default function ProductDetails() {
                           as={Flex}
                           textAlign={"center"}
                           gap={2}
-                          colorScheme="brand"
+                          color= "brand.700"
+                            bg = "brand.500"
                           size="sm"
                           title="Add product to cart"
                           _hover={{
-                            color: "white",
-                            bg: "brand.500",
+                            
+                            bg: "bg.600",
                             cursor: "pointer",
                           }}
                           me={3}
@@ -409,7 +410,8 @@ export default function ProductDetails() {
                       )}
 
                       <Button
-                        colorScheme={isWished ? "red" : "brand"}
+                        color={isWished ? "white" : "brand.700"}
+                        bgColor={isWished ? "red" : "brand.500"}
                         as={Flex}
                         gap={1}
                         size="sm"
@@ -421,8 +423,8 @@ export default function ProductDetails() {
                                 cursor: "pointer",
                               }
                             : {
-                                color: "white",
-                                bg: "brand.900",
+                                color: "brand.700",
+                                bg: "bg.600",
                                 cursor: "pointer",
                               }
                         }

@@ -16,7 +16,7 @@ const Aboutus = () => {
       <Container maxW={"container.xl"} mb={4} px={0} centerContent>
          <Image src={require("../assets/About us/about-us.jpg")} />
         <VStack maxW={"6xl"} mt={2}  px={{base:9,md:9}}>
-          <Text fontWeight={700} fontSize={{md:24,base:20}} color={"brand.500"} mb={2.5}>
+          <Text fontWeight={700} fontSize={{md:24,base:20}} color={"brand.700"} mb={2.5}>
             SO GOOD is proud to be - PRODUCT of भारत
           </Text>
           <Box color={"text.300"} textAlign={"justify"} fontSize={17.5}>

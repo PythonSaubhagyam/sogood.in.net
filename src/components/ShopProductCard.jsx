@@ -34,7 +34,7 @@ export default function ShopProductCard({
       borderColor="gray.300"
       cursor={"pointer"}
     >
-      <CardBody align="center" py={4} flex={"none"}>
+      <CardBody align="center" h={{md:280}} py={4} flex={"none"}>
         <Image
           src={productDetails.image1}
           alt={productDetails.name}
@@ -96,18 +96,23 @@ export default function ShopProductCard({
         </Text>
         <ButtonGroup spacing="2">
           <IconButton
-            colorScheme={"brand"}
+            color="brand.700"
+            backgroundColor={"brand.500"}
             icon={<FaShoppingCart />}
             size="sm"
             isDisabled={productDetails.available_stock_quantity ? false : true}
             onClick={() => AddToCart(productDetails.id)}
+            _hover={{bgColor:"bg.600"}}
           />
           <IconButton
-            colorScheme={isInWishlist ? "red" : "brand"}
+            
+            color={isInWishlist ? "#fff" : "brand.700"}
+            backgroundColor={isInWishlist ? "red" : "brand.500"}
             icon={<AiFillHeart />}
             size="sm"
             display={displayWishlistButton ? "inline-flex" : "none"}
             onClick={onClick}
+            _hover={{bgColor:"bg.600"}}
           />
         </ButtonGroup>
       </CardFooter>

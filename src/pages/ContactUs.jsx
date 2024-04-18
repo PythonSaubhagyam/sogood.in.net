@@ -385,7 +385,7 @@ export default function ContactUs() {
             />
           </FormControl>
           <Container maxW={"lg"} p="0">
-            <Button type="submit" colorScheme={"brand"}>
+            <Button type="submit" color={"brand.700"} bgColor={"brand.500"} _hover={{bgColor:"bg.600"}}>
               Send
             </Button>
           </Container>

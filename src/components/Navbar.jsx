@@ -646,7 +646,7 @@ export default function Navbar() {
                         as="span"
                         flex="1"
                         fontSize="md"
-                        color="brand.900"
+                        color="brand.700"
                         textAlign="left"
                       >
                         Shop By Category
@@ -837,7 +837,7 @@ export default function Navbar() {
                   <Fragment key={link.name}>
                     <Link
                       as={ReactRouterLink}
-                      color="brand.900"
+                      color="brand.700"
                       _hover={{
                         textDecoration: "none",
                       }}
@@ -914,9 +914,9 @@ export default function Navbar() {
                 size="sm"
                 variant={"outline"}
                 background={"brand.500"}
-                color="black"
+                color="brand.700"
                 _hover={{
-                  background: "brand.500",
+                  background: "bg.600",
                 }}
                 px={4}
                 onClick={() => {
@@ -926,7 +926,7 @@ export default function Navbar() {
               >
                 <SearchIcon
                   mr={2}
-                  color="black"
+                  color="brand.700"
                   h={"100%"}
                   _hover={{
                     cursor: "pointer",
@@ -1026,8 +1026,9 @@ export default function Navbar() {
                       size="sm"
                       name={name.trim() !== "" ? name : null}
                       src={null}
-                      color={"black"}
+                      color={"brand.700"}
                       background={"brand.500"}
+                     
                     />
                   </MenuButton>
                   {checkLogin().isLoggedIn ? (

@@ -47,11 +47,11 @@ const ReadMorePost = ({ postDetails }) => {
             <LinkBox
               as={Button}
               variant="outline"
-              color="#C39D89"
-              borderColor={"#C39D89"}
+              color="bg.600"
+              borderColor={"bg.600"}
               _hover={{
                 textDecoration: "none",
-                bgColor: "#C39D89",
+                bgColor: "bg.600",
                 color: "white",
               }}
             >

@@ -183,7 +183,7 @@ export default function StoreLocator() {
                         <Container maxW="container.xl">
                           <Heading
                             bg={"brand.500"}
-                            color={"white"}
+                            color={"brand.700"}
                             size="md"
                             borderRadius={8}
                             mb={6}

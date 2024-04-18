@@ -277,7 +277,7 @@ export default function Shop() {
         <Heading
           size="lg"
           fontWeight={600}
-          color="brand.500"
+          color="brand.700"
           align="center"
           mb={6}
         >

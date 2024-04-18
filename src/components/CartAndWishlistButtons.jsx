@@ -64,7 +64,7 @@ export default function CartAndWishlistButtons() {
         <BsFillCartFill color={"brand.900"} />
         <Badge
           bg={"brand.900"}
-          color="black"
+          color="brand.700"
           fontSize="10px"
           pos="relative"
           bottom={2}
@@ -76,7 +76,7 @@ export default function CartAndWishlistButtons() {
         <BsFillHeartFill color={"brand.900"} />
         <Badge
           bg={"brand.900"}
-          color="black"
+          color="brand.700"
           fontSize="10px"
           pos="relative"
           bottom={2}
