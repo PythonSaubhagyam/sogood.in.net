@@ -1096,6 +1096,7 @@ export default function Navbar() {
               >
                 Home
               </Link>
+             
               <Menu isOpen={Open} onClose={handleClose1}>
                 <MenuButton
                   //color="text.500"

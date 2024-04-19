@@ -640,17 +640,17 @@ export default function Home() {
 
           <Stat>
             <StatNumber color="text.300" fontSize={{ base: "3xl", md: "3xl" }}>
-              15+
+              14+
             </StatNumber>
             <StatHelpText color="gray.600">Stores</StatHelpText>
           </Stat>
 
-          <Stat>
+         <Stat>
             <StatNumber color="text.300" fontSize={{ base: "3xl", md: "3xl" }}>
-              11th
+              100+
             </StatNumber>
-            <StatHelpText color="gray.600">Generation of Farmers</StatHelpText>
-          </Stat>
+            <StatHelpText color="gray.600">No. of Receipes</StatHelpText>
+        </Stat>
         </SimpleGrid>
       </Container>
 
