@@ -640,7 +640,7 @@ export default function Home() {
                     }}
                   />
                   <LinkOverlay
-                    _hover={{ color: "text.500" }}
+                    _hover={{ color: "bg.600" }}
                     href={`/blogs/${blog.id}/`}
                   >
                     <Heading size="sm" fontWeight={500} m={2}>
@@ -658,7 +658,7 @@ export default function Home() {
                   <Text
                     fontSize={"sm"}
                     fontWeight={600}
-                    color={"brand.500"}
+                    color={"bg.600"}
                     onClick={() => navigate(`/blogs/${blog.id}/`)}
                     cursor={"pointer"}
                   >
