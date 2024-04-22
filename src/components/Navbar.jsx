@@ -680,7 +680,11 @@ export default function Navbar() {
                                     setOpenAccrodion();
                                   } else {
                                     navigate(
-                                      `/shop?page=1&category=${section.id}&category_name=${encodeURIComponent(section?.name)}`
+                                      `/shop?page=1&category=${
+                                        section.id
+                                      }&category_name=${encodeURIComponent(
+                                        section?.name
+                                      )}`
                                     );
                                     setAccordion(!isOpen);
                                     onClose();
@@ -743,7 +747,11 @@ export default function Navbar() {
                                                     setOpen(Open);
                                                   } else {
                                                     navigate(
-                                                      `/shop?page=1&category=${subcategory.id}&category_name=${encodeURIComponent(subcategory?.name)}`
+                                                      `/shop?page=1&category=${
+                                                        subcategory.id
+                                                      }&category_name=${encodeURIComponent(
+                                                        subcategory?.name
+                                                      )}`
                                                     );
                                                     setAccordion(!isOpen);
                                                     onClose();
@@ -761,7 +769,11 @@ export default function Navbar() {
                                                 <AccordionIcon
                                                   onClick={() =>
                                                     navigate(
-                                                      `/shop?page=1&category=${subcategory.id}&category_name=${encodeURIComponent(subcategory?.name)}`
+                                                      `/shop?page=1&category=${
+                                                        subcategory.id
+                                                      }&category_name=${encodeURIComponent(
+                                                        subcategory?.name
+                                                      )}`
                                                     )
                                                   }
                                                   display={
@@ -794,7 +806,11 @@ export default function Navbar() {
                                                           key={i}
                                                           onClick={() => {
                                                             navigate(
-                                                              `/shop?page=1&category=${children.id}&category_name=${encodeURIComponent(children?.name)}`
+                                                              `/shop?page=1&category=${
+                                                                children.id
+                                                              }&category_name=${encodeURIComponent(
+                                                                children?.name
+                                                              )}`
                                                             );
                                                             onClose();
                                                           }}
@@ -1028,7 +1044,6 @@ export default function Navbar() {
                       src={null}
                       color={"brand.700"}
                       background={"brand.500"}
-                     
                     />
                   </MenuButton>
                   {checkLogin().isLoggedIn ? (
@@ -1096,7 +1111,7 @@ export default function Navbar() {
               >
                 Home
               </Link>
-             
+
               <Menu isOpen={Open} onClose={handleClose1}>
                 <MenuButton
                   //color="text.500"
@@ -1121,12 +1136,17 @@ export default function Navbar() {
                     {megaCategories?.map((section, index) => (
                       <>
                         <MenuItem
-                         
                           fontSize={"13"}
                           key={index}
                           onMouseEnter={() => handleShow1(section.children)}
                           onClick={() =>
-                            navigate(`/shop?category=${section.id}&category_name=${encodeURIComponent(section?.name)}`)
+                            navigate(
+                              `/shop?category=${
+                                section.id
+                              }&category_name=${encodeURIComponent(
+                                section?.name
+                              )}`
+                            )
                           }
                           sx={{
                             "&:hover": {
@@ -1148,7 +1168,13 @@ export default function Navbar() {
                       <MenuItem
                         fontSize={"13"}
                         key={subIndex}
-                        onClick={() => navigate(`/shop?category=${item.id}&category_name=${encodeURIComponent(item?.name)}`)}
+                        onClick={() =>
+                          navigate(
+                            `/shop?category=${
+                              item.id
+                            }&category_name=${encodeURIComponent(item?.name)}`
+                          )
+                        }
                         onMouseEnter={() => handleShow2(item.children)}
                         sx={{
                           "&:hover": {
@@ -1166,7 +1192,13 @@ export default function Navbar() {
                       <MenuItem
                         fontSize={"13"}
                         key={nestedIndex}
-                        onClick={() => navigate(`/shop?category=${item.id}&category_name=${encodeURIComponent(item?.name)}`)}
+                        onClick={() =>
+                          navigate(
+                            `/shop?category=${
+                              item.id
+                            }&category_name=${encodeURIComponent(item?.name)}`
+                          )
+                        }
                         sx={{
                           "&:hover": {
                             backgroundColor: "brand.500",
@@ -1210,6 +1242,7 @@ export default function Navbar() {
             <Link
               isExternal={true}
               as={ReactRouterLink}
+              _hover={{ color: "text.500" }}
               to={"https://www.facebook.com/sogood.in.net"}
             >
               <FaFacebookF fontSize={20} />
@@ -1217,6 +1250,7 @@ export default function Navbar() {
             <Link
               isExternal={true}
               as={ReactRouterLink}
+              _hover={{ color: "text.500" }}
               to={"https://www.instagram.com/sogood.in.net_/"}
             >
               <FiInstagram fontSize={20} />
@@ -1234,6 +1268,7 @@ export default function Navbar() {
             <Link
               isExternal={true}
               as={ReactRouterLink}
+              _hover={{ color: "text.500" }}
               to={"https://www.youtube.com/@sogoodsohealthy"}
             >
               <TfiYoutube fontSize={20} />
@@ -1259,22 +1294,23 @@ export default function Navbar() {
             <Link
               isExternal={true}
               as={ReactRouterLink}
+              _hover={{ color: "text.500" }}
               to={
-                "https://play.google.com/store/apps/details?id=com.sose.sogood"
+                "https://play.google.com/store/apps/details?id=com.sose.sogood&hl=en&gl=US"
               }
             >
               <FaGooglePlay fontSize={20} />
             </Link>
-            {/* <Link
+            <Link
               _hover={{ color: "text.500" }}
               isExternal={true}
               as={ReactRouterLink}
               to={
-                "https://apps.apple.com/in/app/sose-sidha-kisan-se/id6447752737"
+                "https://apps.apple.com/in/app/so-good-so-healthy/id6478095007"
               }
             >
               <FaApple fontSize={22} />
-            </Link> */}
+            </Link>
           </GridItem>
         </Grid>
       </Container>
