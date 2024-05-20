@@ -141,10 +141,10 @@ const imageInfo = [
     src: "./SO GOOD/home/fassai 2.png",
     size: 200,
   },
-  {
-    src: "./SO GOOD/home/lPCR_logo.jpg",
-    size: 140,
-  },
+  // {
+  //   src: "./SO GOOD/home/lPCR_logo.jpg",
+  //   size: 140,
+  // },
 ];
 
 const Muesli = [
@@ -783,8 +783,8 @@ export default function Home() {
         <Grid
           templateColumns={{
             base: "repeat(1, 1fr)",
-            md: "repeat(3, 1fr)",
-            lg: "repeat(5,1fr)",
+            md: "repeat(2, 1fr)",
+            lg: "repeat(4,1fr)",
           }}
           gap={10}
           my={6}
