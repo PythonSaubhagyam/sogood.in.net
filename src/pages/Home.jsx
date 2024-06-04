@@ -50,6 +50,7 @@ import CheckOrSetUDID from "../utils/checkOrSetUDID";
 import { useNavigate, NavLink as RouterLink } from "react-router-dom";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import Testimonials from "../components/testimonials";
+import ScrollToTop from "../components/ScrollToTop";
 
 const banner = [
   {
@@ -871,6 +872,7 @@ export default function Home() {
           />
         </Container>
       </Container>
+      <ScrollToTop/>
       <Footer />
       {/* </>
       )} */}
