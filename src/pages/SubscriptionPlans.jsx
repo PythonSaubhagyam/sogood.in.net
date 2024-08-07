@@ -63,6 +63,7 @@ function SubscriptionPlans() {
       <Navbar />
 
       {/* <Image src=""></Image> */}
+  
       <Container maxW="container.xl" mb={4} px={0} centerContent>
         <Box
           w={"100%"}
@@ -102,12 +103,11 @@ function SubscriptionPlans() {
                 <Icon as={TbDiscount2} boxSize={12} color="brand.500" />
                 <Box>
                   <Text fontSize="lg" fontWeight="bold">
-                    Coupons & Vouchers
+                    BAMS Doctor / Vaid
                   </Text>
                   <Text textAlign={"justify"} fontSize={"14px"}>
-                    SOSE coupons and Vouchers help you save big on your
-                    purchases. Collect from a variety available on our website
-                    and get instant discount at the time of checkout.
+                    Get a free E-consultation from expert around different
+                    specialties including dieticians and nutritionist.
                   </Text>
                 </Box>
               </Flex>
@@ -136,7 +136,7 @@ function SubscriptionPlans() {
                   <Text textAlign={"justify"} fontSize={"14px"}>
                     Now get all your products delivered to you quicker than
                     before. Same day or next day delivery on available products
-                    in selected cities and expanding soon to all cities
+                    in selected cities and expanding soon to all cities.
                   </Text>
                 </Box>
               </Flex>
@@ -153,7 +153,7 @@ function SubscriptionPlans() {
                 />
                 <Box>
                   <Text fontSize="lg" fontWeight="bold">
-                    Early Access New Product Announcements
+                    Early Access New Product Announcement
                   </Text>
                   <Text textAlign={"justify"} fontSize={"14px"}>
                     Be among the first ones to shop during our sale days. Get
@@ -168,10 +168,10 @@ function SubscriptionPlans() {
                     Premium Customer Support
                   </Text>
                   <Text textAlign={"justify"} fontSize={"14px"}>
-                    Members would be entitled to our dedicated customer support
-                    experts. We are committed to providing you with responsive
-                    assistance and resolution. Your queries are our priority.
-                    Fastest support to our premium members.
+                    SOSE Elite Plan members enjoy priority processing of their
+                    orders. As our premium members, your orders are priorities
+                    by pushing your orders to the front of the line for
+                    validation.
                   </Text>
                 </Box>
               </Flex>
@@ -182,10 +182,10 @@ function SubscriptionPlans() {
                     Priority Processing
                   </Text>
                   <Text textAlign={"justify"} fontSize={"14px"}>
-                    SOSE Elite Plan members enjoy priority processing of their
-                    orders. As our premium members, your orders are priorities
-                    by pushing your orders to the front of the line for
-                    validation.
+                    Members would be entitled to our dedicated customer support
+                    experts. We are committed to providing you with responsive
+                    assistance and resolution. Your queries are our priority.
+                    Fastest support to our premium members.
                   </Text>
                 </Box>
               </Flex>
@@ -232,39 +232,12 @@ function SubscriptionPlans() {
             Frequently Asked Questions
           </Heading>
 
-          <Accordion defaultIndex={[0]} allowMultiple pb={10} mx={"9%"}>
+          <Accordion defaultIndex={[0]} pb={10} mx={"9%"}>
             <AccordionItem>
               <h2>
-                <AccordionButton bg={"brand.100"} _hover={{ bg: "brand.100" }}>
-                  <AccordionIcon color="white" />
-                  <Box
-                    flex="1"
-                    width
-                    textAlign="left"
-                    fontWeight="600"
-                    color="white"
-                  >
-                    How do I avail discount on Products?
-                  </Box>
-                </AccordionButton>
-              </h2>
-              <AccordionPanel
-                pb={4}
-                border="1px"
-                borderColor="gray.200"
-                borderBottom={"none"}
-              >
-                After you become a SOSE Elite user, discount coupons will be
-                auto applied on your cart. Your special discount coupon can be
-                used up within membership period and you can avail discount for
-                cart.
-              </AccordionPanel>
-            </AccordionItem>
-            <AccordionItem>
-              <h2>
-                <AccordionButton bg={"brand.100"} _hover={{ bg: "brand.100" }}>
-                  <AccordionIcon color="white" />
-                  <Box flex="1" textAlign="left" fontWeight="600" color="white">
+                <AccordionButton bg={"brand.500"} _hover={{ bg: "brand.500" }}>
+                  <AccordionIcon color="black" />
+                  <Box flex="1" textAlign="left" fontWeight="600" color="black">
                     Terms & conditions around Free Shipping
                   </Box>
                 </AccordionButton>
@@ -275,7 +248,7 @@ function SubscriptionPlans() {
                 borderColor="gray.200"
                 borderBottom={"none"}
               >
-                A member is eligible to get Free Shipping Benefit on 20 orders
+                A member is eligible to get Free Shipping Benefit on Orders
                 during his membership period. This cap is introduced keeping in
                 mind that most of our regular users don't get impacted however,
                 it will help us curb the misuse of the membership benefit.
@@ -283,9 +256,9 @@ function SubscriptionPlans() {
             </AccordionItem>
             <AccordionItem>
               <h2>
-                <AccordionButton bg={"brand.100"} _hover={{ bg: "brand.100" }}>
-                  <AccordionIcon color="white" />
-                  <Box flex="1" textAlign="left" fontWeight="600" color="white">
+                <AccordionButton bg={"brand.500"} _hover={{ bg: "brand.500" }}>
+                  <AccordionIcon color="black" />
+                  <Box flex="1" textAlign="left" fontWeight="600" color="black">
                     SOSE Elite members will not be charged shipping charges on
                     orders above Rs.250.
                   </Box>
@@ -306,9 +279,9 @@ function SubscriptionPlans() {
             </AccordionItem>
             <AccordionItem>
               <h2>
-                <AccordionButton bg={"brand.100"} _hover={{ bg: "brand.100" }}>
-                  <AccordionIcon color="white" />
-                  <Box flex="1" textAlign="left" fontWeight="600" color="white">
+                <AccordionButton bg={"brand.500"} _hover={{ bg: "brand.500" }}>
+                  <AccordionIcon color="black" />
+                  <Box flex="1" textAlign="left" fontWeight="600" color="black">
                     My SOSE Elite is a one-time membership fee or do I have to
                     pay extra?
                   </Box>
@@ -328,9 +301,9 @@ function SubscriptionPlans() {
             </AccordionItem>
             <AccordionItem>
               <h2>
-                <AccordionButton bg={"brand.100"} _hover={{ bg: "brand.100" }}>
-                  <AccordionIcon color="white" />
-                  <Box flex="1" textAlign="left" fontWeight="600" color="white">
+                <AccordionButton bg={"brand.500"} _hover={{ bg: "brand.500" }}>
+                  <AccordionIcon color="black" />
+                  <Box flex="1" textAlign="left" fontWeight="600" color="black">
                     Can I cancel my subscription plan?
                   </Box>
                 </AccordionButton>
@@ -349,9 +322,9 @@ function SubscriptionPlans() {
             </AccordionItem>
             <AccordionItem>
               <h2>
-                <AccordionButton bg={"brand.100"} _hover={{ bg: "brand.100" }}>
-                  <AccordionIcon color="white" />
-                  <Box flex="1" textAlign="left" fontWeight="600" color="white">
+                <AccordionButton bg={"brand.500"} _hover={{ bg: "brand.500" }}>
+                  <AccordionIcon color="black" />
+                  <Box flex="1" textAlign="left" fontWeight="600" color="black">
                     Is the membership fee final?
                   </Box>
                 </AccordionButton>
@@ -371,9 +344,9 @@ function SubscriptionPlans() {
             </AccordionItem>
             <AccordionItem>
               <h2>
-                <AccordionButton bg={"brand.100"} _hover={{ bg: "brand.100" }}>
-                  <AccordionIcon color="white" />
-                  <Box flex="1" textAlign="left" fontWeight="600" color="white">
+                <AccordionButton bg={"brand.500"} _hover={{ bg: "brand.500" }}>
+                  <AccordionIcon color="black" />
+                  <Box flex="1" textAlign="left" fontWeight="600" color="black">
                     What do you mean by free premium consults?
                   </Box>
                 </AccordionButton>
@@ -393,9 +366,9 @@ function SubscriptionPlans() {
             </AccordionItem>
             <AccordionItem>
               <h2>
-                <AccordionButton bg={"brand.100"} _hover={{ bg: "brand.100" }}>
-                  <AccordionIcon color="white" />
-                  <Box flex="1" textAlign="left" fontWeight="600" color="white">
+                <AccordionButton bg={"brand.500"} _hover={{ bg: "brand.500" }}>
+                  <AccordionIcon color="black" />
+                  <Box flex="1" textAlign="left" fontWeight="600" color="black">
                     Is my order eligible for rapid delivery with this
                     membership?
                   </Box>
@@ -415,9 +388,9 @@ function SubscriptionPlans() {
             </AccordionItem>
             <AccordionItem>
               <h2>
-                <AccordionButton bg={"brand.100"} _hover={{ bg: "brand.100" }}>
-                  <AccordionIcon color="white" />
-                  <Box flex="1" textAlign="left" fontWeight="600" color="white">
+                <AccordionButton bg={"brand.500"} _hover={{ bg: "brand.500" }}>
+                  <AccordionIcon color="black" />
+                  <Box flex="1" textAlign="left" fontWeight="600" color="black">
                     Termination & Misuse of Membership
                   </Box>
                 </AccordionButton>
@@ -439,9 +412,9 @@ function SubscriptionPlans() {
             </AccordionItem>
             <AccordionItem>
               <h2>
-                <AccordionButton bg={"brand.100"} _hover={{ bg: "brand.100" }}>
-                  <AccordionIcon color="white" />
-                  <Box flex="1" textAlign="left" fontWeight="600" color="white">
+                <AccordionButton bg={"brand.500"} _hover={{ bg: "brand.500" }}>
+                  <AccordionIcon color="black" />
+                  <Box flex="1" textAlign="left" fontWeight="600" color="black">
                     Is there a maximum limit on the discounts?
                   </Box>
                 </AccordionButton>
@@ -463,6 +436,7 @@ function SubscriptionPlans() {
           </Accordion>
         </Box>
       </Container>
+
       <ScrollToTop/>
       <Footer />
     </>
