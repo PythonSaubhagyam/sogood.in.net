@@ -366,7 +366,7 @@ export default function Home() {
           textAlign={{ base: "center", md: "justify" }}
           px={{ base: 2, md: 8 }}
           py={4}
-          my={7}
+          my={3}
         >
           About SO GOOD
         </Text>
@@ -421,7 +421,7 @@ export default function Home() {
         textAlign={{ base: "center", md: "justify" }}
         px={{ base: 2, md: 8 }}
         py={4}
-        my={7}
+        my={3}
       >
         Our Ethical Snacks Range
       </Text>

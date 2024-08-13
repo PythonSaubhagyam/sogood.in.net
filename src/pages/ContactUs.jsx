@@ -130,7 +130,7 @@ export default function ContactUs() {
        <Image src={require("../assets/contact-us/contact.jpg")} />
       </Container>
       <Container maxW="container.lg" pb={10}>
-        <Text pb={2}>
+        <Text pb={2} pt={2}>
           Contact us about anything related to our company or services.
         </Text>
         <Text pb={8}>

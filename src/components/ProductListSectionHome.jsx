@@ -139,6 +139,7 @@ const ProductListSectionHome = ({ title, products, loading, type }) => {
             // wrap={"wrap"}
             wrap={{ md: "wrap", lg: "nowrap" }}
             px={5}
+            gap={6}
           >
             {loading === true ? (
               <>
