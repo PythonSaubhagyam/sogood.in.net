@@ -13,10 +13,14 @@ export default function ProductCard({ product }) {
   const navigate = useNavigate();
   return (
     <>
-    <Card
-      w={{ base: "80vw", sm: "3xs", lg: "200px",xl:"2xs" }}
+   <Card
+    //   w={{ base: "90vw", sm: "xs" }}
+     // w= {{ base: "80vw", lg: "18vw" }}
+     w= {{ base: "80vw", lg: "93%" }}
+      //  maxW="container.xl"
+      //  mx="auto"
       border="1px"
-      borderColor="text.300"
+      borderColor="brand.100"
       borderRadius={"lg"}
       onClick={() => {
         window.location.href = `/products/${product.id}`;
@@ -27,7 +31,6 @@ export default function ProductCard({ product }) {
         //     behavior: "smooth",
         //   });
       }}
-    
       cursor={"pointer"}
     >
       <CardBody backgroundColor={"white"} borderRadius="lg">
@@ -35,17 +38,16 @@ export default function ProductCard({ product }) {
           src={product.home_image ? product.home_image : product.image1}
           alt={product.name}
           borderRadius="lg"
-          boxSize="200px"
+          boxSize="150px"
           objectFit={"contain"}
           mx="auto"
         />
       </CardBody>
-     
       <CardFooter
         align={"center"}
         py={3}
         flexDirection="column"
-        backgroundColor={"bg.100"}
+        backgroundColor={"bg.500"}
         borderBottomRadius="lg"
       >
         <Box
@@ -63,8 +65,8 @@ export default function ProductCard({ product }) {
           >
             {product.name}
           </Heading>
-        </Box> 
-         <Button
+        </Box>
+        <Button
           as={Link}
           to={`/products/${product.id}`}
           fontSize="sm"
@@ -72,12 +74,11 @@ export default function ProductCard({ product }) {
           mx="auto"
           backgroundColor={"brand.500"}
           borderColor={"brand.100"}
-          color="black"
+          color="white"
           _hover={{ backgroundColor: "brand.900" }}
         >
           View Product
         </Button>
-        
       </CardFooter>
     </Card>
   

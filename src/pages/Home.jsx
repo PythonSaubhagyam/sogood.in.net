@@ -413,6 +413,7 @@ export default function Home() {
       <Container maxW={"container.xl"} px={2}>
         <Image src="./SO GOOD/home/So_good.jpg" alt="" />
       </Container>
+      <Container maxW={"container.xl"} >
       <Text
         fontSize={{ base: "xl", sm: "2xl", xl: "3xl" }}
         fontWeight={700}
@@ -436,8 +437,9 @@ export default function Home() {
         direction={{ base: "column", md: "row" }}
         // wrap={"wrap"}
         wrap={{ md: "wrap", lg: "nowrap" }}
-        pl={6}
-        pr={5}
+        // pl={6}
+        // pr={5}
+        gap={6}
       >
         {Ethicalsnacks.map((data) => (
           <GridItem
@@ -445,7 +447,7 @@ export default function Home() {
             border="1px"
             borderColor="text.300"
             borderRadius={"lg"}
-            w={{ base: "80vw", sm: "3xs", lg: "200px", xl: "2xs" }}
+            //w={{ base: "80vw", sm: "3xs", lg: "200px", xl: "2xs" }}
             my={5}
             onClick={() => navigate(`/shop?category=${data.id}`)}
             cursor={"pointer"}
@@ -507,6 +509,7 @@ export default function Home() {
           </GridItem>
         ))}
       </Grid>
+      </Container>
       <ProductListSectionHome
         loading={loading}
         title={"Try Our New Products"}
