@@ -139,7 +139,7 @@ export default function ProductListSection({ title, products, loading, type }) {
             // wrap={"wrap"}
             wrap={{ md: "wrap", lg: "nowrap" }}
             px={5}
-            gap={6}
+            //gap={6}
           >
             {/* {loading === true ? (
               <>
