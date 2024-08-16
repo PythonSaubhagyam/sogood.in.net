@@ -12,15 +12,25 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import BreadCrumbCom from "../components/BreadCrumbCom";
 import ScrollToTop from "../components/ScrollToTop";
+import { useLocation } from "react-router-dom";
 
 export default function Franchise() {
+  
+  let { search } = useLocation();
+  const searchParams = new URLSearchParams(search);
+ const IsMobileView = searchParams.get("mobile") ?? "false";
+
+
   return (
     <>
-      <Navbar />
+     
+    {IsMobileView !== "true" && <Navbar />}
+
+
       <Container maxW="container.xl">
         <BreadCrumbCom second={"Franchise"} secondUrl={"/franchise"} />
       </Container>
-      <Container maxW={"container.xl"} py={8} px={{ base: 4, lg: 0 }}>
+      <Container maxW={"container.xl"} py={1} px={{ base: 4, lg: 0 }}>
         <Box
           w={"100%"}
           bgImage={"https://forntend-bucket.s3.ap-south-1.amazonaws.com/sose/images/franchisee.jpg"}
@@ -403,7 +413,7 @@ export default function Franchise() {
         </Center>
       </Container>
       <ScrollToTop/>
-      <Footer />
+      {IsMobileView !== "true" && <Footer />}
     </>
   );
 }
