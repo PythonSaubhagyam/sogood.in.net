@@ -164,7 +164,7 @@ export default function ConsultOurVaidya() {
             </Text>
           </Box>
         </Flex>
-        <Flex p="8">
+        <Flex p="8" flexDirection={{ base: "column", lg: "row" }}>
           <Box p="3">
             <Image
               src={
@@ -180,7 +180,7 @@ export default function ConsultOurVaidya() {
             />
           </Box>
         </Flex>
-        <Flex p="8">
+        <Flex p="8" flexDirection={{ base: "column", lg: "row" }}>
           <Box p="3">
             <Image
               src={
@@ -196,7 +196,7 @@ export default function ConsultOurVaidya() {
             />
           </Box>
         </Flex>
-        <Flex p="8">
+        <Flex p="8" flexDirection={{ base: "column", lg: "row" }}>
           <Box p="3">
             <Image
               src={
@@ -212,7 +212,7 @@ export default function ConsultOurVaidya() {
             />
           </Box>
         </Flex>
-        <Flex p="8">
+        <Flex p="8" flexDirection={{ base: "column", lg: "row" }}>
           <Box p="3">
             <Image
               src={
