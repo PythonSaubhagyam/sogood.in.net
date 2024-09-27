@@ -130,38 +130,75 @@ export default function ProductDetails() {
     getProductDetails(); // eslint-disable-next-line
   }, [productId]);
 
+  useEffect(() => {
+    getProductsList(productId); // eslint-disable-next-line
+  }, [productId]);
+
+  async function getProductsList(productId) {
+    const promise1 = await client.get(
+      `/web/single/product/related/${productId}/`,
+      {
+        headers: headers,
+      }
+    );
+    const promise2 = await client.get(
+      `/web/single/product/other/${productId}/`,
+      {
+        headers: headers,
+      }
+    );
+    const promise3 = await client.get(
+      `/web/single/product/recently-viewed/${productId}/`,
+      {
+        headers: headers,
+      }
+    );
+
+    Promise.all([promise1, promise2, promise3])
+      .then(function (responses) {
+        if (responses[0].data.status === true) {
+          setRelatedProducts(responses[0].data?.data);
+        }
+        if (responses[1].data.status === true) {
+          setOtherProducts(responses[1].data?.data);
+        }
+        if (responses[2].data.status === true) {
+          setRecentlyViewedProducts(responses[2].data?.data);
+        }
+
+        //setLoading(false);
+      })
+      .catch(function (error) {
+        //setLoading(false);
+        console.error("Error fetching data:", error);
+      });
+  }
+
   async function getProductDetails() {
     setLoading(true);
     client
-      .get(`/products/${productId}/`, {
+      .get(`web/single/product/${productId}/`, {
         headers: headers,
       })
       .then((response) => {
         if (response.data.status) {
-          setTotalQuantity(
-            response.data.data.products?.available_stock_quantity
-          );
+          setTotalQuantity(response.data.data?.available_stock_quantity);
 
-          setProductData(response.data.data.products);
-          if (response.data.data.average_rating > MINIMUM_RATING_THRESHOLD) {
-            setAvgRating(response.data.data.average_rating);
+          setProductData(response.data.data);
+          if (
+            response.data.data?.average_rating?.average_rating >
+            MINIMUM_RATING_THRESHOLD
+          ) {
+            setAvgRating(response.data.data.average_rating?.average_rating);
           }
           if (response.data.data.rating_review_data !== null) {
-            setReviews(response.data.data.rating_review_data);
+            setReviews(response.data.data?.rating_review_data);
           }
           if (response.data.data.review_count > 0) {
-            setNoOfReviews(response.data.data.review_count);
+            setNoOfReviews(response.data.data?.average_rating?.review_count);
           }
-          setWished(response.data.data.products.is_wished);
-          setRecentlyViewedProducts(
-            response.data.data.recently_viewed_products
-          );
-          if (response.data?.data?.related_products !== undefined) {
-            setRelatedProducts(response.data.data.related_products);
-          }
-          if (response.data?.data?.other_products !== undefined) {
-            setOtherProducts(response.data.data.other_products);
-          }
+          setWished(response.data.data?.is_wished);
+
           window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
           setLoading(false);
         } else {
@@ -176,8 +213,12 @@ export default function ProductDetails() {
         }
       });
   }
-  const modifiedDescription = productData && productData.description
-  .replace(/<h6>/g, '<h6 style="color:#2C4C03; font-weight:bold; font-size:18px;">');
+  const modifiedDescription =
+    productData &&
+    productData.description.replace(
+      /<h6>/g,
+      '<h6 style="color:#2C4C03; font-weight:bold; font-size:18px;">'
+    );
   async function handleSubmit(e) {
     e.preventDefault();
     try {
@@ -280,33 +321,30 @@ export default function ProductDetails() {
             <Flex
               position={"relative"}
               direction={{ base: "column", sm: "row" }}
-              justify-content= {"space-between" }
+              justify-content={"space-between"}
               gap={15}
               mb={8}
-             
-                //gap={{ base: 30, md: 20 }}
+              //gap={{ base: 30, md: 20 }}
               // pt={{ base: 18, md: 10 }}
               // pb={{ base: 18, md: 0 }}
-              alignItems={{ base: "center",md:"flex-start" }}
+              alignItems={{ base: "center", md: "flex-start" }}
             >
-              <Box width={{md:"50%"}} >
-                <Skeleton isLoaded={!loading} >
+              <Box width={{ md: "50%" }}>
+                <Skeleton isLoaded={!loading}>
                   <ProductImageSection images={productData?.images ?? []} />
                 </Skeleton>
               </Box>
 
-              <Stack spacing={{ base: 6, md: 10 }} width={{md:"50%"}} >
+              <Stack spacing={{ base: 6, md: 10 }} width={{ md: "50%" }}>
                 <Flex
                   justify="center"
                   direction={"column"}
                   gap={2}
                   align={{ base: "center", md: "flex-start" }}
                   //mt={{md:16}}
-                  
                 >
                   <Heading
-                  
-                  // mb={2}
+                    // mb={2}
                     as={"header"}
                     lineHeight={1.1}
                     fontWeight={"normal"}
@@ -354,9 +392,14 @@ export default function ProductDetails() {
                           color={"#2C4C03"}
                           fontWeight={"500"}
                           cursor={"pointer"}
-                          onClick={()=>navigate(`/shop?page=1&brand=${productData.brand}&brand_name=${productData.brand_name}`)}
+                          mr={2}
+                          onClick={() =>
+                            navigate(
+                              `/shop?page=1&brand=${productData.brand}&brand_name=${productData.brand_name}`
+                            )
+                          }
                         >
-                            Brand{" "}:{"  "}
+                          Brand :{"  "}
                           {productData.brand_name}
                         </Text>
                       )}
@@ -479,7 +522,9 @@ export default function ProductDetails() {
                       color={"black"}
                     >
                       {productData?.benefits.map((benefit, index) => (
-                        <li key={index} style={{fontSize:"16px"}}>{benefit}</li>
+                        <li key={index} style={{ fontSize: "16px" }}>
+                          {benefit}
+                        </li>
                       ))}
                     </Box>
                   </>
@@ -503,8 +548,8 @@ export default function ProductDetails() {
                     </Text>
                   </Skeleton>
 
-                  <SimpleGrid spacing={{ base: 8, md: 6 }} zIndex={0}  pt={5} >
-                    {totalQuantity?.Quantity !== 0 && (
+                  <SimpleGrid spacing={{ base: 8, md: 6 }} zIndex={0} pt={5}>
+                    {totalQuantity !== 0 && (
                       <ButtonGroup
                         as={Flex}
                         p={0}
@@ -519,9 +564,7 @@ export default function ProductDetails() {
                           <Display message={counter} />
                         </Button>
                         <ButtonIncrement
-                          disabled={
-                            totalQuantity?.Quantity === counter ? true : false
-                          }
+                          disabled={totalQuantity === counter ? true : false}
                           onClickFunc={incrementCounter}
                         />
                       </ButtonGroup>
@@ -532,7 +575,7 @@ export default function ProductDetails() {
                       alignItems={"flex-start"}
                       flexDirection={{ base: "column", md: "row" }}
                     >
-                      {totalQuantity?.Quantity === 0 ? (
+                      {totalQuantity === 0 ? (
                         <Button
                           id="addToCartButton"
                           as={Flex}
@@ -588,15 +631,19 @@ export default function ProductDetails() {
                         }
                         onClick={() => handleWishlistChange(productData?.id)}
                       >
-                        <AiFillHeart /><Text mt={1}>
-                        {isWished ? "REMOVE FROM WISHLIST" : "ADD TO WISHLIST"}</Text>
+                        <AiFillHeart />
+                        <Text mt={1}>
+                          {isWished
+                            ? "REMOVE FROM WISHLIST"
+                            : "ADD TO WISHLIST"}
+                        </Text>
                       </Button>
                     </ButtonGroup>
                   </SimpleGrid>
                 </Flex>
               </Stack>
             </Flex>
-            <Box pr={{md:10}} mx={{md:8,base:3}}>
+            <Box pr={{ md: 10 }} mx={{ md: 8, base: 3 }}>
               <Skeleton isLoaded={!loading}>
                 <Box
                   //whiteSpace={"pre-line"}
@@ -605,22 +652,17 @@ export default function ProductDetails() {
                   mt={1}
                   dangerouslySetInnerHTML={{
                     // __html: dompurify.sanitize(productData?.description),
-                    __html:modifiedDescription,
+                    __html: modifiedDescription,
                   }}
                 />
               </Skeleton>
             </Box>
             {/* </Container> */}
-           
           </Container>
-          {reviews && (
-              <Container
-              mt={3}
-                maxW="8xl"
-                id="review-area"
-                px={0}
-              >
-             
+          {reviews &&
+            reviews?.length >
+              0 &&(
+                <Container mt={3} maxW="8xl" id="review-area" px={0}>
                   <Text
                     fontSize={{ base: "xl", sm: "2xl" }}
                     bgColor={"bg.500"}
@@ -677,36 +719,43 @@ export default function ProductDetails() {
                       </Button>
                     )}
                   </Flex>
-               
-              </Container>
-            )}
+                </Container>
+              )}
 
-          <ProductListSection
-            title="Related Products"
-            products={relatedProducts}
-            loading={loading}
-            justify="center"
-            fontSize={{ base: "sm", lg: "md" }}
-            type={"carousal"}
-          />
-
-          <ProductListSection
-            title="Other Products"
-            products={otherProducts}
-            justify="center"
-            loading={loading}
-            fontSize={{ base: "sm", lg: "md" }}
-            type={"carousal"}
-          />
-
-          <ProductListSection
-            title="Recently Viewed Products"
-            products={recentlyViewedProducts}
-            justify="center"
-            loading={loading}
-            fontSize={{ base: "sm", lg: "md" }}
-            type={"carousal"}
-          />
+          {relatedProducts &&
+            relatedProducts?.length > 0 &&(
+                <ProductListSection
+                  title="Related Products"
+                  products={relatedProducts}
+                  loading={loading}
+                  justify="center"
+                  fontSize={{ base: "sm", lg: "md" }}
+                  type={"carousal"}
+                />
+              )}
+          {otherProducts &&
+            otherProducts?.length > 0 &&(
+                <ProductListSection
+                  title="Other Products"
+                  products={otherProducts}
+                  justify="center"
+                  loading={loading}
+                  fontSize={{ base: "sm", lg: "md" }}
+                  type={"carousal"}
+                />
+              )}
+          {recentlyViewedProducts &&
+            recentlyViewedProducts?.length >
+              0 &&(
+                <ProductListSection
+                  title="Recently Viewed Products"
+                  products={recentlyViewedProducts}
+                  justify="center"
+                  loading={loading}
+                  fontSize={{ base: "sm", lg: "md" }}
+                  type={"carousal"}
+                />
+              )}
 
           <Modal
             size={"xl"}
@@ -753,7 +802,7 @@ export default function ProductDetails() {
                   </FormControl>
                 </ModalBody>
 
-                <ModalFooter> 
+                <ModalFooter>
                   <Button colorScheme="brand" type="submit">
                     Submit
                   </Button>
