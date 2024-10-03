@@ -284,7 +284,7 @@ const Ethicalsnacks = [
 export default function Home() {
   const [isFullScreen] = useMediaQuery("(min-width: 768px)");
   const width = useBreakpointValue({ base: "100%", lg: "100%" });
-  const height = useBreakpointValue({ base: "300", lg: "400" });
+  const height = useBreakpointValue({ base: "200", lg: "400" });
   const [banners, setBanners] = useState(banner);
   const [loading, setLoading] = useState(true);
   const [isMobile] = useMediaQuery("(max-width: 480px)");
@@ -357,16 +357,16 @@ export default function Home() {
       <Container maxW={"container.xl"} px={0}>
         <Carousel banners={banners} />
       </Container>
-      <Container maxW={"container.xl"} mb={8} mt={2} px={0}>
+      <Container maxW={"container.xl"} mb={8}  px={0}>
         <Text
           fontSize={{ base: "xl", sm: "2xl", xl: "3xl" }}
           fontWeight={700}
           color={"text.300"}
           bgColor={"bg.100"}
           textAlign={{ base: "center", md: "justify" }}
-          px={{ base: 2, md: 8 }}
+          //px={{ base: 2, md: 8 }}
           py={4}
-          my={3}
+          //my={3}
         >
           About SO GOOD
         </Text>
@@ -451,6 +451,7 @@ export default function Home() {
             my={5}
             onClick={() => navigate(`/shop?category=${data.id}`)}
             cursor={"pointer"}
+            
           >
             <CardBody backgroundColor={"white"} borderRadius="lg">
               <Image
@@ -514,6 +515,7 @@ export default function Home() {
         loading={loading}
         title={"Try Our New Products"}
         products={newArrival}
+        type={isMobile && "carousal"}
       />
       <Container maxW={"container.xl"} px={2} borderRadius={"10px"}>
         <Grid
@@ -540,6 +542,7 @@ export default function Home() {
         loading={loading}
         title={"Muesli, Cereals & Bars"}
         products={Muesli}
+        type={isMobile && "carousal"}
       />
 
       <Container maxW={"container.xl"} px={2} borderRadius={"10px"}>
@@ -593,16 +596,19 @@ export default function Home() {
         loading={loading}
         title={"International Cuisins"}
         products={International_Cuisins}
+        type={isMobile && "carousal"}
       />
       <ProductListSectionHome
         loading={loading}
         title={"Must Try : SO GOOD Products"}
         products={mustTry}
+        type={isMobile && "carousal"}
       />
       <ProductListSectionHome
         loading={loading}
         title={"All Time Best Sellers"}
         products={bestSeller}
+        type={isMobile && "carousal"}
       />
 
 <Container maxW={"container.xl"}>
