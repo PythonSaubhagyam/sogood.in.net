@@ -1,3 +1,4 @@
+
 import {
   Container,
   Text,
@@ -44,7 +45,7 @@ const NextArrow = (props) => {
     </Box>
   );
 };
-export default function ProductListSection({ title, products, loading, type }) {
+export default function ProductListSection({ title, products, type,loading }) {
   const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
 
   const settings = {
@@ -87,22 +88,22 @@ export default function ProductListSection({ title, products, loading, type }) {
 
   return (
     <>
-      <Container maxW={"container.xl"} px={0} pt={4} pb={6}>
+      <Container maxW={"container.xl"} px={0} pb={6}>
         <Text
-          fontSize={{ base: "xl", sm: "2xl", xl: "4xl" }}
-          bgColor={"bg.500"}
+          fontSize={{ base: "xl", sm: "2xl", xl: "3xl" }}
+          bgColor={"#E6E6E6"}
           px={{ base: 2, md: 8 }}
           py={4}
           mb={8}
           textAlign={{ base: "center", md: "start" }}
-          color={"text.300"}
           fontWeight={500}
+          color={"text.500"}
         >
           {title}
         </Text>
-        {type === "carousal" && products.length > 4 ? (
+        {type === "carousal" && products && products?.length > 4 ? (
           <Slider {...settings}>
-            {loading === true
+            {loading 
               ? [0, 1, 2, 3, 4].map((index) => (
                   <Box
                     key={index}
@@ -122,15 +123,17 @@ export default function ProductListSection({ title, products, loading, type }) {
                   </Box>
                 ))
               : products?.map((product) => (
-                  <ProductCard key={product.id} product={product} />
+                <Box key={product.id} px={{base:"20px",md:"20px"}} >
+                <ProductCard  key={product.id} product={product} />
+               </Box>
                 ))}
           </Slider>
         ) : (
           <Grid
             templateColumns={{
               base: "repeat(1, 1fr)",
-              md: "repeat(3, 1fr)",
-              lg: "repeat(5, 1fr)",
+              md: "repeat(5, 1fr)",
+             
             }}
             //justify={ "start"}
             justify="center"
@@ -138,10 +141,10 @@ export default function ProductListSection({ title, products, loading, type }) {
             direction={{ base: "column", md: "row" }}
             // wrap={"wrap"}
             wrap={{ md: "wrap", lg: "nowrap" }}
-            px={5}
-            //gap={6}
+            px={2}
+            gap={2}
           >
-            {/* {loading === true ? (
+            {loading === true ? (
               <>
                 {[0, 1, 2, 3, 4].map(() => (
                   <Box
@@ -162,14 +165,14 @@ export default function ProductListSection({ title, products, loading, type }) {
                 ))}
               </>
             ) : (
-              <> */}
+              <>
                 {products?.map((product) => (
                   <GridItem my={4}>
                     <ProductCard key={product.id} product={product} />
                   </GridItem>
                 ))}
-              {/* </>
-            )} */}
+              </>
+            )}
           </Grid>
         )}
       </Container>
