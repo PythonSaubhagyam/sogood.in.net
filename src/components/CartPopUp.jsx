@@ -20,24 +20,25 @@ const CartPopUp = () => {
   const [CartCount, setCartCount] = useState(
     localStorage.getItem("cart_counter") ?? 0
   );
-  const checkOrSetUDIDInfo = CheckOrSetUDID();
+
   const loginInfo = checkLogin();
-
-  let headers = { visitor: checkOrSetUDIDInfo?.visitor_id };
-
-  if (loginInfo.isLoggedIn === true) {
-    headers = { Authorization: `token ${loginInfo?.token}` };
-  }
 
   const [total, setTotal] = useState(
     localStorage.getItem("product_total") === null ||
-    localStorage.getItem("product_total") === undefined
+      localStorage.getItem("product_total") === undefined
       ? 0
       : localStorage.getItem("product_total")
   );
 
   useEffect(() => {
     const updateProductTotal = async () => {
+      const checkOrSetUDIDInfo = await CheckOrSetUDID();
+      let headers = { visitor: checkOrSetUDIDInfo?.visitor_id };
+
+      if (loginInfo.isLoggedIn === true) {
+        headers = { Authorization: `token ${loginInfo?.token}` };
+      }
+
       const cartRes = await client.get("/cart/", {
         headers: headers,
       });
@@ -90,12 +91,12 @@ const CartPopUp = () => {
             opacity={0.9}
             fontSize={13}
           >
-            Thank you for being a SOSE Elite member! Enjoy your complimentary delivery and exclusive benefits.
+            Thank you for being a SOSE Elite member! Enjoy your complimentary
+            delivery and exclusive benefits.
           </Box>
         ) : (
           <Box
             bgColor={"#cec0af"}
-
             color={"black"}
             textAlign={"center"}
             py={3}
@@ -118,7 +119,6 @@ const CartPopUp = () => {
           px={3}
           py={2}
           backgroundColor={"#cec0af8f"}
-
           color={"black"}
           w={{ md: 600, base: "100%" }}
           opacity={0.9}

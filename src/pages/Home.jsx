@@ -297,10 +297,15 @@ export default function Home() {
   const isMobiles = width <= 768;
   const navigate = useNavigate();
   useEffect(() => {
-    CheckOrSetUDID();
+    const init = async () => {
+      await CheckOrSetUDID();
+       };
+  
+    init();
+  
     //getHomePageData();
     getMustTry();
-    getHomePageData();
+    //getHomePageData();
     getBestSeller();
     getNewArrival();
     getBlogs();
@@ -310,6 +315,7 @@ export default function Home() {
     if (response.data.status === true) {
       //setBanners(response.data.banners);
       setHome(response.data);
+      console.log("response",response.data)
     }
     setLoading(false);
   }
@@ -413,7 +419,7 @@ export default function Home() {
       <Container maxW={"container.xl"} px={2}>
         <Image src="./SO GOOD/home/So_good.jpg" alt="" />
       </Container>
-      <Container maxW={"container.xl"} >
+      <Container maxW={"container.xl"} px={0} >
       <Text
         fontSize={{ base: "xl", sm: "2xl", xl: "3xl" }}
         fontWeight={700}
@@ -439,6 +445,7 @@ export default function Home() {
         wrap={{ md: "wrap", lg: "nowrap" }}
         // pl={6}
         // pr={5}
+        px={6}
         gap={6}
       >
         {Ethicalsnacks.map((data) => (
@@ -545,7 +552,7 @@ export default function Home() {
         type={isMobile && "carousal"}
       />
 
-      <Container maxW={"container.xl"} px={2} borderRadius={"10px"}>
+      <Container maxW={"container.xl"} px={2} mb={4} borderRadius={"10px"}>
         <Grid
           templateColumns={{
             base: "repeat(1, 1fr)",
@@ -560,12 +567,20 @@ export default function Home() {
           </GridItem>
         </Grid>
       </Container>
-      <ProductListSection
-        loading={loading}
-        title={"Instant Mixes"}
-        products={homeData.instant_mix}
-      />
+    
       <Container maxW={"container.xl"} px={2} borderRadius={"10px"}>
+      <Text
+          fontSize={{ base: "xl", sm: "2xl", xl: "3xl" }}
+          bgColor={"bg.500"}
+          px={{ base: 2, md: 8 }}
+          py={4}
+          mb={8}
+          textAlign={{ base: "center", md: "start" }}
+          fontWeight={500}
+          //color={"text.500"}
+        >
+          Instant Mixes
+        </Text>
         <Grid
           templateColumns={{
             base: "repeat(1, 1fr)",
