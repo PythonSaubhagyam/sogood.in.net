@@ -7,10 +7,9 @@ import { useLocation } from "react-router-dom";
 import ScrollToTop from "../components/ScrollToTop";
 
 const PrivacyPolicy = () => {
-  
   let { search } = useLocation();
   const searchParams = new URLSearchParams(search);
- const IsMobileView = searchParams.get("mobile") ?? "false";
+  const IsMobileView = searchParams.get("mobile") ?? "false";
 
   return (
     <>
@@ -31,17 +30,18 @@ const PrivacyPolicy = () => {
             <br />
             <br />
             This Privacy Policy describes the types of personal information we
-            collect on the Suryan Organic website (<b>www.sogood.in.net</b>) further
-            referenced as girgauveda.com, how we may use that information and
-            with whom we may share it. Our Privacy Policy also describes the
-            measures we take to protect the security of this information as well
-            as how you can access, modify or delete your personal information at
-            any time. It also explains how you can object to the processing of
-            your personal information or to receiving communications about our
-            products and services. This Privacy Policy governs only information
-            provided to <b>www.sogood.in.net</b> It does not govern any other
-            information or communications that may have been collected in any
-            other manner like promotions, personal contact programmer etc
+            collect on the Suryan Organic website (<b>www.sogood.in.net</b>)
+            further referenced as girgauveda.com, how we may use that
+            information and with whom we may share it. Our Privacy Policy also
+            describes the measures we take to protect the security of this
+            information as well as how you can access, modify or delete your
+            personal information at any time. It also explains how you can
+            object to the processing of your personal information or to
+            receiving communications about our products and services. This
+            Privacy Policy governs only information provided to{" "}
+            <b>www.sogood.in.net</b> It does not govern any other information or
+            communications that may have been collected in any other manner like
+            promotions, personal contact programmer etc
             <br />
             <br />
             By accepting the Privacy Policy, you expressly consent to our use
@@ -53,14 +53,15 @@ const PrivacyPolicy = () => {
               Information We Collect:-
             </Text>
             <br />
-            In general, you can visit the <b>www.sogood.in.net</b> without telling us
-            who you are or revealing any personally identifiable information.
-            You can however, also register at our website which enables us to
-            contact you by email or text messages on your mobile phone to inform
-            you about our products or respond to your comments or queries. As
-            part of the registration process, we collect and store your personal
-            information that you may choose to provide us with, such as your
-            name, email address, mobile phone number and date of birth.
+            In general, you can visit the <b>www.sogood.in.net</b> without
+            telling us who you are or revealing any personally identifiable
+            information. You can however, also register at our website which
+            enables us to contact you by email or text messages on your mobile
+            phone to inform you about our products or respond to your comments
+            or queries. As part of the registration process, we collect and
+            store your personal information that you may choose to provide us
+            with, such as your name, email address, mobile phone number and date
+            of birth.
             <br />
             <br />
             The technology that we use also allows us to collect aggregate
@@ -320,9 +321,7 @@ const PrivacyPolicy = () => {
       </Box>
       <Container maxW={"container.xl"} mb={5} px={20} centerContent>
         <Image
-           src={
-            require("../assets/001.jpg")
-          }
+          src={require("../assets/001.jpg")}
           w={"container.xl"}
           alt=""
           style={{
@@ -331,11 +330,9 @@ const PrivacyPolicy = () => {
           }}
         />
       </Container>
-      <ScrollToTop/>
-     
+      <ScrollToTop />
+
       {IsMobileView !== "true" && <Footer />}
-
-
     </>
   );
 };
