@@ -154,36 +154,33 @@ const Muesli = [
     image1: "./SO GOOD/Product-Image/Sugarfree_Muesli.jpg",
     alt: "",
     name: "So Good Sugar Free Dates & Millet Muesli 250gm",
-    id:2050
+    id: 2050,
   },
   {
     image1: "./SO GOOD/Product-Image/cinnamonnutribar.jpg",
     alt: "",
     name: "So Good Natural Cinnamon Nutri Bar 30gm",
-    id:1967
+    id: 1967,
   },
   {
     image1: "./SO GOOD/Product-Image/omegafibernutribar.jpg",
     alt: "",
     name: "So Good Natural Omega Fiber Nutri Bar 40gm",
-    id:1968
+    id: 1968,
   },
   {
     image1: "./SO GOOD/Product-Image/dryfruit_front.jpg",
     alt: "",
     name: "So Good Natural Dry Fruit Chikki Bar 32gm",
-    id:1962
+    id: 1962,
   },
   {
     image1: "./SO GOOD/Product-Image/cornflakes.jpg",
     alt: "",
     name: "So Good Natural Corn Flakes 250gm",
-    id:2045
+    id: 2045,
   },
- 
 ];
-
-
 
 const International_Cuisins = [
   {
@@ -216,7 +213,6 @@ const International_Cuisins = [
     name: "So Good Natural Makhana Rock Salt & Pepper 35gm",
     id: 2082,
   },
- 
 ];
 
 const Ethicalsnacks = [
@@ -292,31 +288,28 @@ export default function Home() {
   const [homeData, setHome] = useState({});
   const [newArrival, setNewArrival] = useState([]);
   const [mustTry, setMustTry] = useState([]);
+  const [sections, setSections] = useState([]);
   const [bestSeller, setBestSeller] = useState([]);
   // let [isFull] = useMediaQuery("(max-width:1920px)");
   const [blogs, setBlogs] = useState([]);
   const isMobiles = width <= 768;
   const navigate = useNavigate();
   useEffect(() => {
-    const init = async () => {
-      await CheckOrSetUDID();
-       };
-  
-    init();
-  
-    //getHomePageData();
+    CheckOrSetUDID();
+    // getHomePageData();
     getMustTry();
     //getHomePageData();
     getBestSeller();
     getNewArrival();
     getBlogs();
+    getImage(); 
   }, []);
   async function getHomePageData() {
     const response = await client.get("/home");
     if (response.data.status === true) {
       //setBanners(response.data.banners);
       setHome(response.data);
-      console.log("response",response.data)
+     
     }
     setLoading(false);
   }
@@ -351,6 +344,17 @@ export default function Home() {
       setBlogs(response.data.blogs);
     }
   }
+  async function getImage() {
+    const params = {};
+    const response = await client.get("/lower-section", {
+      params: params,
+    });
+    if (response.data.status === true) {
+      setSections(response.data.data);
+    }
+  }
+  console.log(sections)
+
 
   return (
     <>
@@ -364,7 +368,7 @@ export default function Home() {
       <Container maxW={"container.xl"} px={0}>
         <Carousel banners={banners} />
       </Container>
-      <Container maxW={"container.xl"} mb={8}  px={0}>
+      <Container maxW={"container.xl"} mb={8} px={0}>
         <Text
           fontSize={{ base: "xl", sm: "2xl", xl: "3xl" }}
           fontWeight={700}
@@ -420,104 +424,102 @@ export default function Home() {
       <Container maxW={"container.xl"} px={2}>
         <Image src="./SO GOOD/home/So_good.jpg" alt="" />
       </Container>
-      <Container maxW={"container.xl"} px={0} >
-      <Text
-        fontSize={{ base: "xl", sm: "2xl", xl: "3xl" }}
-        fontWeight={700}
-        color={"text.300"}
-        bgColor={"bg.500"}
-        textAlign={{ base: "center", md: "justify" }}
-        px={{ base: 2, md: 8 }}
-        py={4}
-        my={3}
-      >
-        Our Ethical Snacks Range
-      </Text>
-      <Grid
-        templateColumns={{
-          base: "repeat(1, 1fr)",
-          md: "repeat(3, 1fr)",
-          xl: "repeat(5, 1fr)",
-        }}
-        justify="center"
-        align="center"
-        direction={{ base: "column", md: "row" }}
-        // wrap={"wrap"}
-        wrap={{ md: "wrap", lg: "nowrap" }}
-        // pl={6}
-        // pr={5}
-        px={6}
-        gap={6}
-      >
-        {Ethicalsnacks.map((data) => (
-          <GridItem
-            as={Card}
-            border="1px"
-            borderColor="text.300"
-            borderRadius={"lg"}
-            //w={{ base: "80vw", sm: "3xs", lg: "200px", xl: "2xs" }}
-            my={5}
-            onClick={() => navigate(`/shop?category=${data.id}`)}
-            cursor={"pointer"}
-            
-          >
-            <CardBody backgroundColor={"white"} borderRadius="lg">
-              <Image
-                src={data.image1}
-                alt=""
-                borderRadius="lg"
-                boxSize="170px"
-                objectFit={"contain"}
-                my={3}
-              />
-            </CardBody>
-            <CardFooter
-              align={"center"}
-              py={3}
-              flexDirection="column"
-              backgroundColor={"bg.100"}
-              borderBottomRadius="lg"
+      <Container maxW={"container.xl"}>
+        <Text
+          fontSize={{ base: "xl", sm: "2xl", xl: "3xl" }}
+          fontWeight={700}
+          color={"text.300"}
+          bgColor={"bg.500"}
+          textAlign={{ base: "center", md: "justify" }}
+          px={{ base: 2, md: 8 }}
+          py={4}
+          my={3}
+        >
+          Our Ethical Snacks Range
+        </Text>
+        <Grid
+          templateColumns={{
+            base: "repeat(1, 1fr)",
+            md: "repeat(3, 1fr)",
+            xl: "repeat(5, 1fr)",
+          }}
+          justify="center"
+          align="center"
+          direction={{ base: "column", md: "row" }}
+          // wrap={"wrap"}
+          wrap={{ md: "wrap", lg: "nowrap" }}
+          // pl={6}
+          // pr={5}
+          gap={6}
+        >
+          {Ethicalsnacks.map((data) => (
+            <GridItem
+              as={Card}
+              border="1px"
+              borderColor="text.300"
+              borderRadius={"lg"}
+              //w={{ base: "80vw", sm: "3xs", lg: "200px", xl: "2xs" }}
+              my={5}
+              onClick={() => navigate(`/shop?category=${data.id}`)}
+              cursor={"pointer"}
             >
-              <Box
-                h="100px"
-                display={"flex"}
-                flexDirection={"column"}
+              <CardBody backgroundColor={"white"} borderRadius="lg">
+                <Image
+                  src={data.image1}
+                  alt=""
+                  borderRadius="lg"
+                  boxSize="170px"
+                  objectFit={"contain"}
+                  my={3}
+                />
+              </CardBody>
+              <CardFooter
+                align={"center"}
+                py={3}
+                flexDirection="column"
                 backgroundColor={"bg.100"}
                 borderBottomRadius="lg"
-                alignItems={"center"}
-                justifyContent={"center"}
-                gap={3}
               >
-                <Heading
-                  size="md"
-                  mb={3}
-                  noOfLines={3}
-                  fontWeight="500"
-                  title={data.name}
+                <Box
+                  h="100px"
+                  display={"flex"}
+                  flexDirection={"column"}
+                  backgroundColor={"bg.100"}
+                  borderBottomRadius="lg"
+                  alignItems={"center"}
+                  justifyContent={"center"}
+                  gap={3}
                 >
-                  {data.name}
-                </Heading>
-                <Button
-                  as={Link}
-                  to={`/shop?category=${data.id}`}
-                  fontSize="sm"
-                  w={{ base: "100%", lg: "80%" }}
-                  mx="auto"
-                  backgroundColor={"brand.500"}
-                  borderColor={"brand.100"}
-                  color="black"
-                  _hover={{
-                    backgroundColor: "brand.900",
-                    textDecoration: "none",
-                  }}
-                >
-                  View Product
-                </Button>
-              </Box>
-            </CardFooter>
-          </GridItem>
-        ))}
-      </Grid>
+                  <Heading
+                    size="md"
+                    mb={3}
+                    noOfLines={3}
+                    fontWeight="500"
+                    title={data.name}
+                  >
+                    {data.name}
+                  </Heading>
+                  <Button
+                    as={Link}
+                    to={`/shop?category=${data.id}`}
+                    fontSize="sm"
+                    w={{ base: "100%", lg: "80%" }}
+                    mx="auto"
+                    backgroundColor={"brand.500"}
+                    borderColor={"brand.100"}
+                    color="black"
+                    _hover={{
+                      backgroundColor: "brand.900",
+                      textDecoration: "none",
+                    }}
+                  >
+                    View Product
+                  </Button>
+                </Box>
+              </CardFooter>
+            </GridItem>
+          ))}
+        </Grid>
       </Container>
       <ProductListSectionHome
         loading={loading}
@@ -553,7 +555,7 @@ export default function Home() {
         type={isMobile && "carousal"}
       />
 
-      <Container maxW={"container.xl"} px={2} mb={4} borderRadius={"10px"}>
+      <Container maxW={"container.xl"} px={2} borderRadius={"10px"}>
         <Grid
           templateColumns={{
             base: "repeat(1, 1fr)",
@@ -568,9 +570,13 @@ export default function Home() {
           </GridItem>
         </Grid>
       </Container>
-    
+      {/* <ProductListSection
+        loading={loading}
+        title={"Instant Mixes"}
+        products={homeData.instant_mix}
+      /> */}
       <Container maxW={"container.xl"} px={2} borderRadius={"10px"}>
-      <Text
+        <Text
           fontSize={{ base: "xl", sm: "2xl", xl: "3xl" }}
           bgColor={"bg.500"}
           px={{ base: 2, md: 8 }}
@@ -578,7 +584,6 @@ export default function Home() {
           mb={8}
           textAlign={{ base: "center", md: "start" }}
           fontWeight={500}
-          //color={"text.500"}
         >
           Instant Mixes
         </Text>
@@ -627,7 +632,7 @@ export default function Home() {
         type={isMobile && "carousal"}
       />
 
-<Container maxW={"container.xl"}>
+      <Container maxW={"container.xl"}>
         <Heading
           color="brand.500"
           size="lg"
@@ -742,12 +747,12 @@ export default function Home() {
             <StatHelpText color="gray.600">Stores</StatHelpText>
           </Stat>
 
-         <Stat>
+          <Stat>
             <StatNumber color="text.300" fontSize={{ base: "3xl", md: "3xl" }}>
               100+
             </StatNumber>
             <StatHelpText color="gray.600">No. of Receipes</StatHelpText>
-        </Stat>
+          </Stat>
         </SimpleGrid>
       </Container>
 
@@ -764,7 +769,7 @@ export default function Home() {
             align={"center"}
             mt={4}
           >
-            AWARDS & CERTIFICATES
+            {sections?.length > 0 && sections[0].label}
           </Heading>
         </Box>
         <Text my={5} textAlign={"center"} color="text.300">
@@ -780,9 +785,7 @@ export default function Home() {
           pb={6}
         >
           <LazyLoadImage
-            src={
-              "https://forntend-bucket.s3.ap-south-1.amazonaws.com/sose/images/HomePage/global-certificate.jpg"
-            }
+            src={sections?.length > 0 && sections[0]?.images[0].image}
             alt="global-certificate"
             style={{
               opacity: 1,
@@ -790,9 +793,7 @@ export default function Home() {
             }}
           />
           <LazyLoadImage
-            src={
-              "https://forntend-bucket.s3.ap-south-1.amazonaws.com/sose/images/HomePage/ciolook-certificate.jpg"
-            }
+            src={sections?.length > 0 && sections[0]?.images[1].image}
             alt="ciolook-certificate"
             style={{
               opacity: 1,
@@ -814,7 +815,6 @@ export default function Home() {
           }}
           gap={10}
           my={6}
-         
           alignItems={"center"}
         >
           {imageInfo?.map((data) => (
@@ -829,7 +829,11 @@ export default function Home() {
         </Grid>
       </Container>
 
-      <Container maxW={{ base: "100vw", md: "container.xl" }} centerContent px={0}>
+      <Container
+        maxW={{ base: "100vw", md: "container.xl" }}
+        centerContent
+        px={0}
+      >
         <Image
           mb={4}
           src={require("../assets/Home/sogood_icon.jpg")}
@@ -849,14 +853,12 @@ export default function Home() {
             align={"center"}
             my={"5"}
           >
-            OUR SERVICES ARE AVAILABLE IN
+            {sections?.length > 0 && sections[1].label}
           </Heading>
         </Box>
         <Box display={"flex"} justifyContent={"center"}>
           <LazyLoadImage
-            src={
-              "https://forntend-bucket.s3.ap-south-1.amazonaws.com/sose/Map.webp"
-            }
+            src={sections?.length > 0 && sections[1]?.images[0].image}
             w={{ base: "100%", md: "100%" }}
             alt=""
             py={4}
@@ -880,14 +882,12 @@ export default function Home() {
             my={"5"}
             pb={"10px"}
           >
-            AVAILABLE AT
+            {sections?.length > 0 && sections[2].label}
           </Heading>
         </Box>
         <Container maxW={"container.xl"} mb={5} px={0} centerContent>
           <Image
-            src={
-              require("../assets/001.jpg")
-            }
+            src={sections?.length > 0 && sections[2]?.images[0].image}
             w={"container.xl"}
             alt=""
             style={{
@@ -897,7 +897,7 @@ export default function Home() {
           />
         </Container>
       </Container>
-      <ScrollToTop/>
+      <ScrollToTop />
       <Footer />
       {/* </>
       )} */}
