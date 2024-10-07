@@ -179,3 +179,4 @@ export default function ProductListSection({ title, products, type,loading }) {
     </>
   );
 }
+
