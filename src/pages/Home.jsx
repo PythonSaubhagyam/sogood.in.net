@@ -6,6 +6,7 @@ import Carousel from "../components/Carousel";
 import CarouselWithLinks from "../components/CarouselWithLinks";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import {
+  
   FaHeartbeat,
   FaThumbsUp,
   FaUniversalAccess,
