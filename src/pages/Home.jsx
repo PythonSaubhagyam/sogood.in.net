@@ -393,7 +393,7 @@ export default function Home() {
           color={"text.300"}
           bgColor={"bg.100"}
           textAlign={{ base: "center", md: "justify" }}
-          //px={{ base: 2, md: 8 }}
+          px={{ base: 2, md: 8 }}
           py={4}
           //my={3}
         >
