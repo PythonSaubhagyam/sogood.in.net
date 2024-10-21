@@ -828,7 +828,7 @@ export default function Home() {
         )}
 
       <Container maxW={"container.xl"} centerContent px={0}>
-        <Heading color="brand.700" size="lg" mx="auto" align={"center"} mt={3}>
+        <Heading color="brand.500" size="lg" mx="auto" align={"center"} mt={3}>
           LICENSES & AFFILIATIONS
         </Heading>
         <Grid
