@@ -439,7 +439,7 @@ export default function Home() {
           Read more
         </Button>
       </Container>
-      <Container maxW={"container.xl"} px={2}>
+      <Container px={0} maxW={"container.xl"} centerContent>
         <Image src="./SO GOOD/home/So_good.jpg" alt="" />
       </Container>
       <Container maxW={"container.xl"}>
