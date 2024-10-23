@@ -52,6 +52,8 @@ import { useNavigate, NavLink as RouterLink } from "react-router-dom";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import Testimonials from "../components/testimonials";
 import ScrollToTop from "../components/ScrollToTop";
+import LoginModal from "../components/LoginModal";
+import checkLogin from "../utils/checkLogin";
 
 const banner = [
   {
@@ -296,6 +298,12 @@ export default function Home() {
   const [availableSection, setAvailableSection] = useState();
   // let [isFull] = useMediaQuery("(max-width:1920px)");
   const [blogs, setBlogs] = useState([]);
+  const loginInfo = checkLogin();
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const checkOrSetUDIDInfo = CheckOrSetUDID();
+  const [showPopup, setShowPopup] = useState(
+    sessionStorage.getItem("hasShownPopup")
+  );
   const isMobiles = width <= 768;
   const navigate = useNavigate();
   useEffect(() => {
@@ -307,6 +315,9 @@ export default function Home() {
     getNewArrival();
     getBlogs();
     getLowerSection(); 
+    if (showPopup === null && !loginInfo.isLoggedIn) {
+      setIsLoginModalOpen(true);
+    }
   }, []);
   async function getHomePageData() {
     const response = await client.get("/home");
@@ -925,7 +936,12 @@ export default function Home() {
             />
           </Container>
         )}
-      
+       {!checkLogin().isLoggedIn && (
+        <LoginModal
+          isOpen={isLoginModalOpen}
+          onClose={() => setIsLoginModalOpen(false)}
+        />
+      )}
       <ScrollToTop />
       <Footer />
       {/* </>

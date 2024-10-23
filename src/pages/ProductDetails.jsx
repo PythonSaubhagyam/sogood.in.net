@@ -51,6 +51,7 @@ import BreadCrumbCom from "../components/BreadCrumbCom";
 import ProductImageSection from "../components/ProductImageSection";
 import StarRating from "../components/StarRatings";
 import ScrollToTop from "../components/ScrollToTop";
+import LoginModal from "../components/LoginModal";
 
 function ButtonIncrement(props) {
   return (
@@ -104,19 +105,20 @@ export default function ProductDetails() {
   const [counter, setCounter] = useState(1);
   const [totalQuantity, setTotalQuantity] = useState({});
   const [loading, setLoading] = useState(true);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const navigate = useNavigate();
   const toast = useToast();
   // const maxWidth = useBreakpointValue({ base: "100%", lg: "container.xl" });
   // const boxWidth = useBreakpointValue({ base: "100%", lg: "75%" });
   const loginInfo = checkLogin();
-  
+
   const MINIMUM_RATING_THRESHOLD = 0.0;
   const incrementCounter = () => setCounter(counter + 1);
   let decrementCounter = () => setCounter(counter - 1);
   if (counter <= 1) {
     decrementCounter = () => setCounter(1);
   }
- 
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { productId } = useParams();
 
@@ -277,7 +279,7 @@ export default function ProductDetails() {
       // window.alert(
       //   "Sorry! You are not allowed to review this product since you haven't login"
       // );
-      navigate("/login");
+      setIsLoginModalOpen(true)
       //navigate("/login");
       toast({
         title: "Please login to write a review!",
@@ -667,103 +669,93 @@ export default function ProductDetails() {
             </Box>
             {/* </Container> */}
           </Container>
-          {reviews &&
-            reviews?.length >
-              0 &&(
-                <Container mt={3} maxW="8xl" id="review-area" px={0}>
-                  <Text
-                    fontSize={{ base: "xl", sm: "2xl" }}
-                    bgColor={"bg.500"}
-                    px={{ base: 2, md: 8 }}
-                    py={4}
-                  >
-                    Product Reviews
-                  </Text>
-                  <Flex direction="column" mb={4} id="reviews">
-                    {reviews &&
-                      reviews.map((review) => (
-                        <Skeleton isLoaded={!loading}>
-                          <Card
-                            direction={"column"}
-                            overflow="hidden"
-                            variant="outline"
-                            border={"none"}
-                          >
-                            <CardBody pb={0}>
-                              <Heading size="sm">{review.name}</Heading>
-                              <Text fontSize="xs" color="gray.700">
-                                Published at{" "}
-                                {new Date(
-                                  review.published_at
-                                ).toLocaleDateString()}
-                              </Text>
-                              <ReactStars
-                                count={5}
-                                value={review.rating}
-                                edit={false}
-                                size={28}
-                                color1={"black"}
-                                color2={"#ffc107"}
-                              />
-                            </CardBody>
-                            <CardFooter pt={0} pb={4}>
-                              <Text maxW="75%">{review.review}</Text>
-                            </CardFooter>
-                          </Card>
-                          <Divider h="2.5px" bg={"green.400"} m={0} />
-                        </Skeleton>
-                      ))}
-                    {noOfReviews - 3 >= 1 && (
-                      <Button
-                        w={{ base: "75%", md: "20vw" }}
-                        mx="auto"
-                        mt={4}
-                        colorScheme="#2C4C03"
-                        onClick={() =>
-                          navigate(`/products/${productId}/reviews`)
-                        }
+          {reviews && reviews?.length > 0 && (
+            <Container mt={3} maxW="8xl" id="review-area" px={0}>
+              <Text
+                fontSize={{ base: "xl", sm: "2xl" }}
+                bgColor={"bg.500"}
+                px={{ base: 2, md: 8 }}
+                py={4}
+              >
+                Product Reviews
+              </Text>
+              <Flex direction="column" mb={4} id="reviews">
+                {reviews &&
+                  reviews.map((review) => (
+                    <Skeleton isLoaded={!loading}>
+                      <Card
+                        direction={"column"}
+                        overflow="hidden"
+                        variant="outline"
+                        border={"none"}
                       >
-                        View all reviews
-                      </Button>
-                    )}
-                  </Flex>
-                </Container>
-              )}
+                        <CardBody pb={0}>
+                          <Heading size="sm">{review.name}</Heading>
+                          <Text fontSize="xs" color="gray.700">
+                            Published at{" "}
+                            {new Date(review.published_at).toLocaleDateString()}
+                          </Text>
+                          <ReactStars
+                            count={5}
+                            value={review.rating}
+                            edit={false}
+                            size={28}
+                            color1={"black"}
+                            color2={"#ffc107"}
+                          />
+                        </CardBody>
+                        <CardFooter pt={0} pb={4}>
+                          <Text maxW="75%">{review.review}</Text>
+                        </CardFooter>
+                      </Card>
+                      <Divider h="2.5px" bg={"green.400"} m={0} />
+                    </Skeleton>
+                  ))}
+                {noOfReviews - 3 >= 1 && (
+                  <Button
+                    w={{ base: "75%", md: "20vw" }}
+                    mx="auto"
+                    mt={4}
+                    colorScheme="#2C4C03"
+                    onClick={() => navigate(`/products/${productId}/reviews`)}
+                  >
+                    View all reviews
+                  </Button>
+                )}
+              </Flex>
+            </Container>
+          )}
 
-          {relatedProducts &&
-            relatedProducts?.length > 0 &&(
-                <ProductListSection
-                  title="Related Products"
-                  products={relatedProducts}
-                  loading={loading}
-                  justify="center"
-                  fontSize={{ base: "sm", lg: "md" }}
-                  type={"carousal"}
-                />
-              )}
-          {otherProducts &&
-            otherProducts?.length > 0 &&(
-                <ProductListSection
-                  title="Other Products"
-                  products={otherProducts}
-                  justify="center"
-                  loading={loading}
-                  fontSize={{ base: "sm", lg: "md" }}
-                  type={"carousal"}
-                />
-              )}
-          {recentlyViewedProducts &&
-            recentlyViewedProducts?.length >
-              0 &&(
-                <ProductListSection
-                  title="Recently Viewed Products"
-                  products={recentlyViewedProducts}
-                  justify="center"
-                  loading={loading}
-                  fontSize={{ base: "sm", lg: "md" }}
-                  type={"carousal"}
-                />
-              )}
+          {relatedProducts && relatedProducts?.length > 0 && (
+            <ProductListSection
+              title="Related Products"
+              products={relatedProducts}
+              loading={loading}
+              justify="center"
+              fontSize={{ base: "sm", lg: "md" }}
+              type={"carousal"}
+            />
+          )}
+          {otherProducts && otherProducts?.length > 0 && (
+            <ProductListSection
+              title="Other Products"
+              products={otherProducts}
+              justify="center"
+              loading={loading}
+              fontSize={{ base: "sm", lg: "md" }}
+              type={"carousal"}
+            />
+          )}
+          {recentlyViewedProducts && recentlyViewedProducts?.length > 0 && (
+            <ProductListSection
+              title="Recently Viewed Products"
+              products={recentlyViewedProducts}
+              justify="center"
+              loading={loading}
+              fontSize={{ base: "sm", lg: "md" }}
+              type={"carousal"}
+            />
+          )}
 
           <Modal
             size={"xl"}
@@ -821,7 +813,12 @@ export default function ProductDetails() {
               </form>
             </ModalContent>
           </Modal>
-
+          {!checkLogin().isLoggedIn && (
+            <LoginModal
+              isOpen={isLoginModalOpen}
+              onClose={() => setIsLoginModalOpen(false)}
+            />
+          )}
           {/* </Flex> */}
           <ScrollToTop />
         </>
