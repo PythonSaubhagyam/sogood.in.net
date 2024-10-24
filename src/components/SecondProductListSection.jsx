@@ -123,7 +123,7 @@ const SecondProductListSection = ({ title, products, loading, type }) => {
                 ))
               : products?.map((product) => (
                 <Box key={product.id} px={{base:"20px",md:"20px"}} >
-                  <ProductCardHome key={product.id} product={product} />
+                  <SecondProductCard key={product.id} product={product} />
                   </Box>
                 ))}
           </Slider>

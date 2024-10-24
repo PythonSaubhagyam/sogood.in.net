@@ -345,12 +345,12 @@ export default function Home() {
           />
         )}
 
-      <ProductListSectionHome
+      {newArrival?.length > 0 && <ProductListSectionHome
         loading={loading}
         title={"Try Our New Products"}
         products={newArrival}
         type={isMobile && "carousal"}
-      />
+      />}
       {upperProductSection?.length > 0 &&
         upperProductSection[0]?.is_visible_on_website === true && (
           <Container maxW={"container.xl"} px={2} borderRadius={"10px"}>
