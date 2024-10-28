@@ -62,7 +62,7 @@ const Posts = [
         of trusted and ethically growing natural farmers
       </Text>
     ),
-    href: "https://www.sidhakisanse.com/",
+    href: "https://www.sidhakisanse.in/",
   },
   {
     image: require("../assets/Inspire & Support/b3.jpg"),
