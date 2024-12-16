@@ -47,7 +47,7 @@ const SecondProductCard = ({ product }) => {
                 : product.category_name
             }
             borderRadius="lg"
-            boxSize="150px"
+            boxSize="200px"
             objectFit={"contain"}
             mx="auto"
           />
