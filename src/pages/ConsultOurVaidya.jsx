@@ -21,6 +21,7 @@ import { HiInformationCircle } from "react-icons/hi";
 import BreadCrumbCom from "../components/BreadCrumbCom";
 import ScrollToTop from "../components/ScrollToTop";
 import LoginModal from "../components/LoginModal";
+import MetaTags from "../context/MetaTagsContext";
 
 export default function ConsultOurVaidya() {
   let { search } = useLocation();
@@ -46,9 +47,12 @@ export default function ConsultOurVaidya() {
       setIsLoginModalOpen(true)
     }
   }
+  const pageUrl = "/consult-our-vaidya";
 
   return (
     <>
+      <MetaTags pageUrl={pageUrl} />
+
       {IsMobileView !== "true" && <Navbar />}
       <Container maxW="container.xl">
         <BreadCrumbCom
