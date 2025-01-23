@@ -50,7 +50,7 @@ import client from "../setup/axiosClient";
 import CheckOrSetUDID from "../utils/checkOrSetUDID";
 import { useNavigate, NavLink as RouterLink, Link as ReactRouterLink, } from "react-router-dom";
 import { ChevronRightIcon } from "@chakra-ui/icons";
-import Testimonials from "../components/testimonials";
+import MetaHome from "../components/MetaHome";
 import ScrollToTop from "../components/ScrollToTop";
 import LoginModal from "../components/LoginModal";
 import checkLogin from "../utils/checkLogin";
@@ -114,7 +114,7 @@ export default function Home() {
     nonGmoSection,
   } = lowerSection1;
 
- 
+
 
   const {
     awardsSection,
@@ -127,9 +127,18 @@ export default function Home() {
       dispatch(initializeAppData());
     }
   }, [dispatch, hasFetched]);
-
+  const pageUrl = "/";
   return (
     <>
+      <MetaHome pageUrl={pageUrl} />
+      {/* <Helmet>
+        <title>CO FEE CO - Home</title> 
+        <meta
+          name="description"
+          content="Co Fee Co is committed to bringing you the very best and most 
+          refreshing coffee and herbs with minimal impact to the environment."
+        />
+      </Helmet>  */}
       {/* {loading === true ? (
         <Center h="100vh" w="100vw" backgroundColor={"bg.500"}>
           <Loader site={true} />

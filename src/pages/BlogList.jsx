@@ -36,6 +36,7 @@ import ScrollToTop from "../components/ScrollToTop";
 import {
   Link as ReactRouterLink,
 } from "react-router-dom";
+import MetaTags from "../context/MetaTagsContext";
 
 export default function BlogList() {
   const [blogs, setBlogs] = useState([]);
@@ -60,12 +61,12 @@ export default function BlogList() {
     const params =
       searchParams.get("archive") !== null
         ? {
-            page: 1,
-            publish_filter: searchParams.get("archive"),
-          }
+          page: 1,
+          publish_filter: searchParams.get("archive"),
+        }
         : {
-            page: searchParams.get("page") ?? 1,
-          };
+          page: searchParams.get("page") ?? 1,
+        };
     const response = await client.get("/blogs/", {
       params: params,
     });
@@ -113,14 +114,17 @@ export default function BlogList() {
       </option>
     ));
   }
+  const pageUrl = "/blogs";
 
   return (
     <>
+      <MetaTags pageUrl={pageUrl} />
+
       <Navbar />
 
       <Container maxW="container.xl">
         <BreadCrumbCom second={"Blog"} secondUrl={"/blogs"} />
-       
+
       </Container>
       <Container maxW={"container.xl"} py={1} px={0} position="relative">
         <Image src="https://forntend-bucket.s3.ap-south-1.amazonaws.com/sose/images/news and event.jpg" />
@@ -136,7 +140,7 @@ export default function BlogList() {
           left="50%"
           transform="translate(-50%, -50%)"
           zIndex="1"
-          // Optional: Add background to improve text readability
+        // Optional: Add background to improve text readability
         >
           News & Articles
         </Text>
@@ -360,7 +364,7 @@ export default function BlogList() {
         </Flex>
       </Container>
 
-      <ScrollToTop/>
+      <ScrollToTop />
       <Footer />
     </>
   );
