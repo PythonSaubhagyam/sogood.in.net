@@ -48,12 +48,14 @@ import {
 } from "@chakra-ui/react";
 import client from "../setup/axiosClient";
 import CheckOrSetUDID from "../utils/checkOrSetUDID";
-import { useNavigate, NavLink as RouterLink } from "react-router-dom";
+import { useNavigate, NavLink as RouterLink, Link as ReactRouterLink, } from "react-router-dom";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import Testimonials from "../components/testimonials";
 import ScrollToTop from "../components/ScrollToTop";
 import LoginModal from "../components/LoginModal";
 import checkLogin from "../utils/checkLogin";
+import { initializeAppData } from "../redux/slices/homeApi";
+import { useDispatch, useSelector } from "react-redux";
 
 
 
@@ -61,31 +63,7 @@ export default function Home() {
   const [isFullScreen] = useMediaQuery("(min-width: 768px)");
   const width = useBreakpointValue({ base: "100%", lg: "100%" });
   const height = useBreakpointValue({ base: "200", lg: "400" });
-  const [banners, setBanners] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [isMobile] = useMediaQuery("(max-width: 480px)");
-  const [newArrival, setNewArrival] = useState([]);
-  const [mustTry, setMustTry] = useState([]);
-  const [sections, setSections] = useState([]);
-  const [bestSeller, setBestSeller] = useState([]);
-  const [aboutSection, setAboutSection] = useState([]);
-
-  const [certificateSection, setCertificateSection] = useState([]);
-  const [ethicalSection, setEthicalSection] = useState([]);
-  const [upperProductSection, setUpperProductSection] = useState([]);
-  const [muesliSection, setMuesliSection] = useState([]);
-  const [middleProductSection, setMiddleProductSection] = useState([]);
-  const [instantMixSection, setInstantMixSection] = useState([]);
-  const [internationalSection, setInternationalSection] = useState([]);
-  const [statisticsSection, setStatisticsSection] = useState([]);
-  const [NonGmoSection, setNonGmoSectionSection] = useState([]);
-  const [licensesSection, setLicensesSection] = useState([]);
-
-  const [awardsSection, setAwardSection] = useState([]);
-  const [servicesSection, setServicesSection] = useState([]);
-  const [availableSection, setAvailableSection] = useState([]);
-  // let [isFull] = useMediaQuery("(max-width:1920px)");
-  const [blogs, setBlogs] = useState([]);
   const loginInfo = checkLogin();
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const checkOrSetUDIDInfo = CheckOrSetUDID();
@@ -96,164 +74,59 @@ export default function Home() {
   const navigate = useNavigate();
   useEffect(() => {
     CheckOrSetUDID();
-    // getHomePageData();
-    getMustTry();
-    //getHomePageData();
-    getBanners();
-    getBestSeller();
-    getNewArrival();
-    getBlogs();
-    getUpperSection();
-    getStatisticsSection();
-    getLowerSection();
     if (showPopup === null && !loginInfo.isLoggedIn) {
       setIsLoginModalOpen(true);
     }
   }, []);
-  async function getBanners() {
-    setLoading(true);
-    try {
-      const response = await client.get("/ecommerce/banners/?sequence=Upper");
 
-      if (response.data.status === true) {
-        setBanners(response?.data?.banner);
-      }
+  const dispatch = useDispatch();
+  const {
+    banners,
+    upperSection,
+    newArrival,
+    mustTry,
+    bestSeller,
+    productSection,
+    lowerSection1,
+    blogs,
+    statisticsSection,
+    lowerSection2,
+    loading,
+    hasFetched,
+  } = useSelector((state) => state.home);
 
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-      console.error("Error fetching data:", error);
+  const {
+    aboutSection,
+    certificateSection,
+    ethicalSection,
+  } = upperSection;
+
+  const {
+    upperProductSection,
+    muesliSection,
+    middleProductSection,
+    instantMixSection,
+    internationalSection,
+  } = productSection;
+
+  const {
+    licensesSection,
+    nonGmoSection,
+  } = lowerSection1;
+
+ 
+
+  const {
+    awardsSection,
+    servicesSection,
+    availableSection,
+  } = lowerSection2;
+
+  useEffect(() => {
+    if (!hasFetched) {
+      dispatch(initializeAppData());
     }
-  }
-
-  async function getStatisticsSection() {
-    const params = {};
-    const response = await client.get("/statistics-section/", {
-      params: params,
-    });
-    if (response.data.status === true) {
-      setStatisticsSection(response?.data?.data);
-    }
-  }
-
-  async function getNewArrival() {
-    const response = await client.get("newarrival/list");
-    if (response) {
-      setNewArrival(response.data.data);
-    }
-    setLoading(false);
-  }
-  async function getMustTry() {
-    const response = await client.get("musttry/list");
-    if (response) {
-      setMustTry(response.data.data);
-    }
-    setLoading(false);
-  }
-  async function getBestSeller() {
-    const response = await client.get("bestofalltime/list");
-    if (response) {
-      setBestSeller(response.data.data);
-    }
-    setLoading(false);
-  }
-  async function getBlogs() {
-    const params = {};
-    const response = await client.get("/home/blogs/", {
-      params: params,
-    });
-    if (response.data.status === true) {
-      setBlogs(response.data.blogs);
-    }
-  }
-  async function getLowerSection() {
-    const params = {};
-    const response = await client.get("/lower-section/", {
-      params: params,
-    });
-    if (response.data.status === true) {
-      setSections(response.data.data);
-
-      const ourServicesSection = response.data.data?.filter(
-        (section) => section.id === 2
-      );
-      const availableAtSection = response.data.data?.filter(
-        (section) => section.id === 3
-      );
-      const ourAwardsSection = response.data.data?.filter(
-        (section) => section.id === 1
-      );
-
-      setAwardSection(ourAwardsSection);
-      setServicesSection(ourServicesSection);
-      setAvailableSection(availableAtSection);
-    }
-  }
-
-  async function getUpperSection() {
-    const promise1 = await client.get("/sogood-section/?type=Upper");
-    const promise2 = await client.get("/sogood-section/?type=Product");
-    const promise3 = await client.get("/sogood-section/?type=Lower");
-
-    Promise.all([promise1, promise2, promise3])
-      .then(function (responses) {
-        if (responses.length > 0 && responses[0].data.status === true) {
-          const about = responses[0].data.data?.filter(
-            (section) => section.id === 1
-          );
-          const certificate = responses[0].data.data?.filter(
-            (section) => section.id === 2
-          );
-          const ethicalSnack = responses[0].data.data?.filter(
-            (section) => section.id === 3
-          );
-
-          setAboutSection(about);
-
-          setCertificateSection(certificate);
-          setEthicalSection(ethicalSnack);
-        }
-        if (responses.length > 1 && responses[1].data.status === true) {
-          const upperProduct = responses[1].data.data?.filter(
-            (section) => section.id === 4
-          );
-          const muesli = responses[1].data.data?.filter(
-            (section) => section.id === 5
-          );
-          const middleProduct = responses[1].data.data?.filter(
-            (section) => section.id === 6
-          );
-          const instantMix = responses[1].data.data?.filter(
-            (section) => section.id === 7
-          );
-          const international = responses[1].data.data?.filter(
-            (section) => section.id === 8
-          );
-          setUpperProductSection(upperProduct);
-          setMuesliSection(muesli);
-          setMiddleProductSection(middleProduct);
-          setInstantMixSection(instantMix);
-          setInternationalSection(international);
-        }
-        if (responses.length > 2 && responses[2].data.status === true) {
-          const licenses = responses[2].data.data?.filter(
-            (section) => section.id === 9
-          );
-          const nonGMO = responses[2].data.data?.filter(
-            (section) => section.id === 10
-          );
-
-          setLicensesSection(licenses);
-          setNonGmoSectionSection(nonGMO);
-        }
-
-        setLoading(false);
-      })
-      .catch(function (error) {
-        setLoading(false);
-        console.error("Error fetching data:", error);
-      });
-  }
+  }, [dispatch, hasFetched]);
 
   return (
     <>
@@ -278,7 +151,7 @@ export default function Home() {
               textAlign={{ base: "center", md: "justify" }}
               px={{ base: 2, md: 8 }}
               py={4}
-              //my={3}
+            //my={3}
             >
               {aboutSection[0]?.label}
             </Text>
@@ -509,7 +382,7 @@ export default function Home() {
                   />
                   <LinkOverlay
                     _hover={{ color: "bg.600" }}
-                    href={`/blogs/${blog.id}/`}
+                    as={ReactRouterLink} to={`/blogs/${blog.id}/`}
                   >
                     <Heading size="sm" fontWeight={500} m={2}>
                       {blog.title}
@@ -652,8 +525,8 @@ export default function Home() {
           </Container>
         )}
 
-      {NonGmoSection?.length > 0 &&
-        NonGmoSection[0]?.is_visible_on_website === true && (
+      {nonGmoSection?.length > 0 &&
+        nonGmoSection[0]?.is_visible_on_website === true && (
           <Container
             maxW={{ base: "100vw", md: "6xl" }}
             centerContent
@@ -661,8 +534,8 @@ export default function Home() {
           >
             <Image
               mb={4}
-              src={NonGmoSection[0]?.image}
-             
+              src={nonGmoSection[0]?.image}
+
             />
           </Container>
         )}
