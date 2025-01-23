@@ -21,7 +21,7 @@ const MetaHome = ({ pageUrl }) => {
     }, [getMeta]);
 
     if (loading) {
-        return <div>Loading...</div>;
+        return null;
     }
 
     return (

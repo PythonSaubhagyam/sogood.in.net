@@ -61,10 +61,9 @@ const MetaTags = ({ pageUrl }) => {
       <title>So Good</title>
       <meta
         name="description"
-        content="So Good on a mission to change the way people think about food & offer you safe, 
-        natural, healthy & enjoyable alternatives of your dietary needs ."
+        content="Discover the nutritional power of millets—ancient grains
+         that promote a healthy lifestyle with rich vitamins and minerals."
       />
-      <meta name="keywords" content="girgauveda,contact us,SOSE Elite" />
     </Helmet>
   );
 };
