@@ -56,6 +56,10 @@ import LoginModal from "../components/LoginModal";
 import checkLogin from "../utils/checkLogin";
 import { initializeAppData } from "../redux/slices/homeApi";
 import { useDispatch, useSelector } from "react-redux";
+import BlogSliderHome from "../components/BlogSliderHome";
+import CountUp from 'react-countup';
+import ScrollTrigger from 'react-scroll-trigger';
+
 
 
 
@@ -72,6 +76,8 @@ export default function Home() {
   );
   const isMobiles = width <= 768;
   const navigate = useNavigate();
+  const [countUp, setCountUp] = useState(false)
+
   useEffect(() => {
     CheckOrSetUDID();
     if (showPopup === null && !loginInfo.isLoggedIn) {
@@ -223,7 +229,7 @@ export default function Home() {
             products={
               ethicalSection[0]?.images?.length > 0 && ethicalSection[0]?.images
             }
-            type={isMobile && "carousal"}
+            type={"carousal"}
           />
         )}
 
@@ -351,76 +357,7 @@ export default function Home() {
         type={isMobile && "carousal"}
       />
 
-      <Container maxW={"container.xl"}>
-        <Heading
-          color="brand.500"
-          size="lg"
-          mx="auto"
-          align={"center"}
-          mt={3}
-          pb={"10px"}
-        >
-          BLOGS
-        </Heading>
-
-        <Grid
-          templateColumns={{
-            base: "repeat(1,1fr)",
-            md: "repeat(2,1fr)",
-            lg: "repeat(4,1fr)",
-          }}
-          px={2}
-          py={3}
-          spacing="40px"
-        >
-          {blogs?.slice(0, 8).map((blog) => (
-            <GridItem key={blog.id} m={4}>
-              <Card>
-                <LinkBox h={400}>
-                  <Image
-                    src={blog.banner}
-                    w="100%"
-                    h="300px"
-                    loading="lazy"
-                    objectFit={"cover"}
-                    borderRadius={5}
-                    style={{
-                      opacity: 1,
-                      transition: "opacity 0.7s", // Note the corrected syntax here
-                    }}
-                  />
-                  <LinkOverlay
-                    _hover={{ color: "bg.600" }}
-                    as={ReactRouterLink} to={`/blogs/${blog.id}/`}
-                  >
-                    <Heading size="sm" fontWeight={500} m={2}>
-                      {blog.title}
-                    </Heading>
-                  </LinkOverlay>
-                </LinkBox>
-                <Flex m={2} justifyContent={"space-between"}>
-                  <Text fontSize={"sm"} color="gray.500">
-                    {new Intl.DateTimeFormat("en-CA", {
-                      dateStyle: "long",
-                      timeZone: "Asia/Kolkata",
-                    }).format(new Date(blog.published_at))}
-                  </Text>
-                  <Text
-                    fontSize={"sm"}
-                    fontWeight={600}
-                    color={"bg.600"}
-                    onClick={() => navigate(`/blogs/${blog.id}/`)}
-                    cursor={"pointer"}
-                  >
-                    Read more
-                    <ChevronRightIcon />
-                  </Text>
-                </Flex>
-              </Card>
-            </GridItem>
-          ))}
-        </Grid>
-      </Container>
+     <BlogSliderHome blogs={blogs} />
 
       {statisticsSection?.length > 0 && (
         <Container backgroundColor={"bg.500"} maxW={"container.xl"} py={2}>
@@ -437,8 +374,22 @@ export default function Home() {
             {statisticsSection?.length > 0 &&
               statisticsSection?.map((data) => (
                 <Stat>
-                  <StatNumber fontSize={{ base: "3xl", md: "3xl" }}>
-                    {data?.value}
+                <StatNumber fontSize={{ base: "3xl", md: "3xl" }}>
+                    <ScrollTrigger
+                      onEnter={() => setCountUp(true)}
+                      // onExit={() => setCountUp(false)}
+                    >
+                      {countUp ? (
+                        <CountUp
+                          start={0}
+                          end={Number(data.value.replace('+', ''))}
+                          duration={2}
+                          delay={0}
+                        />
+                      ) : null}
+                      {data?.name === "Positive Feedback" ? "%+" : "+"}
+                      </ScrollTrigger>
+                    
                   </StatNumber>
                   <StatHelpText color="gray.600">{data?.name}</StatHelpText>
                 </Stat>

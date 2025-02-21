@@ -56,12 +56,12 @@ const Router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/products/:productId",
+    path: "/products/:productId/:productName",
     element: <ProductDetails />,
     errorElement: <ErrorPage />,
   },
   {
-    path: "/products/:productId/reviews",
+    path: "/products/:productId/reviews/:productName",
     element: <Reviews />,
     errorElement: <ErrorPage />,
   },
@@ -131,7 +131,7 @@ const Router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/blogs/:blogId/",
+    path: "/blogs/:blogId/:blogName",
     element: <Blog />,
     errorElement: <ErrorPage />,
   },
@@ -263,12 +263,12 @@ const Router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/products/:productId",
+    path: "/products/:productId/:productName",
     element: <ProductDetails />,
     errorElement: <ErrorPage />,
   },
   {
-    path: "/products/:productId/reviews",
+    path: "/products/:productId/reviews/:productName",
     element: <Reviews />,
     errorElement: <ErrorPage />,
   },
@@ -328,7 +328,7 @@ const Router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/blogs/:blogId/",
+    path: "/blogs/:blogId/:blogName",
     element: <Blog />,
     errorElement: <ErrorPage />,
   },

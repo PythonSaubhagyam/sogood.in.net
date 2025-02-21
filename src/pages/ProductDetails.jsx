@@ -31,9 +31,14 @@ import {
   FormControl,
   FormLabel,
   Textarea,
+  useMediaQuery,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
 } from "@chakra-ui/react";
 import { AiFillHeart, AiFillStar } from "react-icons/ai";
-import { FaShoppingCart } from "react-icons/fa";
+import { FaCopy, FaEnvelope, FaFacebookMessenger, FaShareAlt, FaShoppingCart, FaWhatsapp } from "react-icons/fa";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ReactStars from "react-stars";
@@ -112,6 +117,7 @@ export default function ProductDetails() {
   // const maxWidth = useBreakpointValue({ base: "100%", lg: "container.xl" });
   // const boxWidth = useBreakpointValue({ base: "100%", lg: "75%" });
   const loginInfo = checkLogin();
+  const [isMobile] = useMediaQuery("(max-width: 1024px)");
 
   const MINIMUM_RATING_THRESHOLD = 0.0;
   const incrementCounter = () => setCounter(counter + 1);
@@ -303,10 +309,55 @@ export default function ProductDetails() {
       element.scrollIntoView({ behavior: "smooth", block: "center" });
     }
   };
+
+
+
+  const url = window.location.href;
+
+  const handleCopy = async () => {
+
+
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        // Use the Clipboard API (works on most modern browsers)
+        await navigator.clipboard.writeText(url);
+      } else {
+        // Fallback: Create an input element, copy manually
+        const textArea = document.createElement("textarea");
+        textArea.value = url;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("copy"); // Deprecated but works on older mobile browsers
+        document.body.removeChild(textArea);
+      }
+
+      toast({
+        title: "Link copied!",
+        description: "You can now share it anywhere.",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
+    } catch (err) {
+      toast({
+        title: "Failed to copy",
+        description: "Please try again manually.",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+  };
+
+
+
+
+
+
   return (
     <>
-     {" "}
-     <Helmet>
+      {" "}
+      <Helmet>
         <title>{productData?.metatitle || productData?.name}</title>
         <meta name="description" content={productData?.metadescription} />
         <meta name="keywords" content={productData?.metakeywords} />
@@ -343,7 +394,7 @@ export default function ProductDetails() {
                   .split(" ")
                   .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
                   .join(" ")}`}
-                // thirdUrl={`/shop?category=${categories.categoryId || ''}`}
+              // thirdUrl={`/shop?category=${categories.categoryId || ''}`}
               />
             </Box>
           </Container>
@@ -372,7 +423,7 @@ export default function ProductDetails() {
                   direction={"column"}
                   gap={2}
                   align={{ base: "center", md: "flex-start" }}
-                  //mt={{md:16}}
+                //mt={{md:16}}
                 >
                   <Heading
                     // mb={2}
@@ -650,15 +701,15 @@ export default function ProductDetails() {
                         _hover={
                           isWished
                             ? {
-                                color: "white",
-                                bg: "red.600",
-                                cursor: "pointer",
-                              }
+                              color: "white",
+                              bg: "red.600",
+                              cursor: "pointer",
+                            }
                             : {
-                                color: "white",
-                                bg: "brand.900",
-                                cursor: "pointer",
-                              }
+                              color: "white",
+                              bg: "brand.900",
+                              cursor: "pointer",
+                            }
                         }
                         onClick={() => handleWishlistChange(productData?.id)}
                       >
@@ -669,6 +720,58 @@ export default function ProductDetails() {
                             : "ADD TO WISHLIST"}
                         </Text>
                       </Button>
+                      <Menu  >
+                        <MenuButton
+                          size="sm"
+                          style={{ marginLeft: 0 }}
+                          as={Button}
+                          background="brand.500"
+                          _hover={{ background: "brand.500" }}
+                          color="white"
+                          leftIcon={<FaShareAlt />}
+                        >
+                          Share
+                        </MenuButton>
+                        <MenuList>
+                          <MenuItem
+                            icon={<FaEnvelope size={"20px"} />}
+                            as="a"
+                            href={`mailto:?subject=Check this out&body=${encodeURIComponent(url)}`}
+                            target="_blank"
+                          >
+                            Email
+                          </MenuItem>
+                          <MenuItem
+                            icon={<FaWhatsapp size={"20px"} />}
+                            as="a"
+                            href={`https://api.whatsapp.com/send?text=${encodeURIComponent(url)}`}
+                            target="_blank"
+                          >
+                            WhatsApp
+                          </MenuItem>
+                          <MenuItem
+                            icon={<FaFacebookMessenger size={"20px"} />}
+                            as="a"
+                            href={`fb-messenger://share?link=${encodeURIComponent(url)}&app_id=YOUR_APP_ID`}
+                            target="_blank"
+                            onClick={(e) => {
+                              // Open Messenger Web if on desktop
+                              if (!navigator.userAgent.match(/Android|iPhone|iPad/i)) {
+                                window.open(`https://www.messenger.com/t/?link=${encodeURIComponent(url)}`, "_blank");
+                                e.preventDefault();
+                              }
+                            }}
+                          >
+                            Messenger
+                          </MenuItem>
+                          <MenuItem
+                            icon={<FaCopy size={"20px"} />}
+                            onClick={handleCopy}
+                          >
+                            Copy Link
+                          </MenuItem>
+                        </MenuList>
+                      </Menu>
                     </ButtonGroup>
                   </SimpleGrid>
                 </Flex>
@@ -738,7 +841,7 @@ export default function ProductDetails() {
                     mx="auto"
                     mt={4}
                     colorScheme="#2C4C03"
-                    onClick={() => navigate(`/products/${productId}/reviews`)}
+                    onClick={() => navigate(`/products/${productId}/reviews/${productData?.name.replace(/\s+/g, "-")}`)}
                   >
                     View all reviews
                   </Button>
@@ -754,7 +857,7 @@ export default function ProductDetails() {
               loading={loading}
               justify="center"
               fontSize={{ base: "sm", lg: "md" }}
-              type={"carousal"}
+              type={isMobile && "carousal"}
             />
           )}
           {otherProducts && otherProducts?.length > 0 && (
@@ -764,7 +867,7 @@ export default function ProductDetails() {
               justify="center"
               loading={loading}
               fontSize={{ base: "sm", lg: "md" }}
-              type={"carousal"}
+              type={isMobile && "carousal"}
             />
           )}
           {recentlyViewedProducts && recentlyViewedProducts?.length > 0 && (
@@ -774,7 +877,7 @@ export default function ProductDetails() {
               justify="center"
               loading={loading}
               fontSize={{ base: "sm", lg: "md" }}
-              type={"carousal"}
+              type={isMobile && "carousal"}
             />
           )}
 
