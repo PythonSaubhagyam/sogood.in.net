@@ -312,42 +312,42 @@ export default function ProductDetails() {
 
 
 
-  const url = window.location.href;
+  // const url = window.location.href;
 
-  const handleCopy = async () => {
+  // const handleCopy = async () => {
 
 
-    try {
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        // Use the Clipboard API (works on most modern browsers)
-        await navigator.clipboard.writeText(url);
-      } else {
-        // Fallback: Create an input element, copy manually
-        const textArea = document.createElement("textarea");
-        textArea.value = url;
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand("copy"); // Deprecated but works on older mobile browsers
-        document.body.removeChild(textArea);
-      }
+  //   try {
+  //     if (navigator.clipboard && navigator.clipboard.writeText) {
+  //       // Use the Clipboard API (works on most modern browsers)
+  //       await navigator.clipboard.writeText(url);
+  //     } else {
+  //       // Fallback: Create an input element, copy manually
+  //       const textArea = document.createElement("textarea");
+  //       textArea.value = url;
+  //       document.body.appendChild(textArea);
+  //       textArea.select();
+  //       document.execCommand("copy"); // Deprecated but works on older mobile browsers
+  //       document.body.removeChild(textArea);
+  //     }
 
-      toast({
-        title: "Link copied!",
-        description: "You can now share it anywhere.",
-        status: "success",
-        duration: 3000,
-        isClosable: true,
-      });
-    } catch (err) {
-      toast({
-        title: "Failed to copy",
-        description: "Please try again manually.",
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-      });
-    }
-  };
+  //     toast({
+  //       title: "Link copied!",
+  //       description: "You can now share it anywhere.",
+  //       status: "success",
+  //       duration: 3000,
+  //       isClosable: true,
+  //     });
+  //   } catch (err) {
+  //     toast({
+  //       title: "Failed to copy",
+  //       description: "Please try again manually.",
+  //       status: "error",
+  //       duration: 3000,
+  //       isClosable: true,
+  //     });
+  //   }
+  // };
 
 
 
@@ -720,7 +720,7 @@ export default function ProductDetails() {
                             : "ADD TO WISHLIST"}
                         </Text>
                       </Button>
-                      <Menu  >
+                      {/* <Menu  >
                         <MenuButton
                           size="sm"
                           style={{ marginLeft: 0 }}
@@ -771,7 +771,7 @@ export default function ProductDetails() {
                             Copy Link
                           </MenuItem>
                         </MenuList>
-                      </Menu>
+                      </Menu> */}
                     </ButtonGroup>
                   </SimpleGrid>
                 </Flex>

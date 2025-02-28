@@ -117,7 +117,7 @@ const CartPopUp = () => {
         {isEliteMember ? (
           <Box
             bgColor={"brand.500"}
-            color={"black"}
+            color={"white"}
             textAlign={"center"}
             py={3}
             fontWeight={400}
@@ -131,8 +131,8 @@ const CartPopUp = () => {
           </Box>
         ) : (
           <Box
-            bgColor={"#cec0af"}
-            color={"black"}
+            bgColor={"brand.500"}
+            color={"brand.300"}
             textAlign={"center"}
             py={3}
             fontWeight={400}
@@ -153,8 +153,8 @@ const CartPopUp = () => {
           justifyContent={"space-between"}
           px={3}
           py={2}
-          backgroundColor={"#cec0af8f"}
-          color={"black"}
+          backgroundColor={"brand.500"}
+          color={"brand.300"}
           w={{ md: 600, base: "100%" }}
           opacity={0.9}
         >
@@ -177,7 +177,7 @@ const CartPopUp = () => {
             >
               Cart{" "}
               <MdPlayArrow
-                color="black"
+                color="white"
                 cursor={"pointer"}
                 fontSize={"1.5rem"}
               />

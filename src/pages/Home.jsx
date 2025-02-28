@@ -237,7 +237,7 @@ export default function Home() {
         loading={loading}
         title={"Try Our New Products"}
         products={newArrival}
-        type={isMobile && "carousal"}
+        type={"carousal"}
       />}
       {upperProductSection?.length > 0 &&
         upperProductSection[0]?.is_visible_on_website === true && (
@@ -268,7 +268,7 @@ export default function Home() {
             products={
               muesliSection[0]?.images?.length > 0 && muesliSection[0]?.images
             }
-            type={isMobile && "carousal"}
+            type={"carousal"}
           />
         )}
 
@@ -341,20 +341,20 @@ export default function Home() {
               internationalSection[0]?.images?.length > 0 &&
               internationalSection[0]?.images
             }
-            type={isMobile && "carousal"}
+            type={ "carousal"}
           />
         )}
       <ProductListSectionHome
         loading={loading}
         title={"Must Try : SO GOOD Products"}
         products={mustTry}
-        type={isMobile && "carousal"}
+        type={"carousal"}
       />
       <ProductListSectionHome
         loading={loading}
         title={"All Time Best Sellers"}
         products={bestSeller}
-        type={isMobile && "carousal"}
+        type={"carousal"}
       />
 
      <BlogSliderHome blogs={blogs} />
@@ -362,7 +362,7 @@ export default function Home() {
       {statisticsSection?.length > 0 && (
         <Container backgroundColor={"bg.500"} maxW={"container.xl"} py={2}>
           <SimpleGrid
-            columns={[2, 3, null, 6]}
+            columns={[2, 3, null, 7]}
             px={6}
             maxW={"container.xl"}
             my={6}
@@ -382,12 +382,14 @@ export default function Home() {
                       {countUp ? (
                         <CountUp
                           start={0}
-                          end={Number(data.value.replace('+', ''))}
+                          end={Number(data.value.replace(/[^\d]/g, ''))}
                           duration={2}
                           delay={0}
                         />
                       ) : null}
-                      {data?.name === "Positive Feedback" ? "%+" : "+"}
+                      {data?.name === "Positive Feedback" ? "%+" : data?.name === "Generation of Farmers" ? "th" : "+"}
+
+
                       </ScrollTrigger>
                     
                   </StatNumber>

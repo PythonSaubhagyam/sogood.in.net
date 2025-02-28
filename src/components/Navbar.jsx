@@ -867,9 +867,9 @@ export default function Navbar() {
                 size="sm"
                 variant={"outline"}
                 background={"brand.500"}
-                color="brand.700"
+                color="brand.300"
                 _hover={{
-                  background: "bg.600",
+                  background: "#436131",
                 }}
                 px={4}
                 onClick={() => {
@@ -879,7 +879,7 @@ export default function Navbar() {
               >
                 <SearchIcon
                   mr={2}
-                  color="brand.700"
+                  color="brand.300"
                   h={"100%"}
                   _hover={{
                     cursor: "pointer",
@@ -981,7 +981,7 @@ export default function Navbar() {
                       size="sm"
                       name={name.trim() !== "" ? name : null}
                       src={null}
-                      color={"brand.700"}
+                      color={"brand.300"}
                       background={"brand.500"}
                     />
                   </MenuButton>
