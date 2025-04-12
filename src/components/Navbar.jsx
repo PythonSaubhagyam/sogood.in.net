@@ -373,8 +373,10 @@ export default function Navbar() {
             // width="100px"
             // height="50px"
             boxSize="130px"
+            p={"2"}
+
             objectFit="contain"
-            src="/sogood.jpg"
+            src="/sogood.png"
             alt="SOSE Logo"
           />
         </Link>
@@ -548,9 +550,11 @@ export default function Navbar() {
             <DrawerHeader as={Flex} justify="center">
               <Link as={ReactRouterLink} to="/">
                 <Image
-                  boxSize="105px"
+                  boxSize="120px"
                   objectFit="contain"
-                  src="/sogood.jpg"
+                  src="/sogood.png"
+                p={"2"}
+
                   alt="SOSE Logo"
                 />
               </Link>
@@ -832,9 +836,10 @@ export default function Navbar() {
           >
             <Link as={ReactRouterLink} to="/">
               <Image
-                boxSize="100px"
+                boxSize="120px"
+                p={"2"}
                 objectFit="contain"
-                src="/sogood.jpg"
+                src="/sogood.png"
                 alt="SOSE Logo"
               />
             </Link>
