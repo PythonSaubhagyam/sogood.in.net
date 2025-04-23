@@ -188,12 +188,12 @@ export default function Navbar() {
   const [Open1, setOpen1] = useState(false);
 
   const dispatch = useDispatch();
-  const { categories, hasFetched, mergedCategories} = useSelector((state)=>state.category);
+  const { categories, hasFetched, mergedCategories } = useSelector((state) => state.category);
   useEffect(() => {
-   if(!hasFetched){
-    dispatch(fetchCategories());
-   }
-  }, [dispatch,hasFetched])
+    if (!hasFetched) {
+      dispatch(fetchCategories());
+    }
+  }, [dispatch, hasFetched])
 
   const handleHover1 = () => {
     setOpen(true);
@@ -254,7 +254,7 @@ export default function Navbar() {
   useEffect(() => {
     const init = async () => {
       await CheckOrSetUDID();
-       };
+    };
     init();
   }, []);
 
@@ -270,8 +270,8 @@ export default function Navbar() {
     } // eslint-disable-next-line
   }, [searchQuery]);
 
-  
-  
+
+
 
   async function getSearchResults() {
     const response = await client.get("/web/products/list/", {
@@ -464,7 +464,7 @@ export default function Navbar() {
                             </LinkOverlay>
                           </Text>
                           <Text fontSize="sm" fontWeight="600">
-                            ₹{result.base_price}
+                          ₹{Number(result.product_price || result.base_price || 0).toFixed(2)}
                           </Text>
                         </LinkBox>
                       ))}
@@ -527,7 +527,7 @@ export default function Navbar() {
                     _hover={{ bg: "brand.500" }}
                   > */}
                   <MenuItem
-                    onClick={()=>setIsLoginModalOpen(true)}
+                    onClick={() => setIsLoginModalOpen(true)}
                     cursor={"pointer"}
                     _hover={{ textDecoration: "none" }}
                   >
@@ -553,7 +553,7 @@ export default function Navbar() {
                   boxSize="120px"
                   objectFit="contain"
                   src="/sogood.png"
-                p={"2"}
+                  p={"2"}
 
                   alt="SOSE Logo"
                 />
@@ -572,15 +572,15 @@ export default function Navbar() {
                       style={
                         all
                           ? {
-                              background: "#436131",
-                              color: "white",
-                              borderRadius: 5,
-                            }
+                            background: "#436131",
+                            color: "white",
+                            borderRadius: 5,
+                          }
                           : {
-                              background: "white",
-                              color: "black",
-                              borderRadius: 5,
-                            }
+                            background: "white",
+                            color: "black",
+                            borderRadius: 5,
+                          }
                       }
                     >
                       <Box
@@ -621,8 +621,7 @@ export default function Navbar() {
                                     setOpenAccrodion();
                                   } else {
                                     navigate(
-                                      `/shop?page=1&category=${
-                                        section.id
+                                      `/shop?page=1&category=${section.id
                                       }&category_name=${encodeURIComponent(
                                         section?.name
                                       )}`
@@ -688,8 +687,7 @@ export default function Navbar() {
                                                     setOpen(Open);
                                                   } else {
                                                     navigate(
-                                                      `/shop?page=1&category=${
-                                                        subcategory.id
+                                                      `/shop?page=1&category=${subcategory.id
                                                       }&category_name=${encodeURIComponent(
                                                         subcategory?.name
                                                       )}`
@@ -710,8 +708,7 @@ export default function Navbar() {
                                                 <AccordionIcon
                                                   onClick={() =>
                                                     navigate(
-                                                      `/shop?page=1&category=${
-                                                        subcategory.id
+                                                      `/shop?page=1&category=${subcategory.id
                                                       }&category_name=${encodeURIComponent(
                                                         subcategory?.name
                                                       )}`
@@ -747,8 +744,7 @@ export default function Navbar() {
                                                           key={i}
                                                           onClick={() => {
                                                             navigate(
-                                                              `/shop?page=1&category=${
-                                                                children.id
+                                                              `/shop?page=1&category=${children.id
                                                               }&category_name=${encodeURIComponent(
                                                                 children?.name
                                                               )}`
@@ -832,7 +828,7 @@ export default function Navbar() {
           <GridItem
             rowSpan={2}
             colSpan={1}
-            // style={{ borderBottom: "0.5px solid #b7b7b7" }}
+          // style={{ borderBottom: "0.5px solid #b7b7b7" }}
           >
             <Link as={ReactRouterLink} to="/">
               <Image
@@ -848,7 +844,7 @@ export default function Navbar() {
             colSpan={7}
             display={"flex"}
             alignItems={"center"}
-            // style={{ borderBottom: "0.5px solid #b7b7b7" }}
+          // style={{ borderBottom: "0.5px solid #b7b7b7" }}
           >
             <InputGroup size="sm" width={"100%"} mt={3}>
               <Input
@@ -939,7 +935,7 @@ export default function Navbar() {
                         </LinkOverlay>
                       </Text>
                       <Text fontSize="sm" fontWeight="600">
-                        ₹{result.base_price}
+                        ₹{Number(result.product_price || result.base_price || 0).toFixed(2)}
                       </Text>
                     </LinkBox>
                   ))}
@@ -1036,7 +1032,7 @@ export default function Navbar() {
           <GridItem
             colSpan={9}
             display={"flex"}
-            // style={{ borderBottom: "0.5px solid #b7b7b7" }}
+          // style={{ borderBottom: "0.5px solid #b7b7b7" }}
           >
             <Flex
               as={"nav"}
@@ -1085,8 +1081,7 @@ export default function Navbar() {
                           onMouseEnter={() => handleShow1(section.children)}
                           onClick={() =>
                             navigate(
-                              `/shop?category=${
-                                section.id
+                              `/shop?category=${section.id
                               }&category_name=${encodeURIComponent(
                                 section?.name
                               )}`
@@ -1114,8 +1109,7 @@ export default function Navbar() {
                         key={subIndex}
                         onClick={() =>
                           navigate(
-                            `/shop?category=${
-                              item.id
+                            `/shop?category=${item.id
                             }&category_name=${encodeURIComponent(item?.name)}`
                           )
                         }
@@ -1138,8 +1132,7 @@ export default function Navbar() {
                         key={nestedIndex}
                         onClick={() =>
                           navigate(
-                            `/shop?category=${
-                              item.id
+                            `/shop?category=${item.id
                             }&category_name=${encodeURIComponent(item?.name)}`
                           )
                         }
@@ -1259,11 +1252,11 @@ export default function Navbar() {
         </Grid>
       </Container>
       {!checkLogin().isLoggedIn && (
-          <LoginModal
-            isOpen={isLoginModalOpen}
-            onClose={() => setIsLoginModalOpen(false)}
-          />
-        )}
+        <LoginModal
+          isOpen={isLoginModalOpen}
+          onClose={() => setIsLoginModalOpen(false)}
+        />
+      )}
     </Box>
   );
 }
