@@ -105,6 +105,7 @@ export default function Home() {
     aboutSection,
     certificateSection,
     ethicalSection,
+    arrivalSection
   } = upperSection;
 
   const {
@@ -212,6 +213,45 @@ export default function Home() {
             >
               Read more
             </Button>
+          </Container>
+        )}
+
+      {arrivalSection?.length > 0 &&
+        arrivalSection[0]?.is_visible_on_website === true && (
+          <Container maxW={"container.xl"} mb={5} centerContent>
+            <LazyLoadImage
+              src={arrivalSection[0]?.image}
+              alt=""
+              style={{
+                opacity: 1,
+                transition: "opacity 0.7s", // Note the corrected syntax here
+              }}
+            />
+            <Grid
+              templateColumns={{
+                base: "repeat(1, 1fr)",
+              }}
+              gap={6}
+              my={6}
+              px={15}
+            >
+              {arrivalSection[0]?.images?.length > 0 &&
+                arrivalSection[0]?.images?.map((product) => (
+                  <GridItem
+                    //key={product.id}
+                    onClick={() => navigate(`/products/${product.product}/${product.product_name.replace(/\s+/g, "-")}`)}
+                    cursor={"pointer"}
+                  >
+                    <LazyLoadImage
+                      src={product.image}
+                      style={{
+                        opacity: 1,
+                        transition: "opacity 0.7s",
+                      }}
+                    />
+                  </GridItem>
+                ))}
+            </Grid>
           </Container>
         )}
       {certificateSection?.length > 0 &&
@@ -341,7 +381,7 @@ export default function Home() {
               internationalSection[0]?.images?.length > 0 &&
               internationalSection[0]?.images
             }
-            type={ "carousal"}
+            type={"carousal"}
           />
         )}
       <ProductListSectionHome
@@ -357,7 +397,7 @@ export default function Home() {
         type={"carousal"}
       />
 
-     <BlogSliderHome blogs={blogs} />
+      <BlogSliderHome blogs={blogs} />
 
       {statisticsSection?.length > 0 && (
         <Container backgroundColor={"bg.500"} maxW={"container.xl"} py={2}>
@@ -374,10 +414,10 @@ export default function Home() {
             {statisticsSection?.length > 0 &&
               statisticsSection?.map((data) => (
                 <Stat>
-                <StatNumber fontSize={{ base: "3xl", md: "3xl" }}>
+                  <StatNumber fontSize={{ base: "3xl", md: "3xl" }}>
                     <ScrollTrigger
                       onEnter={() => setCountUp(true)}
-                      // onExit={() => setCountUp(false)}
+                    // onExit={() => setCountUp(false)}
                     >
                       {countUp ? (
                         <CountUp
@@ -390,8 +430,8 @@ export default function Home() {
                       {data?.name === "Positive Feedback" ? "%+" : data?.name === "Generation of Farmers" ? "th" : "+"}
 
 
-                      </ScrollTrigger>
-                    
+                    </ScrollTrigger>
+
                   </StatNumber>
                   <StatHelpText color="gray.600">{data?.name}</StatHelpText>
                 </Stat>

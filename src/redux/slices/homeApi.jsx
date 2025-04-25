@@ -52,6 +52,7 @@ const bannerSlice = createSlice({
                 aboutSection: [],
                 certificateSection: [],
                 ethicalSection: [],
+                arrivalSection: [],
             },
             newArrival: [],
             mustTry: [],
@@ -97,6 +98,7 @@ const bannerSlice = createSlice({
                     aboutSection: upperSection.filter((section) => section.id === 1),
                     certificateSection: upperSection.filter((section) => section.id === 2),
                     ethicalSection: upperSection.filter((section) => section.id === 3),
+                    arrivalSection: upperSection.filter((section) => section.id === 11),
                 };
 
                 state.newArrival = newArrival;
