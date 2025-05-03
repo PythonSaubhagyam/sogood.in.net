@@ -160,6 +160,7 @@ export default function Home() {
         aboutSection[0]?.is_visible_on_website === true && (
           <Container maxW={"container.xl"} mb={8} px={0}>
             <Text
+              as={"h1"}
               fontSize={{ base: "xl", sm: "2xl", xl: "3xl" }}
               fontWeight={700}
               color={"text.300"}
@@ -339,6 +340,7 @@ export default function Home() {
         instantMixSection[0]?.is_visible_on_website === true && (
           <Container maxW={"container.xl"} px={2} borderRadius={"10px"}>
             <Text
+              as={"h1"}
               fontSize={{ base: "xl", sm: "2xl", xl: "3xl" }}
               bgColor={"bg.500"}
               px={{ base: 2, md: 8 }}
@@ -443,6 +445,7 @@ export default function Home() {
         awardsSection[0]?.is_visible_on_website === true && (
           <Container maxW={{ base: "100vw", md: "container.xl" }}>
             <Heading
+              as={"h1"}
               color="brand.500"
               fontSize={{ md: 33, base: 20 }}
               mx="auto"
@@ -495,6 +498,7 @@ export default function Home() {
         licensesSection[0]?.is_visible_on_website === true && (
           <Container maxW={"container.xl"} centerContent px={0}>
             <Heading
+              as={"h1"}
               color="brand.500"
               size="lg"
               mx="auto"
@@ -545,6 +549,7 @@ export default function Home() {
         servicesSection[0]?.is_visible_on_website === true && (
           <Container maxW={{ base: "100vw", md: "container.xl" }}>
             <Heading
+              as={"h1"}
               color="brand.500"
               fontSize={{ md: 33, base: 20 }}
               mx="auto"
@@ -576,6 +581,7 @@ export default function Home() {
         availableSection[0]?.is_visible_on_website === true && (
           <Container maxW={"container.xl"} mb={5} px={0} centerContent>
             <Heading
+              as={"h1"}
               color="brand.500"
               fontSize={{ md: 33, base: 22 }}
               mx="auto"
