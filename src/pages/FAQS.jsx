@@ -4,14 +4,18 @@ import Accordion from "../components/Accordion";
 import { Container, Box, Text, Image } from "@chakra-ui/react";
 import BreadCrumbCom from "../components/BreadCrumbCom";
 import ScrollToTop from "../components/ScrollToTop";
+
 import { useLocation } from "react-router-dom";
 import MetaTags from "../context/MetaTagsContext";
+import useScrollRestoration from "../utils/useScrollRestoration";
+
 
 export default function FAQS() {
-
   let { search } = useLocation();
   const searchParams = new URLSearchParams(search);
   const IsMobileView = searchParams.get("mobile") ?? "false";
+  useScrollRestoration();
+
 
   const generalInformationData = [
     {
@@ -201,6 +205,7 @@ export default function FAQS() {
 
       {IsMobileView !== "true" && <Navbar />}
 
+
       <Container maxW="container.xl">
         <BreadCrumbCom second={"FAQ"} secondUrl={"/faq"} />
       </Container>
@@ -223,7 +228,7 @@ export default function FAQS() {
           FAQ
         </Text>
       </Container>
-      <Container maxW={"container.xl"} pb={8} px={{ md: 10, base: 6 }} >
+      <Container maxW={"container.xl"} pb={8} px={10} >
         <Box
           className="separator"
           w={{ base: "100%", lg: "90%" }}

@@ -3,12 +3,8 @@ import client from "../setup/axiosClient";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Loader from "../components/Loader";
-import CategoryTree from "../components/CategoryTree";
-// import CategoryAccessTree from "../components/CategoryAccessTree";
 import ScrollToTop from "../components/ScrollToTop";
 import ShopProductCard from "../components/ShopProductCard";
-import { Helmet } from "react-helmet";
-import { fetchCategories } from "../redux/slices/categoryApi";
 import {
   Center,
   Container,
@@ -25,6 +21,8 @@ import AddOrRemoveInWishlist from "../utils/addOrRemoveInWishlist";
 import CheckOrSetUDID from "../utils/checkOrSetUDID";
 import checkLogin from "../utils/checkLogin";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { Helmet } from "react-helmet";
+import { fetchCategories } from "../redux/slices/categoryApi";
 import {
   Pagination,
   usePagination,
@@ -40,6 +38,7 @@ import CapitalizeLetter from "../utils/CommanFunction";
 import { fetchFilters } from "../redux/slices/shopApi";
 import { useDispatch, useSelector } from "react-redux";
 import MetaTags from "../context/MetaTagsContext";
+import useScrollRestoration from "../utils/useScrollRestoration";
 
 // import Paginator from "../components/Paginator";
 
@@ -53,6 +52,7 @@ export default function Shop() {
   const [sortKey, setSortKey] = useState(null);
   const [tagWise, setTagWise] = useState(null);
   const [productFoam, setProductFoam] = useState(null);
+  useScrollRestoration();
 
   const [banners, setBanners] = useState({
     bannerWeb: null,
@@ -70,7 +70,7 @@ export default function Shop() {
   const categoryId = searchPar.get("category");
   const prod_search = searchPar.get("search");
   const page = searchPar.get("page") ? searchPar.get("page") : 1;
-
+  console.log("page", page);
   const [isMobile] = useMediaQuery("(max-width: 768px)");
   // const [brandWise, setBrandWise] = useState({value:searchPar.get("brand"),label:searchPar.get("brand_name")});
   // console.log("brandWise",brandWise)
@@ -96,11 +96,29 @@ export default function Shop() {
     localStorage.getItem("last_name"),
   ].join(" ");
 
+  const dispatch = useDispatch();
+  const { tagsArray, productFoamsArray, brandArray, hasFetched } = useSelector((state) => state.shop);
+  const { categories } = useSelector((state) => state.category);
+  useEffect(() => {
+    if (!hasFetched) {
+      dispatch(fetchFilters());
+      dispatch(fetchCategories());
+    }
+  }, [dispatch, hasFetched]);
+
+  useEffect(() => {
+    if (categories?.length > 0 && categoryId) {
+      const selectedCategory = categories.find(cat => cat.id === parseInt(categoryId));
+      setCategory(selectedCategory);
+    }
+  }, [categories, categoryId]);
+
+
+
   useEffect(() => {
     CheckOrSetUDID();
     getProducts(); // eslint-disable-next-line
   }, [categoryId, sortKey, prod_search, brand, tagWise, productFoam]);
-
 
 
   async function getProducts(nextPage) {
@@ -195,74 +213,6 @@ export default function Shop() {
     const filtered = categories.filter((item) => item.id === categoryId);
     setFilteredData(filtered);
   }, [data, categoryId]);
-
-
-  // useEffect(() => {
-  //   setCurrentPage(1);
-  //   const params = {
-  //     page: 1,
-  //   };
-
-  //   if (categoryId) {
-  //     params.category = categoryId;
-
-  //   }
-  //   if(category_name){
-  //     params.category_name = category_name;
-  //   }
-  //   if (searchPar.get("brand")) {
-  //     params.brand = brand;
-  //     params.brand_name = brand_name;
-  //   }
-
-  //   if (prod_search !== null) {
-  //     params.search = prod_search;
-  //   }
-
-  //   setSearchParams(params);
-
-  // }, [sortKey,tagWise, productFoam]);
-
-  // async function handlePageChange(nextPage) {
-  //   setCurrentPage(nextPage);
-  //   getProducts(nextPage);
-  //   if (categoryId) {
-  //     setSearchParams({
-  //       page: nextPage,
-  //       category: categoryId,
-  //       category_name: category_name,
-
-  //     });
-  //   } else {
-  //     setSearchParams({
-  //       page: nextPage,
-
-  //     });
-  //   }
-  //   window.scrollTo({
-  //     top: 0,
-  //     left: 0,
-  //     behavior: "smooth",
-  //   });
-  // }
-
-  const dispatch = useDispatch();
-  const { tagsArray, productFoamsArray, brandArray } = useSelector((state) => state.shop);
-  const { categories } = useSelector((state) => state.category);
-  useEffect(() => {
-
-    dispatch(fetchFilters());
-    dispatch(fetchCategories());
-
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (categories?.length > 0 && categoryId) {
-      const selectedCategory = categories.find(cat => cat.id === parseInt(categoryId));
-      setCategory(selectedCategory);
-    }
-  }, [categories, categoryId]);
-
 
   async function handlePageChange(nextPage) {
     setCurrentPage(nextPage);
@@ -668,6 +618,8 @@ export default function Shop() {
                     objectFit="cover"
                     display={category?.web_image ? "block" : "none"}
                     src={category?.web_image}
+                    alt="category Image"
+                    loading="lazy"
                   />
                   {products !== null &&
                     products.map(
@@ -720,35 +672,6 @@ export default function Shop() {
             </Flex>
           )}
         </Flex>
-        {/* )} */}
-        {/* <div itemScope itemType="http://schema.org/Product">
-          <meta itemProp="brand" content="facebook" />
-          <meta itemProp="name" content="Facebook T-Shirt" />
-          <meta
-            itemProp="description"
-            content="Unisex Facebook T-shirt, Small"
-          />
-          <meta itemProp="productID" content="facebook_tshirt_001" />
-          <meta itemProp="url" content="https://example.org/facebook" />
-          <meta itemProp="image" content="https://example.org/facebook.jpg" />
-          <div
-            itemProp="value"
-            itemScope
-            itemType="http://schema.org/PropertyValue"
-          >
-            <span itemProp="propertyID" content="item_group_id" />
-            <meta itemProp="value" content="fb_tshirts" />
-          </div>
-          <div itemProp="offers" itemScope itemType="http://schema.org/Offer">
-            <link itemProp="availability" href="http://schema.org/InStock" />
-            <link
-              itemProp="itemCondition"
-              href="http://schema.org/NewCondition"
-            />
-            <meta itemProp="price" content="7.99" />
-            <meta itemProp="priceCurrency" content="USD" />
-          </div>
-        </div> */}
       </Container>
       <ScrollToTop />
       <Footer />

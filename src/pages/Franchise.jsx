@@ -14,22 +14,20 @@ import BreadCrumbCom from "../components/BreadCrumbCom";
 import ScrollToTop from "../components/ScrollToTop";
 import { useLocation } from "react-router-dom";
 import MetaTags from "../context/MetaTagsContext";
+import useScrollRestoration from "../utils/useScrollRestoration";
 
 export default function Franchise() {
-
   let { search } = useLocation();
   const searchParams = new URLSearchParams(search);
   const IsMobileView = searchParams.get("mobile") ?? "false";
-
   const pageUrl = "/franchise";
+  useScrollRestoration();
 
   return (
     <>
       <MetaTags pageUrl={pageUrl} />
 
       {IsMobileView !== "true" && <Navbar />}
-
-
       <Container maxW="container.xl">
         <BreadCrumbCom second={"Franchise"} secondUrl={"/franchise"} />
       </Container>
@@ -72,7 +70,9 @@ export default function Franchise() {
             SOSE Franchise
           </Heading>
           <Image
+            loading="lazy"
             src={"https://forntend-bucket.s3.ap-south-1.amazonaws.com/sose/images/franchise/Gir Cycle.png"}
+            alt="Gir Cycle"
             w={{ base: "70vw", lg: "500px" }}
             maxW="500px"
             py={8}
@@ -122,7 +122,9 @@ export default function Franchise() {
               justify="center"
             >
               <Image
+                loading="lazy"
                 src={"https://forntend-bucket.s3.ap-south-1.amazonaws.com/sose/images/franchise/farmer.jpeg"}
+                alt="farmer"
                 rounded
                 boxSize={{ base: "75%", lg: "275px" }}
                 mx="auto"
@@ -163,7 +165,9 @@ export default function Franchise() {
             </Flex>
             <Flex direction={{ base: "column", lg: "row" }} justify="center">
               <Image
+                loading="lazy"
                 src={"https://forntend-bucket.s3.ap-south-1.amazonaws.com/sose/images/franchise/gaumata.jpeg"}
+                alt="gaumata"
                 boxSize={{ base: "75%", lg: "275px" }}
                 mx="auto"
               ></Image>
@@ -199,7 +203,9 @@ export default function Franchise() {
             <Flex flexDir="column" gap={4}>
               <Box py={2} as={Flex} gap={6} align="center">
                 <Image
+                  loading="lazy"
                   src={"https://forntend-bucket.s3.ap-south-1.amazonaws.com/sose/images/franchise/PureProduct.jpeg"}
+                  alt="PureProduct"
                   size="lg"
                   boxSize="65px"
                 ></Image>
@@ -221,7 +227,9 @@ export default function Franchise() {
               </Box>
               <Box py={2} as={Flex} gap={6} align="center">
                 <Image
+                  loading="lazy"
                   src={"https://forntend-bucket.s3.ap-south-1.amazonaws.com/sose/images/franchise/StoreDesign.jpeg"}
+                  alt="StoreDesign"
                   size="lg"
                   boxSize="60px"
                 ></Image>
@@ -243,7 +251,9 @@ export default function Franchise() {
               </Box>
               <Box py={2} as={Flex} gap={6} align="center">
                 <Image
+                  loading="lazy"
                   src={"https://forntend-bucket.s3.ap-south-1.amazonaws.com/sose/images/franchise/BusinessSupport.jpeg"}
+                  alt="BusinessSupport"
                   size="lg"
                   boxSize="60px"
                 ></Image>
@@ -265,7 +275,9 @@ export default function Franchise() {
               </Box>
               <Box py={2} as={Flex} gap={6} align="center">
                 <Image
+                  loading="lazy"
                   src={"https://forntend-bucket.s3.ap-south-1.amazonaws.com/sose/images/franchise/Marketing.jpeg"}
+                  alt="Marketing"
                   size="lg"
                   boxSize="60px"
                 ></Image>
@@ -287,7 +299,9 @@ export default function Franchise() {
               </Box>
               <Box py={2} as={Flex} gap={6} align="center">
                 <Image
+                  loading="lazy"
                   src={"https://forntend-bucket.s3.ap-south-1.amazonaws.com/sose/images/franchise/StaffTraining.jpeg"}
+                  alt="StaffTraining"
                   size="lg"
                   boxSize="60px"
                 ></Image>
@@ -309,7 +323,9 @@ export default function Franchise() {
               </Box>
               <Box py={2} as={Flex} gap={6} align="center">
                 <Image
+                  loading="lazy"
                   src={"https://forntend-bucket.s3.ap-south-1.amazonaws.com/sose/images/franchise/IT.jpeg"}
+                  alt="IT"
                   size="lg"
                   boxSize="60px"
                 ></Image>
@@ -338,14 +354,20 @@ export default function Franchise() {
             direction={{ base: "column", lg: "row" }}
           >
             <Image
+              alt="Store 1"
+              loading="lazy"
               src={"https://forntend-bucket.s3.ap-south-1.amazonaws.com/sose/images/franchise/Store1.jpeg"}
               maxW="350px"
             ></Image>
             <Image
+              alt="Store 2"
+              loading="lazy"
               src={"https://forntend-bucket.s3.ap-south-1.amazonaws.com/sose/images/franchise/Store2.jpeg"}
               maxW="350px"
             ></Image>
             <Image
+              alt="Store 3"
+              loading="lazy"
               src={"https://forntend-bucket.s3.ap-south-1.amazonaws.com/sose/images/franchise/Store3.jpeg"}
               maxW="350px"
             ></Image>

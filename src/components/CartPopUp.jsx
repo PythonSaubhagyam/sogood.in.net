@@ -18,11 +18,18 @@ import checkLogin from "../utils/checkLogin";
 
 const CartPopUp = () => {
   const [productPrice, setProductPrice] = useState()
+
   const [CartCount, setCartCount] = useState(
     localStorage.getItem("cart_counter") ?? 0
   );
-
+  const checkOrSetUDIDInfo = CheckOrSetUDID();
   const loginInfo = checkLogin();
+
+  let headers = { visitor: checkOrSetUDIDInfo?.visitor_id };
+
+  if (loginInfo.isLoggedIn === true) {
+    headers = { Authorization: `token ${loginInfo?.token}` };
+  }
 
   const [total, setTotal] = useState(
     localStorage.getItem("product_total") === null ||
@@ -33,13 +40,6 @@ const CartPopUp = () => {
 
   useEffect(() => {
     const updateProductTotal = async () => {
-      const checkOrSetUDIDInfo = await CheckOrSetUDID();
-      let headers = { visitor: checkOrSetUDIDInfo?.visitor_id };
-
-      if (loginInfo.isLoggedIn === true) {
-        headers = { Authorization: `token ${loginInfo?.token}` };
-      }
-
       const cartRes = await client.get("/cart/", {
         headers: headers,
       });
@@ -50,11 +50,7 @@ const CartPopUp = () => {
         localStorage.setItem("product_total", cartRes.data.data.final_total);
         setTotal(cartRes.data.data.final_total);
         setProductPrice(cartRes.data.data.product_price);
-      } else {
-        // Clear cart state if no items
-        setCartCount(0);
-        localStorage.removeItem("product_total");
-        setTotal(0);
+
       }
     };
 
@@ -64,6 +60,7 @@ const CartPopUp = () => {
       CartEmitter.off("updateProductTotal", updateProductTotal);
     };
   }, []);
+
 
   useEffect(() => {
     const updateCart = async () => {
@@ -82,6 +79,12 @@ const CartPopUp = () => {
           localStorage.setItem("product_total", cartRes.data.data.final_total);
           setTotal(cartRes.data.data.final_total);
           setProductPrice(cartRes.data.data.product_price);
+
+        } else {
+          // Clear cart state if no items
+          setCartCount(0);
+          localStorage.removeItem("product_total");
+          setTotal(0);
         }
       } catch (error) {
         console.error("Error fetching cart data:", error);
@@ -117,25 +120,10 @@ const CartPopUp = () => {
         px={1}
         display={location.pathname === "/cart" ? "none" : "flex"}
       >
-        {isEliteMember ? (
+        {!isEliteMember && (
           <Box
             bgColor={"brand.500"}
-            color={"white"}
-            textAlign={"center"}
-            py={3}
-            fontWeight={400}
-            borderTopRightRadius={"20px"}
-            borderTopLeftRadius={"20px"}
-            w={{ md: 600, base: "100%" }}
-            opacity={0.9}
-            fontSize={13}
-          >
-           
-          </Box>
-        ) : (
-          <Box
-            bgColor={"brand.500"}
-            color={"brand.300"}
+            color={"#fff"}
             textAlign={"center"}
             py={3}
             fontWeight={400}
@@ -152,12 +140,26 @@ const CartPopUp = () => {
             now for complimentary delivery and elevate your shopping experience!
           </Box>
         )}
+        {isEliteMember && (
+          <Box
+            bgColor={"brand.500"}
+            color={"#fff"}
+            textAlign={"center"}
+            py={3}
+            fontWeight={400}
+            borderTopRightRadius={"20px"}
+            borderTopLeftRadius={"20px"}
+            w={{ md: 600, base: "100%" }}
+            opacity={0.9}
+            fontSize={13}
+          ></Box>
+        )}
         <Flex
           justifyContent={"space-between"}
           px={3}
           py={2}
-          backgroundColor={"brand.500"}
-          color={"brand.300"}
+          backgroundColor={"#4f4c42d1"}
+          color={"#fff"}
           w={{ md: 600, base: "100%" }}
           opacity={0.9}
         >
@@ -175,6 +177,7 @@ const CartPopUp = () => {
                   ? parseFloat(total || 0)
                   : parseFloat(productPrice)
               ).toFixed(2)}
+
             </Text>
             <Text
               as={Flex}
@@ -184,7 +187,7 @@ const CartPopUp = () => {
             >
               Cart{" "}
               <MdPlayArrow
-                color="white"
+                color="#fff"
                 cursor={"pointer"}
                 fontSize={"1.5rem"}
               />

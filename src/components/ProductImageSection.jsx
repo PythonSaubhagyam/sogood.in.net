@@ -33,7 +33,7 @@ function ProductImageSection({ images }) {
           <Grid
             gridTemplateRows="repeat(3, 1fr)"
             gap={2}
-            pt={{md:5}}
+            pt={{ md: 5 }}
             // marginRight={2}
             alignItems={"flex-start"}
           >
@@ -47,6 +47,8 @@ function ProductImageSection({ images }) {
                   minW={{ base: "50px", md: "60px" }}
                   //position="relative"
                   cursor="pointer"
+                  alt="Product image"
+                  loading="lazy"
                   // paddingRight={"3px"}
                   border={
                     selectedImageIndex === index
@@ -66,11 +68,11 @@ function ProductImageSection({ images }) {
             width={500}
             zoomWidth={500}
             img={images?.[selectedImageIndex]}
-            //img={require("../assets/GIR Gau Products Images/demo11.jpg")}
+          //img={require("../assets/GIR Gau Products Images/demo11.jpg")}
           />
         ) : (
           <>
-            <Image width={"250px"} src={images?.[selectedImageIndex]} />
+            <Image width={"250px"} alt="Product image" loading="lazy" src={images?.[selectedImageIndex]} />
           </>
         )}
       </Flex>

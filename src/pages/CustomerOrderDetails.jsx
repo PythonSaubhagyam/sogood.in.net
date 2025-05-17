@@ -37,6 +37,7 @@ import {
 } from "@chakra-ui/react";
 import ReactStars from "react-stars";
 import { BsCheck, BsPrinter, BsDownload } from "react-icons/bs";
+import useScrollRestoration from "../utils/useScrollRestoration";
 
 export default function CustomerOrderDetails() {
   const [orderDetails, setOrderDetails] = useState([]);
@@ -57,6 +58,7 @@ export default function CustomerOrderDetails() {
   useEffect(() => {
     getOrderDetails(); // eslint-disable-next-line
   }, []);
+  useScrollRestoration();
 
   async function getOrderDetails() {
     const response = await client.get(`/orders/${orderId}`, {
@@ -134,6 +136,8 @@ export default function CustomerOrderDetails() {
         console.error("Error downloading PDF:", error);
       });
   };
+
+
   async function handleOnlinePayment() {
     setPayment(true); // Set the payment loading state
     
@@ -211,14 +215,7 @@ export default function CustomerOrderDetails() {
         >
           <Heading fontWeight={500}>{orderDetails?.order_id}</Heading>
           <Flex gap={2} align="center">
-          {/* { orderDetails.order_status !== "Cancelled" && orderDetails?.is_paid === false &&(
-              <Button size="sm" colorScheme={"brand"} isLoading={isPayment}
-                loadingText="Processing..." onClick={handleOnlinePayment}  >
-                <Icon as={BsCheck} boxSize={6} />
-                Accept and Pay
-              </Button>
-            )} */}
-            {
+          {
               orderDetails.order_status !== "Cancelled" &&
               orderDetails?.is_paid === false &&
               orderDetails.order_status !== "Delivered" &&

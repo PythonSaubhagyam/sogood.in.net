@@ -5,11 +5,13 @@ import { Box, Container, VStack, Image, Text, Heading } from "@chakra-ui/react";
 import { useLocation } from "react-router-dom";
 import ScrollToTop from "../components/ScrollToTop";
 import MetaTags from "../context/MetaTagsContext";
+import useScrollRestoration from "../utils/useScrollRestoration";
 const Aboutus = () => {
   let { search } = useLocation();
   const searchParams = new URLSearchParams(search);
   const IsMobileView = searchParams.get("mobile") ?? "false";
   const pageUrl = "/about-us";
+  useScrollRestoration();
 
   return (
     <>
@@ -20,7 +22,7 @@ const Aboutus = () => {
         <BreadCrumbCom second={"About Us"} secondUrl={"/about-us"} />{" "}
       </Container>
       <Container maxW={"container.xl"} mb={4} px={0} centerContent>
-        <Image src={require("../assets/About us/about-us.jpg")} />
+        <Image src="https://forntend-bucket.s3.ap-south-1.amazonaws.com/sose/images/aboutUs.jpg" loading="lazy" alt="about us" />
         <VStack maxW={"6xl"} mt={2} px={{ base: 9, md: 9 }}>
           <Text fontWeight={700} fontSize={{ md: 24, base: 20 }} color={"brand.700"} mb={2.5}>
             SO GOOD is proud to be - PRODUCT of भारत

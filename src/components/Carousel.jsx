@@ -59,7 +59,7 @@ export default function Carousel({
       height={{ base: "100%", md: "50%" }}
       width={fullWidth ? "100vw" : "100%"}
       bg={textBanners && "bg.500"}
-      // overflow={"hidden"}
+    // overflow={"hidden"}
     >
       {/* CSS files for react-slick */}
       <link
@@ -161,13 +161,14 @@ export default function Carousel({
                 <Image
                   cursor={
                     bannerData?.category_id === null &&
-                    bannerData?.product_id === null
+                      bannerData?.product_id === null
                       ? ""
                       : "pointer"
                   }
                   key={index}
                   src={bannerData.image}
-                  alt={bannerData.alt_text}
+                  alt={bannerData.alt_text || bannerData.description}
+                  loading="lazy"
                   onClick={() => {
                     if (
                       bannerData?.category_id !== null ||
@@ -178,14 +179,14 @@ export default function Carousel({
                           `/shop?page=1&category=${bannerData?.category_id}`
                         );
                       } else {
-                        navigate(`/products/${bannerData?.product_id}/${bannerData?.products?.name.replace(/\s+/g,"-")}`);
+                        navigate(`/products/${bannerData?.product_id}/${bannerData?.products?.name.replace(/\s+/g, "-")}`);
                       }
                     }
                   }}
                   objectFit="fit"
                   w="100%"
-                  // h="60%"
-                  // h={{ base: "100%", md: `${desktopHeight}px` }}
+                // h="60%"
+                // h={{ base: "100%", md: `${desktopHeight}px` }}
                 ></Image>
               )}
             </>

@@ -14,19 +14,20 @@ import BreadCrumbCom from "../components/BreadCrumbCom";
 import { useLocation } from "react-router-dom";
 import ScrollToTop from "../components/ScrollToTop";
 import MetaTags from "../context/MetaTagsContext";
+import useScrollRestoration from "../utils/useScrollRestoration";
 
 export default function TermsAndConditions() {
   let { search } = useLocation();
   const searchParams = new URLSearchParams(search);
   const IsMobileView = searchParams.get("mobile") ?? "false";
   const pageUrl = "/terms-and-conditions";
+  useScrollRestoration();
 
   return (
     <>
       <MetaTags pageUrl={pageUrl} />
 
       {IsMobileView !== "true" && <Navbar />}
-
       <Container maxW="container.xl">
         <BreadCrumbCom
           second={"Terms And Conditions"}
@@ -34,13 +35,13 @@ export default function TermsAndConditions() {
         />
       </Container>
       <Container maxW={"container.xl"} py={1} px={0} position="relative">
-        <Image src="https://forntend-bucket.s3.ap-south-1.amazonaws.com/sose/images/organic-living/terms.jpg" />
+        <Image alt="terms" loading="lazy" src="https://forntend-bucket.s3.ap-south-1.amazonaws.com/sose/images/organic-living/terms.jpg" />
 
         <Text
           pb={2}
           color={"brand.100"}
           textAlign={"center"}
-          fontSize={{ lg: "7xl", md: "4xl", base: "2xl" }}
+          fontSize={{ lg: "7xl", md: "4xl", base: "xl" }}
           fontWeight="600"
           position="absolute"
           top="50%"
@@ -52,7 +53,7 @@ export default function TermsAndConditions() {
           Terms & Condition
         </Text>
       </Container>
-      <Container maxW="container.lg" pt={10}>
+      <Container maxW="container.lg" pt={5}>
         <Heading size="md" fontWeight={500} color={"brand.900"}>
           Shipping Policy
         </Heading>
@@ -118,7 +119,7 @@ export default function TermsAndConditions() {
             the item(s) in your cart and the delivery address.
           </ListItem>
         </UnorderedList>
-        <Heading size="md" fontWeight={500} color={"brand.900"} pt={12}>
+        <Heading size="md" fontWeight={500} color={"brand.900"} pt={8}>
           Tracking your order
         </Heading>
         <UnorderedList>
@@ -132,7 +133,6 @@ export default function TermsAndConditions() {
       </Container>
       <ScrollToTop />
       {IsMobileView !== "true" && <Footer />}
-
     </>
   );
 }

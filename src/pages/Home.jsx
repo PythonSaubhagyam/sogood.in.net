@@ -3,22 +3,7 @@ import Loader from "../components/Loader";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Carousel from "../components/Carousel";
-import CarouselWithLinks from "../components/CarouselWithLinks";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import {
-  FaHeartbeat,
-  FaThumbsUp,
-  FaUniversalAccess,
-  FaUserMd,
-  FaUserPlus,
-  FaBlind,
-  FaHeart,
-} from "react-icons/fa";
-import { MdWaterDrop } from "react-icons/md";
-import { FaGears } from "react-icons/fa6";
-import { CiHeart } from "react-icons/ci";
-
-import ProductListSection from "../components/ProductListSection";
 import ProductListSectionHome from "../components/ProductListSectionHome";
 import SecondProductListSection from "../components/SecondProductListSection";
 import {
@@ -221,8 +206,9 @@ export default function Home() {
         arrivalSection[0]?.is_visible_on_website === true && (
           <Container maxW={"container.xl"} mb={5} centerContent>
             <LazyLoadImage
+              loading="lazy"
               src={arrivalSection[0]?.image}
-              alt=""
+              alt={arrivalSection[0]?.label}
               style={{
                 opacity: 1,
                 transition: "opacity 0.7s", // Note the corrected syntax here
@@ -244,7 +230,9 @@ export default function Home() {
                     cursor={"pointer"}
                   >
                     <LazyLoadImage
+                      loading="lazy"
                       src={product.image}
+                      alt={product?.product_name}
                       style={{
                         opacity: 1,
                         transition: "opacity 0.7s",
@@ -258,7 +246,26 @@ export default function Home() {
       {certificateSection?.length > 0 &&
         certificateSection[0]?.is_visible_on_website === true && (
           <Container px={0} maxW={"container.xl"} centerContent>
-            <Image src={certificateSection[0]?.image} width={"100%"} alt="" />
+            {certificateSection[0]?.images?.length > 0 ? (
+              loading ? (
+                <Skeleton h={489} />
+              ) : (
+                <Carousel banners={certificateSection[0].images} />
+              )
+            ) : (
+              certificateSection[0]?.image && (
+                <LazyLoadImage
+                  loading="lazy"
+                  src={certificateSection[0].image}
+                  alt="certificate"
+                  style={{
+                    opacity: 1,
+                    transition: "opacity 0.7s",
+                    width: "100%",
+                  }}
+                />
+              )
+            )}
           </Container>
         )}
 
@@ -295,7 +302,7 @@ export default function Home() {
                     onClick={() => navigate(`/shop?category=${data?.category}`)}
                     cursor={"pointer"}
                   >
-                    <Image src={data.image} alt="" />
+                    <Image src={data.image} alt={data.category_name} loading="lazy" />
                   </GridItem>
                 ))}
             </Grid>
@@ -325,7 +332,7 @@ export default function Home() {
               {middleProductSection[0]?.images?.length > 0 &&
                 middleProductSection[0]?.images?.map((data) => (
                   <GridItem>
-                    <Image src={data.image} alt="" />
+                    <Image src={data.image} alt="Middle image" loading="lazy" />
                   </GridItem>
                 ))}
             </Grid>
@@ -363,7 +370,8 @@ export default function Home() {
                     <Image
                       w={"100%"}
                       src={data?.image}
-                      alt=""
+                      alt={data.category_name}
+                      loading="lazy"
                       onClick={() =>
                         navigate(`/shop?category=${data?.category}`)
                       }
@@ -474,6 +482,7 @@ export default function Home() {
                   awardsSection[0]?.images[0]?.image
                 }
                 alt="global-certificate"
+                loading="lazy"
                 style={{
                   opacity: 1,
                   transition: "opacity 0.7s", // Note the corrected syntax here
@@ -524,6 +533,8 @@ export default function Home() {
                       src={data.image}
                       mx={"auto"}
                       boxSize={{ md: 140, base: 130 }}
+                      loading="lazy"
+                      alt="Lincense Image"
                     />
                   </GridItem>
                 ))}
@@ -541,7 +552,8 @@ export default function Home() {
             <Image
               mb={4}
               src={nonGmoSection[0]?.image}
-
+              loading="lazy"
+              alt="Non Gmo Image"
             />
           </Container>
         )}
@@ -567,7 +579,8 @@ export default function Home() {
                   servicesSection[0]?.images[0].image
                 }
                 w={{ base: "100%", md: "100%" }}
-                alt=""
+                alt="Service Section"
+                loading="lazy"
                 py={4}
                 style={{
                   opacity: 1,
@@ -575,35 +588,6 @@ export default function Home() {
                 }}
               />
             </Box>
-          </Container>
-        )}
-      {availableSection?.length > 0 &&
-        availableSection[0]?.is_visible_on_website === true && (
-          <Container maxW={"container.xl"} mb={5} px={0} centerContent>
-            <Heading
-              as={"h1"}
-              color="brand.500"
-              fontSize={{ md: 33, base: 22 }}
-              mx="auto"
-              align={"center"}
-              my={"5"}
-              pb={"10px"}
-            >
-              {availableSection?.length > 0 && availableSection[0].label}
-            </Heading>
-
-            <Image
-              src={
-                availableSection?.length > 0 &&
-                availableSection[0]?.images[0].image
-              }
-              w={"container.xl"}
-              alt=""
-              style={{
-                opacity: 1,
-                transition: "opacity 0.7s", // Note the corrected syntax here
-              }}
-            />
           </Container>
         )}
       {!checkLogin().isLoggedIn && (

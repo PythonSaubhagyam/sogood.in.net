@@ -48,8 +48,6 @@ import AddToCart from "../utils/addToCart";
 import AddOrRemoveInWishlist from "../utils/addOrRemoveInWishlist";
 import CheckOrSetUDID from "../utils/checkOrSetUDID";
 import checkLogin from "../utils/checkLogin";
-import ProductCarousel from "../components/ProductCarousel";
-import ProductListSection from "../components/ProductListSection";
 import dompurify from "dompurify";
 import Loader from "../components/Loader";
 import BreadCrumbCom from "../components/BreadCrumbCom";
@@ -59,6 +57,7 @@ import ScrollToTop from "../components/ScrollToTop";
 import LoginModal from "../components/LoginModal";
 import { Helmet } from "react-helmet";
 import RelatedOther from "../components/RelatedOther";
+import useScrollRestoration from "../utils/useScrollRestoration";
 
 function ButtonIncrement(props) {
   return (
@@ -123,6 +122,7 @@ export default function ProductDetails() {
   if (counter <= 1) {
     decrementCounter = () => setCounter(1);
   }
+  useScrollRestoration();
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { productId } = useParams();
